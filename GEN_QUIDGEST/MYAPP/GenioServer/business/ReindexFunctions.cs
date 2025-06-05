@@ -29,6 +29,84 @@ namespace CSGenio.business
             DataMatrix dm;
             sp.openConnection();
 
+            /* --- AJFAgente --- */
+            dm = sp.Execute(
+                new SelectQuery()
+                .Select(CSGenioAagent.FldCodagent)
+                .From(CSGenioAagent.AreaAGENT)
+                .Where(CriteriaSet.And().In(CSGenioAagent.FldZzstate, zzstateToRemove))
+                );
+
+            for (int i = 0; i < dm.NumRows; i++)
+            {
+                CSGenioAagent model = new CSGenioAagent(user);
+                model.ValCodagent = dm.GetKey(i, 0);
+
+                try
+                {
+                    model.delete(sp);
+                }
+                //Not every exception should be allowed to continue record deletion, only business exceptions need to be caught and allow to deletion continue.
+                //If there are other types of exceptions, such as database connection problems, for example, execution should be stopped immediately
+                catch(BusinessException ex)
+                {
+                    Log.Error((ex.UserMessage != null) ? ex.UserMessage : ex.Message);
+                }
+            }
+                
+
+            /* --- AJFCLUB --- */
+            dm = sp.Execute(
+                new SelectQuery()
+                .Select(CSGenioAclub.FldCodclub)
+                .From(CSGenioAclub.AreaCLUB)
+                .Where(CriteriaSet.And().In(CSGenioAclub.FldZzstate, zzstateToRemove))
+                );
+
+            for (int i = 0; i < dm.NumRows; i++)
+            {
+                CSGenioAclub model = new CSGenioAclub(user);
+                model.ValCodclub = dm.GetKey(i, 0);
+
+                try
+                {
+                    model.delete(sp);
+                }
+                //Not every exception should be allowed to continue record deletion, only business exceptions need to be caught and allow to deletion continue.
+                //If there are other types of exceptions, such as database connection problems, for example, execution should be stopped immediately
+                catch(BusinessException ex)
+                {
+                    Log.Error((ex.UserMessage != null) ? ex.UserMessage : ex.Message);
+                }
+            }
+                
+
+            /* --- AJFCountry --- */
+            dm = sp.Execute(
+                new SelectQuery()
+                .Select(CSGenioAcntry.FldCodcntry)
+                .From(CSGenioAcntry.AreaCNTRY)
+                .Where(CriteriaSet.And().In(CSGenioAcntry.FldZzstate, zzstateToRemove))
+                );
+
+            for (int i = 0; i < dm.NumRows; i++)
+            {
+                CSGenioAcntry model = new CSGenioAcntry(user);
+                model.ValCodcntry = dm.GetKey(i, 0);
+
+                try
+                {
+                    model.delete(sp);
+                }
+                //Not every exception should be allowed to continue record deletion, only business exceptions need to be caught and allow to deletion continue.
+                //If there are other types of exceptions, such as database connection problems, for example, execution should be stopped immediately
+                catch(BusinessException ex)
+                {
+                    Log.Error((ex.UserMessage != null) ? ex.UserMessage : ex.Message);
+                }
+            }
+                
+
             /* --- AJFMEM --- */
             dm = sp.Execute(
                 new SelectQuery()
@@ -159,6 +237,32 @@ namespace CSGenio.business
             }
                 
 
+            /* --- AJFPlayer --- */
+            dm = sp.Execute(
+                new SelectQuery()
+                .Select(CSGenioAplayr.FldCodplayr)
+                .From(CSGenioAplayr.AreaPLAYR)
+                .Where(CriteriaSet.And().In(CSGenioAplayr.FldZzstate, zzstateToRemove))
+                );
+
+            for (int i = 0; i < dm.NumRows; i++)
+            {
+                CSGenioAplayr model = new CSGenioAplayr(user);
+                model.ValCodplayr = dm.GetKey(i, 0);
+
+                try
+                {
+                    model.delete(sp);
+                }
+                //Not every exception should be allowed to continue record deletion, only business exceptions need to be caught and allow to deletion continue.
+                //If there are other types of exceptions, such as database connection problems, for example, execution should be stopped immediately
+                catch(BusinessException ex)
+                {
+                    Log.Error((ex.UserMessage != null) ? ex.UserMessage : ex.Message);
+                }
+            }
+                
+
             /* --- AsyncProcessArgument --- */
             dm = sp.Execute(
                 new SelectQuery()
@@ -223,6 +327,32 @@ namespace CSGenio.business
             {
                 CSGenioAs_ua model = new CSGenioAs_ua(user);
                 model.ValCodua = dm.GetKey(i, 0);
+
+                try
+                {
+                    model.delete(sp);
+                }
+                //Not every exception should be allowed to continue record deletion, only business exceptions need to be caught and allow to deletion continue.
+                //If there are other types of exceptions, such as database connection problems, for example, execution should be stopped immediately
+                catch(BusinessException ex)
+                {
+                    Log.Error((ex.UserMessage != null) ? ex.UserMessage : ex.Message);
+                }
+            }
+                
+
+            /* --- AJFContract --- */
+            dm = sp.Execute(
+                new SelectQuery()
+                .Select(CSGenioAcontr.FldCodcontr)
+                .From(CSGenioAcontr.AreaCONTR)
+                .Where(CriteriaSet.And().In(CSGenioAcontr.FldZzstate, zzstateToRemove))
+                );
+
+            for (int i = 0; i < dm.NumRows; i++)
+            {
+                CSGenioAcontr model = new CSGenioAcontr(user);
+                model.ValCodcontr = dm.GetKey(i, 0);
 
                 try
                 {

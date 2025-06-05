@@ -28,8 +28,14 @@ namespace Administration.Models
         public static List<ModuleRoleModel> ALL_MODULE_ROLES { get; } = new List<ModuleRoleModel>()
         {
             new ModuleRoleModel() {
-                Role = "1",
+                Role = "20",
                 Designation = "CONSULTA40695",
+                Description = "",              
+                Module = "AJF"
+            },
+            new ModuleRoleModel() {
+                Role = "50",
+                Designation = "DEVELOPER60750",
                 Description = "",              
                 Module = "AJF"
             },

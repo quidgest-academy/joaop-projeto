@@ -3,6 +3,9 @@
   <msg id="Canceled by" code="CANCELED_BY01167">
     <ENUS>Canceled by</ENUS>
   </msg>
+  <msg id="Agentes" code="AGENTES60642">
+    <ENUS>Agentes</ENUS>
+  </msg>
   <msg id="Estado do processo" code="ESTADO_DO_PROCESSO07540">
     <ENUS>Estado do processo</ENUS>
   </msg>
@@ -12,11 +15,17 @@
   <msg id="Notification Messages" code="NOTIFICATION_MESSAGE60981">
     <ENUS>Notification Messages</ENUS>
   </msg>
+  <msg id="Clubs Names" code="CLUBS_NAMES11563">
+    <ENUS>Clubs Names</ENUS>
+  </msg>
   <msg id="Login attempts" code="LOGIN_ATTEMPTS62337">
     <ENUS>Login attempts</ENUS>
   </msg>
   <msg id="Sender" code="SENDER07671">
     <ENUS>Sender</ENUS>
+  </msg>
+  <msg id="FK_Agent" code="FK_AGENT38232">
+    <ENUS>FK_Agent</ENUS>
   </msg>
   <msg id="Roles" code="ROLES61449">
     <ENUS>Roles</ENUS>
@@ -26,6 +35,9 @@
   </msg>
   <msg id="Sends attachment?" code="SENDS_ATTACHMENT_64661">
     <ENUS>Sends attachment?</ENUS>
+  </msg>
+  <msg id="Gender" code="GENDER44172">
+    <ENUS>Gender</ENUS>
   </msg>
   <msg id="Desautorizado" code="DESAUTORIZADO34584">
     <ENUS>Desautorizado</ENUS>
@@ -39,8 +51,14 @@
   <msg id="Quidgest" code="QUIDGEST26196">
     <ENUS>Quidgest</ENUS>
   </msg>
+  <msg id="Contract" code="CONTRACT36364">
+    <ENUS>Contract</ENUS>
+  </msg>
   <msg id="Notification Email Signatures" code="NOTIFICATION_EMAIL_S37352">
     <ENUS>Notification Email Signatures</ENUS>
+  </msg>
+  <msg id="Yes" code="YES34196">
+    <ENUS>Yes</ENUS>
   </msg>
   <msg id="Subject" code="SUBJECT33942">
     <ENUS>Subject</ENUS>
@@ -51,8 +69,14 @@
   <msg id="Sucesso" code="SUCESSO65230">
     <ENUS>Sucesso</ENUS>
   </msg>
+  <msg id="Name of the player" code="NAME_OF_THE_PLAYER61428">
+    <ENUS>Name of the player</ENUS>
+  </msg>
   <msg id="End time" code="END_TIME53495">
     <ENUS>End time</ENUS>
+  </msg>
+  <msg id="Country" code="COUNTRY64133">
+    <ENUS>Country</ENUS>
   </msg>
   <msg id="Modos de processamento" code="MODOS_DE_PROCESSAMEN07602">
     <ENUS>Modos de processamento</ENUS>
@@ -72,11 +96,17 @@
   <msg id="Passwords" code="PASSWORDS52247">
     <ENUS>Passwords</ENUS>
   </msg>
+  <msg id="FK_Player" code="FK_PLAYER18756">
+    <ENUS>FK_Player</ENUS>
+  </msg>
   <msg id="Date" code="DATE18475">
     <ENUS>Date</ENUS>
   </msg>
   <msg id="Resultado" code="RESULTADO50955">
     <ENUS>Resultado</ENUS>
+  </msg>
+  <msg id="Feminine" code="FEMININE01419">
+    <ENUS>Feminine</ENUS>
   </msg>
   <msg id="Created on" code="CREATED_ON00051">
     <ENUS>Created on</ENUS>
@@ -96,6 +126,15 @@
   <msg id="Saves on DB?" code="SAVES_ON_DB_61384">
     <ENUS>Saves on DB?</ENUS>
   </msg>
+  <msg id="Agent info" code="AGENT_INFO01863">
+    <ENUS>Agent info</ENUS>
+  </msg>
+  <msg id="Club Name" code="CLUB_NAME40175">
+    <ENUS>Club Name</ENUS>
+  </msg>
+  <msg id="Player" code="PLAYER57424">
+    <ENUS>Player</ENUS>
+  </msg>
   <msg id="User Authorization" code="USER_AUTHORIZATION53599">
     <ENUS>User Authorization</ENUS>
   </msg>
@@ -114,6 +153,9 @@
   <msg id="To" code="TO55217">
     <ENUS>To</ENUS>
   </msg>
+  <msg id="Agent&apos;s Email" code="AGENT_S_EMAIL56414">
+    <ENUS>Agent&apos;s Email</ENUS>
+  </msg>
   <msg id="Result message" code="RESULT_MESSAGE40830">
     <ENUS>Result message</ENUS>
   </msg>
@@ -125,6 +167,9 @@
   </msg>
   <msg id="Logbook" code="LOGBOOK00124">
     <ENUS>Logbook</ENUS>
+  </msg>
+  <msg id="PK Player" code="PK_PLAYER25733">
+    <ENUS>PK Player</ENUS>
   </msg>
   <msg id="Changed on" code="CHANGED_ON19727">
     <ENUS>Changed on</ENUS>
@@ -138,14 +183,26 @@
   <msg id="Expiration date" code="EXPIRATION_DATE34293">
     <ENUS>Expiration date</ENUS>
   </msg>
+  <msg id="Posição" code="POSICAO07486">
+    <ENUS>Posição</ENUS>
+  </msg>
   <msg id="Process type" code="PROCESS_TYPE25967">
     <ENUS>Process type</ENUS>
+  </msg>
+  <msg id="Club&apos;s Name" code="CLUB_S_NAME65517">
+    <ENUS>Club&apos;s Name</ENUS>
   </msg>
   <msg id="HTML format?" code="HTML_FORMAT_60293">
     <ENUS>HTML format?</ENUS>
   </msg>
+  <msg id="contract details" code="CONTRACT_DETAILS55576">
+    <ENUS>contract details</ENUS>
+  </msg>
   <msg id="Hidden" code="HIDDEN49780">
     <ENUS>Hidden</ENUS>
+  </msg>
+  <msg id="Player Details" code="PLAYER_DETAILS02042">
+    <ENUS>Player Details</ENUS>
   </msg>
   <msg id="Text after signature" code="TEXT_AFTER_SIGNATURE11837">
     <ENUS>Text after signature</ENUS>
@@ -153,8 +210,17 @@
   <msg id="Async process arguments" code="ASYNC_PROCESS_ARGUME13794">
     <ENUS>Async process arguments</ENUS>
   </msg>
+  <msg id="Starting Date" code="STARTING_DATE47975">
+    <ENUS>Starting Date</ENUS>
+  </msg>
+  <msg id="Other" code="OTHER37293">
+    <ENUS>Other</ENUS>
+  </msg>
   <msg id="Entid key" code="ENTID_KEY04396">
     <ENUS>Entid key</ENUS>
+  </msg>
+  <msg id="comission Details" code="COMISSION_DETAILS18026">
+    <ENUS>comission Details</ENUS>
   </msg>
   <msg id="Document" code="DOCUMENT00695">
     <ENUS>Document</ENUS>
@@ -174,11 +240,17 @@
   <msg id="User ID" code="USER_ID13914">
     <ENUS>User ID</ENUS>
   </msg>
+  <msg id="Cancelar" code="CANCELAR49513">
+    <ENUS>Cancelar</ENUS>
+  </msg>
   <msg id="Em fila de espera" code="EM_FILA_DE_ESPERA21822">
     <ENUS>Em fila de espera</ENUS>
   </msg>
   <msg id="Notification Email Signature" code="NOTIFICATION_EMAIL_S62518">
     <ENUS>Notification Email Signature</ENUS>
+  </msg>
+  <msg id="Total earn through comission" code="TOTAL_EARN_THROUGH_C21845">
+    <ENUS>Total earn through comission</ENUS>
   </msg>
   <msg id="Async process attachment" code="ASYNC_PROCESS_ATTACH34417">
     <ENUS>Async process attachment</ENUS>
@@ -189,14 +261,26 @@
   <msg id="Agendado para execução" code="AGENDADO_PARA_EXECUC11223">
     <ENUS>Agendado para execução</ENUS>
   </msg>
+  <msg id="Position" code="POSITION54869">
+    <ENUS>Position</ENUS>
+  </msg>
+  <msg id="FK_Agente" code="FK_AGENTE54597">
+    <ENUS>FK_Agente</ENUS>
+  </msg>
   <msg id="Password" code="PASSWORD09467">
     <ENUS>Password</ENUS>
+  </msg>
+  <msg id="Players under contract" code="PLAYERS_UNDER_CONTRA19805">
+    <ENUS>Players under contract</ENUS>
   </msg>
   <msg id="Administrador" code="ADMINISTRADOR57294">
     <ENUS>Administrador</ENUS>
   </msg>
   <msg id="Global" code="GLOBAL58588">
     <ENUS>Global</ENUS>
+  </msg>
+  <msg id="Contract Years" code="CONTRACT_YEARS11444">
+    <ENUS>Contract Years</ENUS>
   </msg>
   <msg id="Process Types" code="PROCESS_TYPES19050">
     <ENUS>Process Types</ENUS>
@@ -213,6 +297,9 @@
   <msg id="Modules" code="MODULES33542">
     <ENUS>Modules</ENUS>
   </msg>
+  <msg id="Transfer Value" code="TRANSFER_VALUE12168">
+    <ENUS>Transfer Value</ENUS>
+  </msg>
   <msg id="Routine" code="ROUTINE58306">
     <ENUS>Routine</ENUS>
   </msg>
@@ -225,17 +312,32 @@
   <msg id="Consulta" code="CONSULTA40695">
     <ENUS>Consulta</ENUS>
   </msg>
+  <msg id="FK_Club" code="FK_CLUB57683">
+    <ENUS>FK_Club</ENUS>
+  </msg>
   <msg id="Enabled?" code="ENABLED_33995">
     <ENUS>Enabled?</ENUS>
   </msg>
+  <msg id="Total ganho em comissões" code="TOTAL_GANHO_EM_COMIS04690">
+    <ENUS>Total ganho em comissões</ENUS>
+  </msg>
   <msg id="Module" code="MODULE42049">
     <ENUS>Module</ENUS>
+  </msg>
+  <msg id="Under Contract?" code="UNDER_CONTRACT_12632">
+    <ENUS>Under Contract?</ENUS>
   </msg>
   <msg id="Has login?" code="HAS_LOGIN_58044">
     <ENUS>Has login?</ENUS>
   </msg>
   <msg id="Duration" code="DURATION40426">
     <ENUS>Duration</ENUS>
+  </msg>
+  <msg id="agent&apos;s info" code="AGENT_S_INFO06079">
+    <ENUS>agent&apos;s info</ENUS>
+  </msg>
+  <msg id="Agente" code="AGENTE44214">
+    <ENUS>Agente</ENUS>
   </msg>
   <msg id="Executed by external app" code="EXECUTED_BY_EXTERNAL36156">
     <ENUS>Executed by external app</ENUS>
@@ -258,11 +360,23 @@
   <msg id="Async process argument" code="ASYNC_PROCESS_ARGUME19111">
     <ENUS>Async process argument</ENUS>
   </msg>
+  <msg id="Contract duration" code="CONTRACT_DURATION31225">
+    <ENUS>Contract duration</ENUS>
+  </msg>
+  <msg id="Developer" code="DEVELOPER60750">
+    <ENUS>Developer</ENUS>
+  </msg>
+  <msg id="Players" code="PLAYERS11892">
+    <ENUS>Players</ENUS>
+  </msg>
   <msg id="Username" code="USERNAME51409">
     <ENUS>Username</ENUS>
   </msg>
   <msg id="Cc" code="CC35482">
     <ENUS>Cc</ENUS>
+  </msg>
+  <msg id="Player&apos;s Age" code="PLAYER_S_AGE12664">
+    <ENUS>Player&apos;s Age</ENUS>
   </msg>
   <msg id="Last update" code="LAST_UPDATE11909">
     <ENUS>Last update</ENUS>
@@ -273,8 +387,14 @@
   <msg id="Individual" code="INDIVIDUAL42893">
     <ENUS>Individual</ENUS>
   </msg>
+  <msg id="No" code="NO57340">
+    <ENUS>No</ENUS>
+  </msg>
   <msg id="Unidade orgânica" code="UNIDADE_ORGANICA38383">
     <ENUS>Unidade orgânica</ENUS>
+  </msg>
+  <msg id="Salary of the player" code="SALARY_OF_THE_PLAYER18170">
+    <ENUS>Salary of the player</ENUS>
   </msg>
   <msg id="Motive" code="MOTIVE13407">
     <ENUS>Motive</ENUS>
@@ -285,11 +405,38 @@
   <msg id="Request date" code="REQUEST_DATE25771">
     <ENUS>Request date</ENUS>
   </msg>
+  <msg id="New Zone" code="NEW_ZONE54096">
+    <ENUS>New Zone</ENUS>
+  </msg>
+  <msg id="Birthdate" code="BIRTHDATE22743">
+    <ENUS>Birthdate</ENUS>
+  </msg>
+  <msg id="Agente ID" code="AGENTE_ID43487">
+    <ENUS>Agente ID</ENUS>
+  </msg>
+  <msg id="Finish Date" code="FINISH_DATE41863">
+    <ENUS>Finish Date</ENUS>
+  </msg>
+  <msg id="Percentage of the Comission" code="PERCENTAGE_OF_THE_CO01872">
+    <ENUS>Percentage of the Comission</ENUS>
+  </msg>
   <msg id="Modo de processamento" code="MODO_DE_PROCESSAMENT14469">
     <ENUS>Modo de processamento</ENUS>
   </msg>
+  <msg id="Agent´s Name" code="AGENT_S_NAME23140">
+    <ENUS>Agent´s Name</ENUS>
+  </msg>
+  <msg id="Male" code="MALE32397">
+    <ENUS>Male</ENUS>
+  </msg>
+  <msg id="identification details" code="IDENTIFICATION_DETAI53665">
+    <ENUS>identification details</ENUS>
+  </msg>
   <msg id="Horário" code="HORARIO56549">
     <ENUS>Horário</ENUS>
+  </msg>
+  <msg id="Countries" code="COUNTRIES64527">
+    <ENUS>Countries</ENUS>
   </msg>
   <msg id="Client ip address" code="CLIENT_IP_ADDRESS62089">
     <ENUS>Client ip address</ENUS>
@@ -300,8 +447,14 @@
   <msg id="Role" code="ROLE60946">
     <ENUS>Role</ENUS>
   </msg>
+  <msg id="Photo&apos;s Agent" code="PHOTO_S_AGENT28065">
+    <ENUS>Photo&apos;s Agent</ENUS>
+  </msg>
   <msg id="My application" code="MY_APPLICATION56216">
     <ENUS>My application</ENUS>
+  </msg>
+  <msg id="Gravar" code="GRAVAR45301">
+    <ENUS>Gravar</ENUS>
   </msg>
   <msg id="A cancelar" code="A_CANCELAR43988">
     <ENUS>A cancelar</ENUS>
@@ -312,17 +465,26 @@
   <msg id="Email" code="EMAIL25170">
     <ENUS>Email</ENUS>
   </msg>
+  <msg id="Contracts" code="CONTRACTS23801">
+    <ENUS>Contracts</ENUS>
+  </msg>
   <msg id="Manual destination" code="MANUAL_DESTINATION21892">
     <ENUS>Manual destination</ENUS>
   </msg>
   <msg id="Process ID" code="PROCESS_ID11161">
     <ENUS>Process ID</ENUS>
   </msg>
+  <msg id="Agent&apos;s Phone" code="AGENT_S_PHONE23147">
+    <ENUS>Agent&apos;s Phone</ENUS>
+  </msg>
   <msg id="Changed by" code="CHANGED_BY08967">
     <ENUS>Changed by</ENUS>
   </msg>
   <msg id="Obs" code="OBS42026">
     <ENUS>Obs</ENUS>
+  </msg>
+  <msg id="Monetary Value comissions through each transfer" code="MONETARY_VALUE_COMIS27197">
+    <ENUS>Monetary Value comissions through each transfer</ENUS>
   </msg>
   <msg id="Async process" code="ASYNC_PROCESS56674">
     <ENUS>Async process</ENUS>
@@ -353,9 +515,6 @@
   </msg>
   <msg id="Campo Vazio/Alterado" code="CAMPO_VAZIO_ALTERADO56548">
     <ENUS>Empty/Changed Field</ENUS>
-  </msg>
-  <msg id="Cancelar" code="CANCELAR49513">
-    <ENUS>Cancel</ENUS>
   </msg>
   <msg id="consulta" code="CONSULTA23186">
     <ENUS>Query</ENUS>
@@ -398,9 +557,6 @@
   </msg>
   <msg id="Form" code="FORM54242">
     <ENUS>Form</ENUS>
-  </msg>
-  <msg id="Gravar" code="GRAVAR45301">
-    <ENUS>Save</ENUS>
   </msg>
   <msg id="Grupo" code="GRUPO22663">
     <ENUS>Group</ENUS>
@@ -4858,7 +5014,7 @@
     <ENUS>Select</ENUS>
   </msg>
   <msg id="&amp;Cancelar" code="_CANCELAR09516">
-    <ENUS>Cancel</ENUS>
+    <ENUS>&amp;Cancelar</ENUS>
   </msg>
   <msg id="&amp;Alterar" code="_ALTERAR63438">
     <ENUS>Change</ENUS>
@@ -5062,7 +5218,7 @@
     <ENUS>&amp;Queue</ENUS>
   </msg>
   <msg id="&amp;Gravar" code="_GRAVAR27930">
-    <ENUS>Save</ENUS>
+    <ENUS>&amp;Gravar</ENUS>
   </msg>
   <msg id="&amp;Tabela" code="_TABELA23959">
     <ENUS>Table</ENUS>
@@ -5140,7 +5296,7 @@
     <ENUS>Sum</ENUS>
   </msg>
   <msg id="Gra&amp;var" code="GRA_VAR31620">
-    <ENUS>Save</ENUS>
+    <ENUS>Gra&amp;var</ENUS>
   </msg>
   <msg id="Utilizad&amp;or:" code="UTILIZAD_OR_18947">
     <ENUS>Username:</ENUS>
@@ -7763,9 +7919,6 @@
   </msg>
   <msg id="Largura" code="LARGURA03667">
     <ENUS>Width</ENUS>
-  </msg>
-  <msg id="Posição" code="POSICAO07486">
-    <ENUS>Position</ENUS>
   </msg>
   <msg id="Marcador da posição" code="MARCADOR_DA_POSICAO09118">
     <ENUS>Position marker</ENUS>

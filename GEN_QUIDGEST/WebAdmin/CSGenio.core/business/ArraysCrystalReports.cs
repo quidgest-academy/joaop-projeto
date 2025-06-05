@@ -20,6 +20,13 @@ namespace CSGenio.business
 
             StringBuilder Qresult = new StringBuilder();
             
+			// gender
+            Qresult = new StringBuilder();
+			            Qresult.AppendLine("if {{{0}}} = \"M\" then \"Male\" else");
+			            Qresult.AppendLine("if {{{0}}} = \"F\" then \"Feminine\" else");
+			            Qresult.AppendLine("if {{{0}}} = \"O\" then \"Other\" else");
+            Qresult.Append("\"                                              \"");
+            todasArrays.Add("gender", Qresult.ToString());
 			// s_modpro
             Qresult = new StringBuilder();
 			            Qresult.AppendLine("if {{{0}}} = \"INDIV\" then \"Individual\" else");
@@ -60,6 +67,12 @@ namespace CSGenio.business
             Qresult = new StringBuilder();
             Qresult.Append("\"                                              \"");
             todasArrays.Add("s_tpproc", Qresult.ToString());
+			// undercontract
+            Qresult = new StringBuilder();
+			            Qresult.AppendLine("if {{{0}}} = \"Y\" then \"Yes\" else");
+			            Qresult.AppendLine("if {{{0}}} = \"N\" then \"No\" else");
+            Qresult.Append("\"                                              \"");
+            todasArrays.Add("undercontract", Qresult.ToString());
         }
 
         /// <summary>

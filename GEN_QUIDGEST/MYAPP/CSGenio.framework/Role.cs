@@ -19,7 +19,8 @@ namespace CSGenio.framework
         public static readonly Role AUTHORIZED;
         public static readonly Role INVALID;
 
-        public static readonly Role ROLE_1; //Consulta
+        public static readonly Role ROLE_20; //Consulta
+        public static readonly Role ROLE_50; //Developer
         //Roles
 
         public static readonly Dictionary<string, Role> ALL_ROLES = new Dictionary<string, Role>();
@@ -65,8 +66,11 @@ namespace CSGenio.framework
             INVALID = new Role(RoleType.SYSTEM, "INVALID40876");
 
             //Create all roles
-            ROLE_1 = new Role(LevelAccess.NV1, "CONSULTA40695");
-            ALL_ROLES.Add("1", ROLE_1);
+            ROLE_20 = new Role(LevelAccess.NV20, "CONSULTA40695");
+            ALL_ROLES.Add("20", ROLE_20);
+
+            ROLE_50 = new Role(LevelAccess.NV50, "DEVELOPER60750");
+            ALL_ROLES.Add("50", ROLE_50);
 
             //These roles are hardcoded and have these values for backwards compatibility reasons
             ALL_ROLES.Add("0", UNAUTHORIZED);
@@ -75,9 +79,12 @@ namespace CSGenio.framework
 
             //Add subroles
 
-			UNAUTHORIZED.Add(ROLE_1);
+			UNAUTHORIZED.Add(ROLE_20);
+			UNAUTHORIZED.Add(ROLE_50);
 			UNAUTHORIZED.Add(ADMINISTRATION);
-			ROLE_1.Add(ADMINISTRATION);
+			ROLE_20.Add(ROLE_50);
+			ROLE_20.Add(ADMINISTRATION);
+			ROLE_50.Add(ADMINISTRATION);
 
 			foreach(Role role in ALL_ROLES.Values)
 				role.FlattenRole();

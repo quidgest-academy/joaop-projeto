@@ -5,6 +5,46 @@ import _merge from 'lodash-es/merge'
 import netAPI from '@quidgest/clientapp/network'
 /* eslint-enable no-unused-vars */
 /**
+ * The Gender array.
+ */
+export const QArrayGender = {
+	type: 'C',
+	pluralName: 'GENDER44172',
+	singularName: 'GENDER44172',
+	fnResources: null,
+	setResources(fnResources)
+	{
+		this.fnResources = fnResources
+		return this
+	},
+	get elements()
+	{
+		// eslint-disable-next-line no-unused-vars
+		const vm = this
+		return [
+			{
+				num: 1,
+				key: 'M',
+				resourceId: 'MALE32397',
+				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
+			},
+			{
+				num: 2,
+				key: 'F',
+				resourceId: 'FEMININE01419',
+				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
+			},
+			{
+				num: 3,
+				key: 'O',
+				resourceId: 'OTHER37293',
+				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
+			},
+		]
+	},
+}
+
+/**
  * The s_modpro array.
  */
 export const QArrayS_modpro = {
@@ -244,12 +284,48 @@ export const QArrayS_tpproc = {
 	},
 }
 
+/**
+ * The UnderContract array.
+ */
+export const QArrayUndercontract = {
+	type: 'L',
+	pluralName: 'UNDER_CONTRACT_12632',
+	singularName: 'UNDER_CONTRACT_12632',
+	fnResources: null,
+	setResources(fnResources)
+	{
+		this.fnResources = fnResources
+		return this
+	},
+	get elements()
+	{
+		// eslint-disable-next-line no-unused-vars
+		const vm = this
+		return [
+			{
+				num: 1,
+				key: Y,
+				resourceId: 'YES34196',
+				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
+			},
+			{
+				num: 2,
+				key: N,
+				resourceId: 'NO57340',
+				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
+			},
+		]
+	},
+}
+
 
 export default {
+	QArrayGender,
 	QArrayS_modpro,
 	QArrayS_module,
 	QArrayS_prstat,
 	QArrayS_resul,
 	QArrayS_roles,
 	QArrayS_tpproc,
+	QArrayUndercontract,
 }

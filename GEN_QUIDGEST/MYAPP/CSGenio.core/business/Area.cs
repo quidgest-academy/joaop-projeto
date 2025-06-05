@@ -22,20 +22,30 @@ namespace CSGenio.business
     {
         public static AreaRef AreaS_ARG { get { return m_AreaS_ARG; } }
         private static AreaRef m_AreaS_ARG = new AreaRef("AJF", "asyncprocessargument", "s_arg");
+        public static AreaRef AreaPLAYR { get { return m_AreaPLAYR; } }
+        private static AreaRef m_AreaPLAYR = new AreaRef("AJF", "ajfplayer", "playr");
         public static AreaRef AreaS_APR { get { return m_AreaS_APR; } }
         private static AreaRef m_AreaS_APR = new AreaRef("AJF", "asyncprocess", "s_apr");
         public static AreaRef AreaS_NM { get { return m_AreaS_NM; } }
         private static AreaRef m_AreaS_NM = new AreaRef("AJF", "notificationmessage", "s_nm");
         public static AreaRef AreaPSW { get { return m_AreaPSW; } }
         private static AreaRef m_AreaPSW = new AreaRef("AJF", "userlogin", "psw");
+        public static AreaRef AreaCNTRY { get { return m_AreaCNTRY; } }
+        private static AreaRef m_AreaCNTRY = new AreaRef("AJF", "ajfcountry", "cntry");
         public static AreaRef AreaS_PAX { get { return m_AreaS_PAX; } }
         private static AreaRef m_AreaS_PAX = new AreaRef("AJF", "asyncprocessattachments", "s_pax");
         public static AreaRef AreaS_NES { get { return m_AreaS_NES; } }
         private static AreaRef m_AreaS_NES = new AreaRef("AJF", "notificationemailsignature", "s_nes");
+        public static AreaRef AreaCONTR { get { return m_AreaCONTR; } }
+        private static AreaRef m_AreaCONTR = new AreaRef("AJF", "ajfcontract", "contr");
+        public static AreaRef AreaCLUB { get { return m_AreaCLUB; } }
+        private static AreaRef m_AreaCLUB = new AreaRef("AJF", "ajfclub", "club");
         public static AreaRef AreaS_UA { get { return m_AreaS_UA; } }
         private static AreaRef m_AreaS_UA = new AreaRef("AJF", "userauthorization", "s_ua");
         public static AreaRef AreaMEM { get { return m_AreaMEM; } }
         private static AreaRef m_AreaMEM = new AreaRef("AJF", "ajfmem", "mem");
+        public static AreaRef AreaAGENT { get { return m_AreaAGENT; } }
+        private static AreaRef m_AreaAGENT = new AreaRef("AJF", "ajfagente", "agent");
         //areas hardcoded
         public static AreaRef AreaDELEGA { get { return m_AreaDELEGA; } }
         private static AreaRef m_AreaDELEGA = new AreaRef("AJFdelega", "delega");
@@ -73,13 +83,18 @@ namespace CSGenio.business
         public static readonly System.Collections.ObjectModel.ReadOnlyCollection<string> ListaAreas = new System.Collections.ObjectModel.ReadOnlyCollection<string>(
             new List<string>() {
             "s_arg",
+            "playr",
             "s_apr",
             "s_nm",
             "psw",
+            "cntry",
             "s_pax",
             "s_nes",
+            "contr",
+            "club",
             "s_ua",
             "mem",
+            "agent",
         });
 
         /// <summary>

@@ -120,6 +120,9 @@
 	<data name="CANCELED_BY01167" xml:space="preserve">
 		<value>Canceled by</value>
 	</data>
+	<data name="AGENTES60642" xml:space="preserve">
+		<value>Agentes</value>
+	</data>
 	<data name="ESTADO_DO_PROCESSO07540" xml:space="preserve">
 		<value>Estado do processo</value>
 	</data>
@@ -129,11 +132,17 @@
 	<data name="NOTIFICATION_MESSAGE60981" xml:space="preserve">
 		<value>Notification Messages</value>
 	</data>
+	<data name="CLUBS_NAMES11563" xml:space="preserve">
+		<value>Clubs Names</value>
+	</data>
 	<data name="LOGIN_ATTEMPTS62337" xml:space="preserve">
 		<value>Login attempts</value>
 	</data>
 	<data name="SENDER07671" xml:space="preserve">
 		<value>Sender</value>
+	</data>
+	<data name="FK_AGENT38232" xml:space="preserve">
+		<value>FK_Agent</value>
 	</data>
 	<data name="ROLES61449" xml:space="preserve">
 		<value>Roles</value>
@@ -143,6 +152,9 @@
 	</data>
 	<data name="SENDS_ATTACHMENT_64661" xml:space="preserve">
 		<value>Sends attachment?</value>
+	</data>
+	<data name="GENDER44172" xml:space="preserve">
+		<value>Gender</value>
 	</data>
 	<data name="DESAUTORIZADO34584" xml:space="preserve">
 		<value>Desautorizado</value>
@@ -156,8 +168,14 @@
 	<data name="QUIDGEST26196" xml:space="preserve">
 		<value>Quidgest</value>
 	</data>
+	<data name="CONTRACT36364" xml:space="preserve">
+		<value>Contract</value>
+	</data>
 	<data name="NOTIFICATION_EMAIL_S37352" xml:space="preserve">
 		<value>Notification Email Signatures</value>
+	</data>
+	<data name="YES34196" xml:space="preserve">
+		<value>Yes</value>
 	</data>
 	<data name="SUBJECT33942" xml:space="preserve">
 		<value>Subject</value>
@@ -168,8 +186,14 @@
 	<data name="SUCESSO65230" xml:space="preserve">
 		<value>Sucesso</value>
 	</data>
+	<data name="NAME_OF_THE_PLAYER61428" xml:space="preserve">
+		<value>Name of the player</value>
+	</data>
 	<data name="END_TIME53495" xml:space="preserve">
 		<value>End time</value>
+	</data>
+	<data name="COUNTRY64133" xml:space="preserve">
+		<value>Country</value>
 	</data>
 	<data name="MODOS_DE_PROCESSAMEN07602" xml:space="preserve">
 		<value>Modos de processamento</value>
@@ -189,11 +213,17 @@
 	<data name="PASSWORDS52247" xml:space="preserve">
 		<value>Passwords</value>
 	</data>
+	<data name="FK_PLAYER18756" xml:space="preserve">
+		<value>FK_Player</value>
+	</data>
 	<data name="DATE18475" xml:space="preserve">
 		<value>Date</value>
 	</data>
 	<data name="RESULTADO50955" xml:space="preserve">
 		<value>Resultado</value>
+	</data>
+	<data name="FEMININE01419" xml:space="preserve">
+		<value>Feminine</value>
 	</data>
 	<data name="CREATED_ON00051" xml:space="preserve">
 		<value>Created on</value>
@@ -213,6 +243,15 @@
 	<data name="SAVES_ON_DB_61384" xml:space="preserve">
 		<value>Saves on DB?</value>
 	</data>
+	<data name="AGENT_INFO01863" xml:space="preserve">
+		<value>Agent info</value>
+	</data>
+	<data name="CLUB_NAME40175" xml:space="preserve">
+		<value>Club Name</value>
+	</data>
+	<data name="PLAYER57424" xml:space="preserve">
+		<value>Player</value>
+	</data>
 	<data name="USER_AUTHORIZATION53599" xml:space="preserve">
 		<value>User Authorization</value>
 	</data>
@@ -231,6 +270,9 @@
 	<data name="TO55217" xml:space="preserve">
 		<value>To</value>
 	</data>
+	<data name="AGENT_S_EMAIL56414" xml:space="preserve">
+		<value>Agent&apos;s Email</value>
+	</data>
 	<data name="RESULT_MESSAGE40830" xml:space="preserve">
 		<value>Result message</value>
 	</data>
@@ -242,6 +284,9 @@
 	</data>
 	<data name="LOGBOOK00124" xml:space="preserve">
 		<value>Logbook</value>
+	</data>
+	<data name="PK_PLAYER25733" xml:space="preserve">
+		<value>PK Player</value>
 	</data>
 	<data name="CHANGED_ON19727" xml:space="preserve">
 		<value>Changed on</value>
@@ -255,14 +300,26 @@
 	<data name="EXPIRATION_DATE34293" xml:space="preserve">
 		<value>Expiration date</value>
 	</data>
+	<data name="POSICAO07486" xml:space="preserve">
+		<value>Posição</value>
+	</data>
 	<data name="PROCESS_TYPE25967" xml:space="preserve">
 		<value>Process type</value>
+	</data>
+	<data name="CLUB_S_NAME65517" xml:space="preserve">
+		<value>Club&apos;s Name</value>
 	</data>
 	<data name="HTML_FORMAT_60293" xml:space="preserve">
 		<value>HTML format?</value>
 	</data>
+	<data name="CONTRACT_DETAILS55576" xml:space="preserve">
+		<value>contract details</value>
+	</data>
 	<data name="HIDDEN49780" xml:space="preserve">
 		<value>Hidden</value>
+	</data>
+	<data name="PLAYER_DETAILS02042" xml:space="preserve">
+		<value>Player Details</value>
 	</data>
 	<data name="TEXT_AFTER_SIGNATURE11837" xml:space="preserve">
 		<value>Text after signature</value>
@@ -270,8 +327,17 @@
 	<data name="ASYNC_PROCESS_ARGUME13794" xml:space="preserve">
 		<value>Async process arguments</value>
 	</data>
+	<data name="STARTING_DATE47975" xml:space="preserve">
+		<value>Starting Date</value>
+	</data>
+	<data name="OTHER37293" xml:space="preserve">
+		<value>Other</value>
+	</data>
 	<data name="ENTID_KEY04396" xml:space="preserve">
 		<value>Entid key</value>
+	</data>
+	<data name="COMISSION_DETAILS18026" xml:space="preserve">
+		<value>comission Details</value>
 	</data>
 	<data name="DOCUMENT00695" xml:space="preserve">
 		<value>Document</value>
@@ -291,11 +357,17 @@
 	<data name="USER_ID13914" xml:space="preserve">
 		<value>User ID</value>
 	</data>
+	<data name="CANCELAR49513" xml:space="preserve">
+		<value>Cancelar</value>
+	</data>
 	<data name="EM_FILA_DE_ESPERA21822" xml:space="preserve">
 		<value>Em fila de espera</value>
 	</data>
 	<data name="NOTIFICATION_EMAIL_S62518" xml:space="preserve">
 		<value>Notification Email Signature</value>
+	</data>
+	<data name="TOTAL_EARN_THROUGH_C21845" xml:space="preserve">
+		<value>Total earn through comission</value>
 	</data>
 	<data name="ASYNC_PROCESS_ATTACH34417" xml:space="preserve">
 		<value>Async process attachment</value>
@@ -306,14 +378,26 @@
 	<data name="AGENDADO_PARA_EXECUC11223" xml:space="preserve">
 		<value>Agendado para execução</value>
 	</data>
+	<data name="POSITION54869" xml:space="preserve">
+		<value>Position</value>
+	</data>
+	<data name="FK_AGENTE54597" xml:space="preserve">
+		<value>FK_Agente</value>
+	</data>
 	<data name="PASSWORD09467" xml:space="preserve">
 		<value>Password</value>
+	</data>
+	<data name="PLAYERS_UNDER_CONTRA19805" xml:space="preserve">
+		<value>Players under contract</value>
 	</data>
 	<data name="ADMINISTRADOR57294" xml:space="preserve">
 		<value>Administrador</value>
 	</data>
 	<data name="GLOBAL58588" xml:space="preserve">
 		<value>Global</value>
+	</data>
+	<data name="CONTRACT_YEARS11444" xml:space="preserve">
+		<value>Contract Years</value>
 	</data>
 	<data name="PROCESS_TYPES19050" xml:space="preserve">
 		<value>Process Types</value>
@@ -330,6 +414,9 @@
 	<data name="MODULES33542" xml:space="preserve">
 		<value>Modules</value>
 	</data>
+	<data name="TRANSFER_VALUE12168" xml:space="preserve">
+		<value>Transfer Value</value>
+	</data>
 	<data name="ROUTINE58306" xml:space="preserve">
 		<value>Routine</value>
 	</data>
@@ -342,17 +429,32 @@
 	<data name="CONSULTA40695" xml:space="preserve">
 		<value>Consulta</value>
 	</data>
+	<data name="FK_CLUB57683" xml:space="preserve">
+		<value>FK_Club</value>
+	</data>
 	<data name="ENABLED_33995" xml:space="preserve">
 		<value>Enabled?</value>
 	</data>
+	<data name="TOTAL_GANHO_EM_COMIS04690" xml:space="preserve">
+		<value>Total ganho em comissões</value>
+	</data>
 	<data name="MODULE42049" xml:space="preserve">
 		<value>Module</value>
+	</data>
+	<data name="UNDER_CONTRACT_12632" xml:space="preserve">
+		<value>Under Contract?</value>
 	</data>
 	<data name="HAS_LOGIN_58044" xml:space="preserve">
 		<value>Has login?</value>
 	</data>
 	<data name="DURATION40426" xml:space="preserve">
 		<value>Duration</value>
+	</data>
+	<data name="AGENT_S_INFO06079" xml:space="preserve">
+		<value>agent&apos;s info</value>
+	</data>
+	<data name="AGENTE44214" xml:space="preserve">
+		<value>Agente</value>
 	</data>
 	<data name="EXECUTED_BY_EXTERNAL36156" xml:space="preserve">
 		<value>Executed by external app</value>
@@ -375,11 +477,23 @@
 	<data name="ASYNC_PROCESS_ARGUME19111" xml:space="preserve">
 		<value>Async process argument</value>
 	</data>
+	<data name="CONTRACT_DURATION31225" xml:space="preserve">
+		<value>Contract duration</value>
+	</data>
+	<data name="DEVELOPER60750" xml:space="preserve">
+		<value>Developer</value>
+	</data>
+	<data name="PLAYERS11892" xml:space="preserve">
+		<value>Players</value>
+	</data>
 	<data name="USERNAME51409" xml:space="preserve">
 		<value>Username</value>
 	</data>
 	<data name="CC35482" xml:space="preserve">
 		<value>Cc</value>
+	</data>
+	<data name="PLAYER_S_AGE12664" xml:space="preserve">
+		<value>Player&apos;s Age</value>
 	</data>
 	<data name="LAST_UPDATE11909" xml:space="preserve">
 		<value>Last update</value>
@@ -390,8 +504,14 @@
 	<data name="INDIVIDUAL42893" xml:space="preserve">
 		<value>Individual</value>
 	</data>
+	<data name="NO57340" xml:space="preserve">
+		<value>No</value>
+	</data>
 	<data name="UNIDADE_ORGANICA38383" xml:space="preserve">
 		<value>Unidade orgânica</value>
+	</data>
+	<data name="SALARY_OF_THE_PLAYER18170" xml:space="preserve">
+		<value>Salary of the player</value>
 	</data>
 	<data name="MOTIVE13407" xml:space="preserve">
 		<value>Motive</value>
@@ -402,11 +522,38 @@
 	<data name="REQUEST_DATE25771" xml:space="preserve">
 		<value>Request date</value>
 	</data>
+	<data name="NEW_ZONE54096" xml:space="preserve">
+		<value>New Zone</value>
+	</data>
+	<data name="BIRTHDATE22743" xml:space="preserve">
+		<value>Birthdate</value>
+	</data>
+	<data name="AGENTE_ID43487" xml:space="preserve">
+		<value>Agente ID</value>
+	</data>
+	<data name="FINISH_DATE41863" xml:space="preserve">
+		<value>Finish Date</value>
+	</data>
+	<data name="PERCENTAGE_OF_THE_CO01872" xml:space="preserve">
+		<value>Percentage of the Comission</value>
+	</data>
 	<data name="MODO_DE_PROCESSAMENT14469" xml:space="preserve">
 		<value>Modo de processamento</value>
 	</data>
+	<data name="AGENT_S_NAME23140" xml:space="preserve">
+		<value>Agent´s Name</value>
+	</data>
+	<data name="MALE32397" xml:space="preserve">
+		<value>Male</value>
+	</data>
+	<data name="IDENTIFICATION_DETAI53665" xml:space="preserve">
+		<value>identification details</value>
+	</data>
 	<data name="HORARIO56549" xml:space="preserve">
 		<value>Horário</value>
+	</data>
+	<data name="COUNTRIES64527" xml:space="preserve">
+		<value>Countries</value>
 	</data>
 	<data name="CLIENT_IP_ADDRESS62089" xml:space="preserve">
 		<value>Client ip address</value>
@@ -417,8 +564,14 @@
 	<data name="ROLE60946" xml:space="preserve">
 		<value>Role</value>
 	</data>
+	<data name="PHOTO_S_AGENT28065" xml:space="preserve">
+		<value>Photo&apos;s Agent</value>
+	</data>
 	<data name="MY_APPLICATION56216" xml:space="preserve">
 		<value>My application</value>
+	</data>
+	<data name="GRAVAR45301" xml:space="preserve">
+		<value>Gravar</value>
 	</data>
 	<data name="A_CANCELAR43988" xml:space="preserve">
 		<value>A cancelar</value>
@@ -429,17 +582,26 @@
 	<data name="EMAIL25170" xml:space="preserve">
 		<value>Email</value>
 	</data>
+	<data name="CONTRACTS23801" xml:space="preserve">
+		<value>Contracts</value>
+	</data>
 	<data name="MANUAL_DESTINATION21892" xml:space="preserve">
 		<value>Manual destination</value>
 	</data>
 	<data name="PROCESS_ID11161" xml:space="preserve">
 		<value>Process ID</value>
 	</data>
+	<data name="AGENT_S_PHONE23147" xml:space="preserve">
+		<value>Agent&apos;s Phone</value>
+	</data>
 	<data name="CHANGED_BY08967" xml:space="preserve">
 		<value>Changed by</value>
 	</data>
 	<data name="OBS42026" xml:space="preserve">
 		<value>Obs</value>
+	</data>
+	<data name="MONETARY_VALUE_COMIS27197" xml:space="preserve">
+		<value>Monetary Value comissions through each transfer</value>
 	</data>
 	<data name="ASYNC_PROCESS56674" xml:space="preserve">
 		<value>Async process</value>
@@ -470,9 +632,6 @@
 	</data>
 	<data name="CAMPO_VAZIO_ALTERADO56548" xml:space="preserve">
 		<value>Empty/Changed Field</value>
-	</data>
-	<data name="CANCELAR49513" xml:space="preserve">
-		<value>Cancel</value>
 	</data>
 	<data name="CONSULTA23186" xml:space="preserve">
 		<value>Query</value>
@@ -515,9 +674,6 @@
 	</data>
 	<data name="FORM54242" xml:space="preserve">
 		<value>Form</value>
-	</data>
-	<data name="GRAVAR45301" xml:space="preserve">
-		<value>Save</value>
 	</data>
 	<data name="GRUPO22663" xml:space="preserve">
 		<value>Group</value>
@@ -4975,7 +5131,7 @@
 		<value>Select</value>
 	</data>
 	<data name="_CANCELAR09516" xml:space="preserve">
-		<value>Cancel</value>
+		<value>&amp;Cancelar</value>
 	</data>
 	<data name="_ALTERAR63438" xml:space="preserve">
 		<value>Change</value>
@@ -5179,7 +5335,7 @@
 		<value>&amp;Queue</value>
 	</data>
 	<data name="_GRAVAR27930" xml:space="preserve">
-		<value>Save</value>
+		<value>&amp;Gravar</value>
 	</data>
 	<data name="_TABELA23959" xml:space="preserve">
 		<value>Table</value>
@@ -5257,7 +5413,7 @@
 		<value>Sum</value>
 	</data>
 	<data name="GRA_VAR31620" xml:space="preserve">
-		<value>Save</value>
+		<value>Gra&amp;var</value>
 	</data>
 	<data name="UTILIZAD_OR_18947" xml:space="preserve">
 		<value>Username:</value>
@@ -7880,9 +8036,6 @@
 	</data>
 	<data name="LARGURA03667" xml:space="preserve">
 		<value>Width</value>
-	</data>
-	<data name="POSICAO07486" xml:space="preserve">
-		<value>Position</value>
 	</data>
 	<data name="MARCADOR_DA_POSICAO09118" xml:space="preserve">
 		<value>Position marker</value>

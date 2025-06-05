@@ -38,14 +38,16 @@ namespace GenioServer.security
         {
             new Tuple<string,Role>("AJF", Role.UNAUTHORIZED),
 
-			new Tuple<string,Role>("AJF", Role.ROLE_1),
+			new Tuple<string,Role>("AJF", Role.ROLE_20),
+			new Tuple<string,Role>("AJF", Role.ROLE_50),
 			new Tuple<string,Role>("AJF", Role.ADMINISTRATION)        };
 
         [Obsolete]
         private static readonly string[] AVAILABLE_ROLES = new string[]
             {
                 "AJF.0"
-				, "AJF.1"
+				, "AJF.20"
+				, "AJF.50"
 				, "AJF.99"
             };
 
