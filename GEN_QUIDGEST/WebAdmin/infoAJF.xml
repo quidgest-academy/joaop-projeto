@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Projecto>
+	<Definicoes>
+		<Sistema>AJF</Sistema>
+		<Cliente>QUIDGEST</Cliente>
+		<Versao>2501</Versao>
+	</Definicoes>
+	<Modulos>
+		<Modulo ID="AJF">
+			<PROG>My application</PROG>
+			<PLATAFOR>VUE</PLATAFOR>
+		</Modulo>
+	</Modulos>
+</Projecto>

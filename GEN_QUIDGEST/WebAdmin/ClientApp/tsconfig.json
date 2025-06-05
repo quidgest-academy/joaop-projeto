@@ -1,0 +1,30 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"compilerOptions": {
+		"composite": true,
+		"baseUrl": ".",
+		"allowJs": true,
+		"module": "NodeNext",
+		"moduleResolution": "nodenext",
+		"sourceMap": true,
+		"outDir": "dist",
+		"noErrorTruncation": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"isolatedModules": true,
+		"paths": {
+			"@/*": [
+				"./src/*"
+			]
+		}
+	},
+	"include": [
+		"src/**/*",
+		"**/package.json",
+		"**/vite.config.*",
+		"**/svgstore.config.ts"
+	],
+	"exclude": []
+}
