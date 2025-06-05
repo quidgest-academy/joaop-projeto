@@ -70,17 +70,17 @@
 	import qProjArrays from '@/api/genio/projectArrays.js'
 	/* eslint-enable no-unused-vars */
 
-	import MenuViewModel from './QMenuAJF_41ViewModel.js'
+	import MenuViewModel from './QMenuAJF_61ViewModel.js'
 
-	const requiredTextResources = ['QMenuAJF_41', 'hardcoded', 'messages']
+	const requiredTextResources = ['QMenuAJF_61', 'hardcoded', 'messages']
 
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FORM_INCLUDEJS AJF_MENU_41]/
+// USE /[MANUAL AJF FORM_INCLUDEJS AJF_MENU_61]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 
 	export default {
-		name: 'QMenuAjf41',
+		name: 'QMenuAjf61',
 
 		mixins: [
 			MenuHandlers
@@ -109,23 +109,23 @@
 			// eslint-disable-next-line
 			const vm = this
 			return {
-				componentOnLoadProc: asyncProcM.getProcListMonitor('QMenuAJF_41', false),
+				componentOnLoadProc: asyncProcM.getProcListMonitor('QMenuAJF_61', false),
 
 				interfaceMetadata: {
-					id: 'QMenuAJF_41', // Used for resources
+					id: 'QMenuAJF_61', // Used for resources
 					requiredTextResources
 				},
 
 				menuInfo: {
-					id: '41',
+					id: '61',
 					isMenuList: true,
-					designation: computed(() => this.Resources.CLUBS_NAMES11563),
-					acronym: 'AJF_41',
-					name: 'CLUB',
-					route: 'menu-AJF_41',
-					order: '41',
-					controller: 'CLUB',
-					action: 'AJF_Menu_41',
+					designation: computed(() => this.Resources.AGENTES60642),
+					acronym: 'AJF_61',
+					name: 'AGENT',
+					route: 'menu-AJF_61',
+					order: '61',
+					controller: 'AGENT',
+					action: 'AJF_Menu_61',
 					isPopup: false
 				},
 
@@ -134,9 +134,9 @@
 				controls: {
 					menu: new controlClass.TableListControl({
 						fnHydrateViewModel: (data) => vm.model.hydrate(data),
-						id: 'AJF_Menu_41',
-						controller: 'CLUB',
-						action: 'AJF_Menu_41',
+						id: 'AJF_Menu_61',
+						controller: 'AGENT',
+						action: 'AJF_Menu_61',
 						hasDependencies: false,
 						isInCollapsible: false,
 						tableModeClasses: [
@@ -147,23 +147,84 @@
 							new listColumnTypes.TextColumn({
 								order: 1,
 								name: 'ValName',
-								area: 'CLUB',
+								area: 'AGENT',
 								field: 'NAME',
-								label: computed(() => this.Resources.CLUB_S_NAME65517),
+								label: computed(() => this.Resources.AGENT_S_NAME23140),
+								dataLength: 85,
+								scrollData: 30,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.NumericColumn({
+								order: 2,
+								name: 'ValTotcomis',
+								area: 'AGENT',
+								field: 'TOTCOMIS',
+								label: computed(() => this.Resources.TOTAL_EARN_THROUGH_C21845),
+								scrollData: 10,
+								maxDigits: 10,
+								decimalPlaces: 0,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.ImageColumn({
+								order: 3,
+								name: 'ValPhoto',
+								area: 'AGENT',
+								field: 'PHOTO',
+								label: computed(() => this.Resources.PHOTO_S_AGENT28065),
+								dataTitle: computed(() => genericFunctions.formatString(vm.Resources.IMAGEM_UTILIZADA_PAR58591, vm.Resources.PHOTO_S_AGENT28065)),
+								scrollData: 3,
+								sortable: false,
+								searchable: false,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.ArrayColumn({
+								order: 4,
+								name: 'ValGender',
+								area: 'AGENT',
+								field: 'GENDER',
+								label: computed(() => this.Resources.GENDER44172),
+								dataLength: 1,
+								scrollData: 1,
+								array: computed(() => qProjArrays.QArrayGender.setResources(vm.$getResource).elements),
+								arrayType: qProjArrays.QArrayGender.type,
+								arrayDisplayMode: 'D',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.TextColumn({
+								order: 5,
+								name: 'ValPhone',
+								area: 'AGENT',
+								field: 'PHONE',
+								label: computed(() => this.Resources.AGENT_S_PHONE23147),
+								dataLength: 14,
+								scrollData: 14,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.TextColumn({
+								order: 6,
+								name: 'ValEmail',
+								area: 'AGENT',
+								field: 'EMAIL',
+								label: computed(() => this.Resources.AGENT_S_EMAIL56414),
 								dataLength: 50,
 								scrollData: 30,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.NumericColumn({
+								order: 7,
+								name: 'ValPerc_com',
+								area: 'AGENT',
+								field: 'PERC_COM',
+								label: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
+								scrollData: 4,
+								maxDigits: 1,
+								decimalPlaces: 2,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 						],
 						config: {
-							name: 'AJF_Menu_41',
+							name: 'AJF_Menu_61',
 							serverMode: true,
-							pkColumn: 'ValCodclub',
-							tableAlias: 'CLUB',
-							tableNamePlural: computed(() => this.Resources.CLUBS_NAMES11563),
+							pkColumn: 'ValCodagent',
+							tableAlias: 'AGENT',
+							tableNamePlural: computed(() => this.Resources.AGENTES60642),
 							viewManagement: '',
 							showLimitsInfo: true,
-							tableTitle: computed(() => this.Resources.CLUBS_NAMES11563),
-							showRecordCount: true,
+							tableTitle: computed(() => this.Resources.AGENTES60642),
+							showAlternatePagination: true,
 							permissions: {
 							},
 							searchBarConfig: {
@@ -185,7 +246,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CLUB',
+										formName: 'F_AGENT',
 										mode: 'SHOW',
 										isControlled: true
 									}
@@ -201,7 +262,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CLUB',
+										formName: 'F_AGENT',
 										mode: 'EDIT',
 										isControlled: true
 									}
@@ -217,7 +278,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CLUB',
+										formName: 'F_AGENT',
 										mode: 'DUPLICATE',
 										isControlled: true
 									}
@@ -233,7 +294,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CLUB',
+										formName: 'F_AGENT',
 										mode: 'DELETE',
 										isControlled: true
 									}
@@ -251,7 +312,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CLUB',
+										formName: 'F_AGENT',
 										mode: 'NEW',
 										repeatInsertion: false,
 										isControlled: true
@@ -267,37 +328,34 @@
 							MCActions: [
 							],
 							rowClickAction: {
-								id: 'RCA_AJF_411',
-								name: 'form-F_CLUB',
+								id: 'RCA_AJF_611',
+								name: 'menu-AJF_611',
 								params: {
 									isRoute: true,
 									limits: [
 										{
-											identifier: 'id',
-											fnValueSelector: (row) => row.ValCodclub
+											identifier: 'agent',
+											fnValueSelector: (row) => row.ValCodagent
 										},
 									],
-									isControlled: true,
-									action: vm.openFormAction, type: 'form', mode: 'SHOW', formName: 'F_CLUB',
+									action: vm.openMenuAction, type: 'menu', menuName: 'AJF_611',
 								}
 							},
 							formsDefinition: {
-								'F_CLUB': {
-									fnKeySelector: (row) => row.Fields.ValCodclub,
+								'F_AGENT': {
+									fnKeySelector: (row) => row.Fields.ValCodagent,
 									isPopup: false
 								},
 							},
-							allowFileExport: true,
-							allowFileImport: true,
-							defaultSearchColumnName: 'ValName',
-							defaultSearchColumnNameOriginal: 'ValName',
+							defaultSearchColumnName: 'ValEmail',
+							defaultSearchColumnNameOriginal: 'ValEmail',
 							defaultColumnSorting: {
 								columnName: 'ValName',
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-CLUB'],
-						uuid: 'd5f1df5a-812a-41a4-ab2e-d8614d1e6a84',
+						globalEvents: ['changed-AGENT'],
+						uuid: 'ad01709d-8fc9-4199-9e4e-edef0f7f422c',
 						allSelectedRows: 'false',
 						headerLevel: 1,
 					}, this),
@@ -322,18 +380,18 @@
 		mounted()
 		{
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FORM_CODEJS AJF_MENU_41]/
+// USE /[MANUAL AJF FORM_CODEJS AJF_MENU_61]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 		},
 
 		methods: {
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FUNCTIONS_JS AJF_41]/
+// USE /[MANUAL AJF FUNCTIONS_JS AJF_61]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF LISTING_CODEJS AJF_MENU_41]/
+// USE /[MANUAL AJF LISTING_CODEJS AJF_MENU_61]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 		}

@@ -177,7 +177,7 @@
 								v-bind="controls.F_CNTRCTPSEUDNEWGRP02"
 								v-on="controls.F_CNTRCTPSEUDNEWGRP02.handlers">
 								<!-- Start F_CNTRCTPSEUDNEWGRP02 -->
-								<q-row-container v-show="controls.F_CNTRCTCONTRSTARTDAT.isVisible || controls.F_CNTRCTCONTRFINDATE_.isVisible">
+								<q-row-container v-show="controls.F_CNTRCTCONTRSTARTDAT.isVisible || controls.F_CNTRCTCONTRFINDATE_.isVisible || controls.F_CNTRCTCONTRCTRDURAT.isVisible">
 									<q-control-wrapper
 										v-show="controls.F_CNTRCTCONTRSTARTDAT.isVisible"
 										class="control-join-group">
@@ -197,7 +197,7 @@
 										</base-input-structure>
 									</q-control-wrapper>
 									<q-control-wrapper
-										v-show="controls.F_CNTRCTCONTRFINDATE_.isVisible"
+										v-show="controls.F_CNTRCTCONTRFINDATE_.isVisible || controls.F_CNTRCTCONTRCTRDURAT.isVisible"
 										class="control-join-group">
 										<base-input-structure
 											class="i-text"
@@ -213,11 +213,23 @@
 												@reset-icon-click="model.ValFindate.fnUpdateValue(model.ValFindate.originalValue ?? new Date())"
 												@update:model-value="model.ValFindate.fnUpdateValue($event ?? '')" />
 										</base-input-structure>
+										<base-input-structure
+											class="i-text"
+											v-bind="controls.F_CNTRCTCONTRCTRDURAT"
+											v-on="controls.F_CNTRCTCONTRCTRDURAT.handlers"
+											:loading="controls.F_CNTRCTCONTRCTRDURAT.props.loading"
+											:reporting-mode-on="reportingModeCAV"
+											:suggestion-mode-on="suggestionModeOn">
+											<q-numeric-input
+												v-if="controls.F_CNTRCTCONTRCTRDURAT.isVisible"
+												v-bind="controls.F_CNTRCTCONTRCTRDURAT.props"
+												@update:model-value="model.ValCtrdurat.fnUpdateValue" />
+										</base-input-structure>
 									</q-control-wrapper>
 								</q-row-container>
-								<q-row-container v-show="controls.F_CNTRCTCONTRSALARY__.isVisible || controls.F_CNTRCTCONTRCTRDURAT.isVisible">
+								<q-row-container v-show="controls.F_CNTRCTCONTRSALARY__.isVisible || controls.F_CNTRCTCONTRSLRYYR__.isVisible">
 									<q-control-wrapper
-										v-show="controls.F_CNTRCTCONTRSALARY__.isVisible || controls.F_CNTRCTCONTRCTRDURAT.isVisible"
+										v-show="controls.F_CNTRCTCONTRSALARY__.isVisible || controls.F_CNTRCTCONTRSLRYYR__.isVisible"
 										class="control-join-group">
 										<base-input-structure
 											class="i-text"
@@ -233,15 +245,15 @@
 										</base-input-structure>
 										<base-input-structure
 											class="i-text"
-											v-bind="controls.F_CNTRCTCONTRCTRDURAT"
-											v-on="controls.F_CNTRCTCONTRCTRDURAT.handlers"
-											:loading="controls.F_CNTRCTCONTRCTRDURAT.props.loading"
+											v-bind="controls.F_CNTRCTCONTRSLRYYR__"
+											v-on="controls.F_CNTRCTCONTRSLRYYR__.handlers"
+											:loading="controls.F_CNTRCTCONTRSLRYYR__.props.loading"
 											:reporting-mode-on="reportingModeCAV"
 											:suggestion-mode-on="suggestionModeOn">
 											<q-numeric-input
-												v-if="controls.F_CNTRCTCONTRCTRDURAT.isVisible"
-												v-bind="controls.F_CNTRCTCONTRCTRDURAT.props"
-												@update:model-value="model.ValCtrdurat.fnUpdateValue" />
+												v-if="controls.F_CNTRCTCONTRSLRYYR__.isVisible"
+												v-bind="controls.F_CNTRCTCONTRSLRYYR__.props"
+												@update:model-value="model.ValSlryyr.fnUpdateValue" />
 										</base-input-structure>
 									</q-control-wrapper>
 								</q-row-container>
@@ -743,7 +755,7 @@
 						container: 'F_CNTRCTPSEUDNEWGRP03',
 						isCollapsible: true,
 						anchored: false,
-						directChildren: ['F_CNTRCTCONTRSTARTDAT', 'F_CNTRCTCONTRFINDATE_', 'F_CNTRCTCONTRSALARY__', 'F_CNTRCTCONTRCTRDURAT', 'F_CNTRCTCONTRTRANSVAL', 'F_CNTRCTCONTRCOMISEUR'],
+						directChildren: ['F_CNTRCTCONTRSTARTDAT', 'F_CNTRCTCONTRFINDATE_', 'F_CNTRCTCONTRCTRDURAT', 'F_CNTRCTCONTRSALARY__', 'F_CNTRCTCONTRSLRYYR__', 'F_CNTRCTCONTRTRANSVAL', 'F_CNTRCTCONTRCOMISEUR'],
 						mustBeFilled: true,
 						controlLimits: [
 						],
@@ -778,22 +790,6 @@
 						controlLimits: [
 						],
 					}, this),
-					F_CNTRCTCONTRSALARY__: new fieldControlClass.NumberControl({
-						modelField: 'ValSalary',
-						valueChangeEvent: 'fieldChange:contr.salary',
-						id: 'F_CNTRCTCONTRSALARY__',
-						name: 'SALARY',
-						size: 'large',
-						label: computed(() => this.Resources.SALARY_OF_THE_PLAYER18170),
-						placeholder: '',
-						labelPosition: computed(() => this.labelAlignment.topleft),
-						container: 'F_CNTRCTPSEUDNEWGRP02',
-						maxIntegers: 10,
-						maxDecimals: 0,
-						mustBeFilled: true,
-						controlLimits: [
-						],
-					}, this),
 					F_CNTRCTCONTRCTRDURAT: new fieldControlClass.NumberControl({
 						modelField: 'ValCtrdurat',
 						valueChangeEvent: 'fieldChange:contr.ctrdurat',
@@ -807,6 +803,38 @@
 						isFormulaBlocked: true,
 						maxIntegers: 2,
 						maxDecimals: 0,
+						controlLimits: [
+						],
+					}, this),
+					F_CNTRCTCONTRSALARY__: new fieldControlClass.CurrencyControl({
+						modelField: 'ValSalary',
+						valueChangeEvent: 'fieldChange:contr.salary',
+						id: 'F_CNTRCTCONTRSALARY__',
+						name: 'SALARY',
+						size: 'large',
+						label: computed(() => this.Resources.SALARY_OF_THE_PLAYER18170),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						container: 'F_CNTRCTPSEUDNEWGRP02',
+						maxIntegers: 5,
+						maxDecimals: 2,
+						mustBeFilled: true,
+						controlLimits: [
+						],
+					}, this),
+					F_CNTRCTCONTRSLRYYR__: new fieldControlClass.CurrencyControl({
+						modelField: 'ValSlryyr',
+						valueChangeEvent: 'fieldChange:contr.slryyr',
+						id: 'F_CNTRCTCONTRSLRYYR__',
+						name: 'SLRYYR',
+						size: 'medium',
+						label: computed(() => this.Resources.YEARLY_SALARY01615),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						container: 'F_CNTRCTPSEUDNEWGRP02',
+						isFormulaBlocked: true,
+						maxIntegers: 9,
+						maxDecimals: 2,
 						controlLimits: [
 						],
 					}, this),
@@ -826,7 +854,7 @@
 						controlLimits: [
 						],
 					}, this),
-					F_CNTRCTCONTRCOMISEUR: new fieldControlClass.NumberControl({
+					F_CNTRCTCONTRCOMISEUR: new fieldControlClass.CurrencyControl({
 						modelField: 'ValComiseur',
 						valueChangeEvent: 'fieldChange:contr.comiseur',
 						id: 'F_CNTRCTCONTRCOMISEUR',
@@ -837,8 +865,8 @@
 						labelPosition: computed(() => this.labelAlignment.topleft),
 						container: 'F_CNTRCTPSEUDNEWGRP02',
 						isFormulaBlocked: true,
-						maxIntegers: 10,
-						maxDecimals: 0,
+						maxIntegers: 7,
+						maxDecimals: 2,
 						controlLimits: [
 						],
 					}, this),
@@ -892,6 +920,8 @@
 						set ValFindate(value) { vm.model.ValFindate.updateValue(value) },
 						get ValSalary() { return vm.model.ValSalary.value },
 						set ValSalary(value) { vm.model.ValSalary.updateValue(value) },
+						get ValSlryyr() { return vm.model.ValSlryyr.value },
+						set ValSlryyr(value) { vm.model.ValSlryyr.updateValue(value) },
 						get ValStartdat() { return vm.model.ValStartdat.value },
 						set ValStartdat(value) { vm.model.ValStartdat.updateValue(value) },
 						get ValTransval() { return vm.model.ValTransval.value },

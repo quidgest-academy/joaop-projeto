@@ -222,7 +222,7 @@
 							viewManagement: '',
 							showLimitsInfo: true,
 							tableTitle: computed(() => this.Resources.PLAYERS11892),
-							showAlternatePagination: true,
+							showRecordCount: true,
 							permissions: {
 							},
 							searchBarConfig: {
@@ -346,6 +346,8 @@
 									isPopup: false
 								},
 							},
+							allowFileExport: true,
+							allowFileImport: true,
 							defaultSearchColumnName: 'ValName',
 							defaultSearchColumnNameOriginal: 'ValName',
 							defaultColumnSorting: {
@@ -353,6 +355,34 @@
 								sortOrder: 'asc'
 							}
 						},
+						groupFilters: [
+							{
+								id: 'filter_AJF_Menu_21_GENDER',
+								isMultiple: false,
+								filters: [
+									{
+										id: 'filter_AJF_Menu_21_GENDER_1',
+										key: '1',
+										value: computed(() => this.Resources.MALE32397),
+										selected: false
+									},
+									{
+										id: 'filter_AJF_Menu_21_GENDER_2',
+										key: '2',
+										value: computed(() => this.Resources.FEMININE01419),
+										selected: false
+									},
+									{
+										id: 'filter_AJF_Menu_21_GENDER_3',
+										key: '3',
+										value: computed(() => this.Resources.OTHER37293),
+										selected: false
+									},
+								],
+								value: '',
+								defaultValue: ''
+							},
+						],
 						globalEvents: ['changed-PLAYR', 'changed-AGENT'],
 						uuid: '2d3723f4-da2d-4f44-8217-12f42ba20e02',
 						allSelectedRows: 'false',

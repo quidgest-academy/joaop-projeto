@@ -29,7 +29,7 @@ namespace GenioMVC.Controllers
 	public partial class ContrController : ControllerBase
 	{
 		private static readonly NavigationLocation ACTION_AJF_MENU_31 = new NavigationLocation("CONTRACTS23801", "AJF_Menu_31", "Contr") { vueRouteName = "menu-AJF_31" };
-		private static readonly NavigationLocation ACTION_AJF_MENU_611 = new NavigationLocation("CONTRACTS23801", "AJF_Menu_611", "Contr") { vueRouteName = "menu-AJF_611" };
+		private static readonly NavigationLocation ACTION_AJF_MENU_711 = new NavigationLocation("CONTRACTS23801", "AJF_Menu_711", "Contr") { vueRouteName = "menu-AJF_711" };
 
 
 		//
@@ -120,17 +120,17 @@ namespace GenioMVC.Controllers
 		}
 
 		//
-		// GET: /Contr/AJF_Menu_611
-		[ActionName("AJF_Menu_611")]
+		// GET: /Contr/AJF_Menu_711
+		[ActionName("AJF_Menu_711")]
 		[HttpPost]
-		public ActionResult AJF_Menu_611([FromBody]RequestMenuModel requestModel)
+		public ActionResult AJF_Menu_711([FromBody]RequestMenuModel requestModel)
 		{
 			var queryParams = requestModel.QueryParams;
 
 			int perPage = CSGenio.framework.Configuration.NrRegDBedit;
 			string rowsPerPageOptionsString = "";
 
-			AJF_Menu_611_ViewModel model = new AJF_Menu_611_ViewModel(UserContext.Current);
+			AJF_Menu_711_ViewModel model = new AJF_Menu_711_ViewModel(UserContext.Current);
 
 			// Table configuration load options
 			CSGenio.framework.TableConfiguration.TableConfigurationLoadOptions tableConfigOptions = new CSGenio.framework.TableConfiguration.TableConfigurationLoadOptions();
@@ -160,7 +160,7 @@ namespace GenioMVC.Controllers
 
 			bool isHomePage = RouteData.Values.ContainsKey("isHomePage") ? (bool)RouteData.Values["isHomePage"] : false;
 			if (isHomePage)
-				Navigation.SetValue("HomePage", "AJF_Menu_611");
+				Navigation.SetValue("HomePage", "AJF_Menu_711");
 
 			//If there was a recent operation on this table then force the primary persistence server to be called and ignore the read only feature
 			if (string.IsNullOrEmpty(Navigation.GetStrValue("ForcePrimaryRead_contr")))
@@ -179,19 +179,19 @@ namespace GenioMVC.Controllers
 				querystring.AddRange(queryParams);
 
 			if (!isHomePage &&
-				(Navigation.CurrentLevel == null || !ACTION_AJF_MENU_611.IsSameAction(Navigation.CurrentLevel.Location)) &&
-				Navigation.CurrentLevel.Location.Action != ACTION_AJF_MENU_611.Action)
+				(Navigation.CurrentLevel == null || !ACTION_AJF_MENU_711.IsSameAction(Navigation.CurrentLevel.Location)) &&
+				Navigation.CurrentLevel.Location.Action != ACTION_AJF_MENU_711.Action)
 				CSGenio.framework.Audit.registAction(UserContext.Current.User, Resources.Resources.MENU01948 + " " + Navigation.CurrentLevel.Location.ShortDescription());
 			else if (isHomePage)
 			{
-				CSGenio.framework.Audit.registAction(UserContext.Current.User, Resources.Resources.MENU01948 + " " + ACTION_AJF_MENU_611.ShortDescription());
+				CSGenio.framework.Audit.registAction(UserContext.Current.User, Resources.Resources.MENU01948 + " " + ACTION_AJF_MENU_711.ShortDescription());
 				Navigation.SetValue("HomePageContainsList", true);
 			}
 
 
 			Navigation.SetValue("playr.undctc", "1");
 
-// USE /[MANUAL AJF MENU_GET 611]/
+// USE /[MANUAL AJF MENU_GET 711]/
 
 
             try

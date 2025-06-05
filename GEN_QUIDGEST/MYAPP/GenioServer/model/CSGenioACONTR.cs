@@ -76,11 +76,12 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
-			Qfield = new Field(info.Alias, "salary", FieldType.NUMERIC);
-			Qfield.FieldDescription = "Salary of the player";
-			Qfield.FieldSize =  10;
+			Qfield = new Field(info.Alias, "salary", FieldType.CURRENCY);
+			Qfield.FieldDescription = "Salary of the player per month";
+			Qfield.FieldSize =  8;
 			Qfield.MQueue = false;
-			Qfield.IntegerDigits = 10;
+			Qfield.IntegerDigits = 5;
+			Qfield.Decimals = 2;
 			Qfield.CavDesignation = "SALARY_OF_THE_PLAYER18170";
 
             Qfield.NotNull = true;
@@ -130,14 +131,20 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
-			Qfield = new Field(info.Alias, "comiseur", FieldType.NUMERIC);
+			Qfield = new Field(info.Alias, "comiseur", FieldType.CURRENCY);
 			Qfield.FieldDescription = "Monetary Value comissions through each transfer";
 			Qfield.FieldSize =  10;
 			Qfield.MQueue = false;
-			Qfield.IntegerDigits = 10;
+			Qfield.IntegerDigits = 7;
+			Qfield.Decimals = 2;
 			Qfield.CavDesignation = "TOTAL_EARN_THROUGH_C21845";
 
 			Qfield.Dupmsg = "";
+			argumentsListByArea = new List<ByAreaArguments>();
+			argumentsListByArea.Add(new ByAreaArguments(new string[] {"transval"}, new int[] {0}, "contr", "codcontr"));
+			Qfield.ShowWhen = new ConditionFormula(argumentsListByArea, 1, delegate(object[] args, User user, string module, PersistentSupport sp) {
+				return ((decimal)args[0])>1;
+			});
 			argumentsListByArea = new List<ByAreaArguments>();
 			argumentsListByArea.Add(new ByAreaArguments(new string[] {"transval"}, new int[] {0}, "contr", "codcontr"));
 			argumentsListByArea.Add(new ByAreaArguments(new string[] {"perc_com"}, new int[] {1}, "agent", "codagent"));
@@ -159,6 +166,28 @@ namespace CSGenio.business
 			argumentsListByArea.Add(new ByAreaArguments(new string[] {"findate","startdat"}, new int[] {0,1}, "contr", "codcontr"));
 			Qfield.Formula = new InternalOperationFormula(argumentsListByArea, 2, delegate(object[] args, User user, string module, PersistentSupport sp) {
 				return GenFunctions.Year(((DateTime)args[0]))-GenFunctions.Year(((DateTime)args[1]));
+			});
+			info.RegisterFieldDB(Qfield);
+
+			//- - - - - - - - - - - - - - - - - - -
+			Qfield = new Field(info.Alias, "slryyr", FieldType.CURRENCY);
+			Qfield.FieldDescription = "Yearly Salary";
+			Qfield.FieldSize =  12;
+			Qfield.MQueue = false;
+			Qfield.IntegerDigits = 9;
+			Qfield.Decimals = 2;
+			Qfield.CavDesignation = "YEARLY_SALARY01615";
+
+			Qfield.Dupmsg = "";
+			argumentsListByArea = new List<ByAreaArguments>();
+			argumentsListByArea.Add(new ByAreaArguments(new string[] {"salary"}, new int[] {0}, "contr", "codcontr"));
+			Qfield.ShowWhen = new ConditionFormula(argumentsListByArea, 1, delegate(object[] args, User user, string module, PersistentSupport sp) {
+				return ((decimal)args[0])>1;
+			});
+			argumentsListByArea = new List<ByAreaArguments>();
+			argumentsListByArea.Add(new ByAreaArguments(new string[] {"salary"}, new int[] {0}, "contr", "codcontr"));
+			Qfield.Formula = new InternalOperationFormula(argumentsListByArea, 1, delegate(object[] args, User user, string module, PersistentSupport sp) {
+				return ((decimal)args[0])*12;
 			});
 			info.RegisterFieldDB(Qfield);
 
@@ -212,7 +241,7 @@ namespace CSGenio.business
 
 
 			info.InternalOperationFields = new string[] {
-			 "comiseur","ctrdurat"
+			 "comiseur","ctrdurat","slryyr"
 			};
 
 
@@ -355,11 +384,11 @@ namespace CSGenio.business
 			set { insertNameValueField(FldFindate, value); }
 		}
 
-		/// <summary>Field : "Salary of the player" Tipo: "N" Formula:  ""</summary>
+		/// <summary>Field : "Salary of the player per month" Tipo: "$" Formula:  ""</summary>
 		public static FieldRef FldSalary { get { return m_fldSalary; } }
 		private static FieldRef m_fldSalary = new FieldRef("contr", "salary");
 
-		/// <summary>Field : "Salary of the player" Tipo: "N" Formula:  ""</summary>
+		/// <summary>Field : "Salary of the player per month" Tipo: "$" Formula:  ""</summary>
 		public decimal ValSalary
 		{
 			get { return (decimal)returnValueField(FldSalary); }
@@ -410,11 +439,11 @@ namespace CSGenio.business
 			set { insertNameValueField(FldTransval, value); }
 		}
 
-		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "N" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
+		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "$" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
 		public static FieldRef FldComiseur { get { return m_fldComiseur; } }
 		private static FieldRef m_fldComiseur = new FieldRef("contr", "comiseur");
 
-		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "N" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
+		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "$" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
 		public decimal ValComiseur
 		{
 			get { return (decimal)returnValueField(FldComiseur); }
@@ -430,6 +459,17 @@ namespace CSGenio.business
 		{
 			get { return (decimal)returnValueField(FldCtrdurat); }
 			set { insertNameValueField(FldCtrdurat, value); }
+		}
+
+		/// <summary>Field : "Yearly Salary" Tipo: "$" Formula: + "[CONTR->SALARY]*12"</summary>
+		public static FieldRef FldSlryyr { get { return m_fldSlryyr; } }
+		private static FieldRef m_fldSlryyr = new FieldRef("contr", "slryyr");
+
+		/// <summary>Field : "Yearly Salary" Tipo: "$" Formula: + "[CONTR->SALARY]*12"</summary>
+		public decimal ValSlryyr
+		{
+			get { return (decimal)returnValueField(FldSlryyr); }
+			set { insertNameValueField(FldSlryyr, value); }
 		}
 
 		/// <summary>Field : "ZZSTATE" Type: "INT" Formula:  ""</summary>
@@ -528,7 +568,7 @@ namespace CSGenio.business
 
  
 
-           
+            
 
 	}
 }

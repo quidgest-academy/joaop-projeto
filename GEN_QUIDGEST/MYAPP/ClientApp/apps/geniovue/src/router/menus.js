@@ -18,6 +18,21 @@ export default function getMenusRoutes()
 			}
 		},
 		{
+			path: '/:culture/:system/AJF/menu/AJF_611',
+			name: 'menu-AJF_611',
+			component: () => import('@/views/menus/ModuleAJF/MenuAJF_611/QMenuAjf611.vue'),
+			beforeEnter: [updateQueryParams],
+			meta: {
+				routeType: 'menu',
+				module: 'AJF',
+				order: '611',
+				baseArea: 'PLAYR',
+				hasInitialPHE: false,
+				humanKeyFields: ['ValName', 'ValBirthdat'],
+				limitations: ['agent' /* DB */]
+			}
+		},
+		{
 			path: '/:culture/:system/AJF/menu/AJF_51',
 			name: 'menu-AJF_51',
 			component: () => import('@/views/menus/ModuleAJF/MenuAJF_51/QMenuAjf51.vue'),
@@ -44,13 +59,13 @@ export default function getMenusRoutes()
 			}
 		},
 		{
-			path: '/:culture/:system/AJF/menu/AJF_611',
-			name: 'menu-AJF_611',
-			component: () => import('@/views/menus/ModuleAJF/MenuAJF_611/QMenuAjf611.vue'),
+			path: '/:culture/:system/AJF/menu/AJF_711',
+			name: 'menu-AJF_711',
+			component: () => import('@/views/menus/ModuleAJF/MenuAJF_711/QMenuAjf711.vue'),
 			meta: {
 				routeType: 'menu',
 				module: 'AJF',
-				order: '611',
+				order: '711',
 				baseArea: 'CONTR',
 				hasInitialPHE: false,
 				humanKeyFields: ['ValCodplayr', 'ValCodclub'],
@@ -77,6 +92,19 @@ export default function getMenusRoutes()
 				routeType: 'menu',
 				module: 'AJF',
 				order: '11',
+				baseArea: 'AGENT',
+				hasInitialPHE: false,
+				humanKeyFields: ['ValEmail', 'ValPhone'],
+			}
+		},
+		{
+			path: '/:culture/:system/AJF/menu/AJF_61',
+			name: 'menu-AJF_61',
+			component: () => import('@/views/menus/ModuleAJF/MenuAJF_61/QMenuAjf61.vue'),
+			meta: {
+				routeType: 'menu',
+				module: 'AJF',
+				order: '61',
 				baseArea: 'AGENT',
 				hasInitialPHE: false,
 				humanKeyFields: ['ValEmail', 'ValPhone'],

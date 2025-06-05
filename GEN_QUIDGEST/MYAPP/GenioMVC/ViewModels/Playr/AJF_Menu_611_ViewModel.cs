@@ -15,22 +15,22 @@ using GenioMVC.Models.Navigation;
 using Quidgest.Persistence;
 using Quidgest.Persistence.GenericQuery;
 
-namespace GenioMVC.ViewModels.Club
+namespace GenioMVC.ViewModels.Playr
 {
-	public class AJF_Menu_41_ViewModel : MenuListViewModel<Models.Club>
+	public class AJF_Menu_611_ViewModel : MenuListViewModel<Models.Playr>
 	{
 		/// <summary>
 		/// Gets or sets the object that represents the table and its elements.
 		/// </summary>
 		[JsonPropertyName("Table")]
-		public TablePartial<AJF_Menu_41_RowViewModel> Menu { get; set; }
+		public TablePartial<AJF_Menu_611_RowViewModel> Menu { get; set; }
 
 		/// <inheritdoc/>
 		[JsonIgnore]
-		public override string TableAlias => "club";
+		public override string TableAlias => "playr";
 
 		/// <inheritdoc/>
-		public override string Uuid => "d5f1df5a-812a-41a4-ab2e-d8614d1e6a84";
+		public override string Uuid => "2e1d39da-3d7e-4786-a160-38df1cfaaee2";
 
 		/// <inheritdoc/>
 		protected override string[] FieldsToSerialize => _fieldsToSerialize;
@@ -51,6 +51,7 @@ namespace GenioMVC.ViewModels.Club
 			get
 			{
 				CriteriaSet conditions = CriteriaSet.And();
+				// Limitations
 
 				return conditions;
 			}
@@ -63,6 +64,7 @@ namespace GenioMVC.ViewModels.Club
 			get
 			{
 				CriteriaSet conds = CriteriaSet.And();
+				conds.Equal(CSGenioAplayr.FldCodagent, Navigation.GetValue("agent"));
 
 				return conds;
 			}
@@ -81,7 +83,7 @@ namespace GenioMVC.ViewModels.Club
 
 		public override CriteriaSet GetCustomizedStaticLimits(CriteriaSet crs)
 		{
-// USE /[MANUAL AJF LIST_LIMITS 41]/
+// USE /[MANUAL AJF LIST_LIMITS 611]/
 
 			return crs;
 		}
@@ -89,24 +91,27 @@ namespace GenioMVC.ViewModels.Club
 		public override int GetCount(User user)
 		{
 			CSGenio.persistence.PersistentSupport sp = m_userContext.PersistentSupport;
-			var areaBase = CSGenio.business.Area.createArea("club", user, "AJF");
+			var areaBase = CSGenio.business.Area.createArea("playr", user, "AJF");
 
 			//gets eph conditions to be applied in listing
-			CriteriaSet conditions = CSGenio.business.Listing.CalculateConditionsEphGeneric(areaBase, "ML41");
-			conditions.Equal(CSGenioAclub.FldZzstate, 0); //valid zzstate only
+			CriteriaSet conditions = CSGenio.business.Listing.CalculateConditionsEphGeneric(areaBase, "ML611");
+			conditions.Equal(CSGenioAplayr.FldZzstate, 0); //valid zzstate only
 
 			// Fixed limits and relations:
 			conditions.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
 
 			// Checks for foreign tables in fields and conditions
-			FieldRef[] fields = new FieldRef[] { CSGenioAclub.FldCodclub, CSGenioAclub.FldZzstate, CSGenioAclub.FldName };
+			FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldAge, CSGenioAplayr.FldPosic, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldName, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
 
-			ListingMVC<CSGenioAclub> listing = new(fields, null, 1, 1, false, user, true, string.Empty, true);
+			ListingMVC<CSGenioAplayr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
 			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
 
 			// Menu relations:
 			if (qs.FromTable == null)
 				qs.From(areaBase.QSystem, areaBase.TableName, areaBase.Alias);
+
+			if (!qs.Joins.Select(x => x.Table).Select(y => y.TableAlias).Contains(CSGenio.business.Area.AreaAGENT.Alias))
+				qs.Join(CSGenio.business.Area.AreaAGENT, TableJoinType.Inner).On(CriteriaSet.And().Equal(CSGenioAagent.FldCodagent, CSGenioAplayr.FldCodagent));
 
 
 
@@ -118,23 +123,23 @@ namespace GenioMVC.ViewModels.Club
 		/// FOR DESERIALIZATION ONLY
 		/// </summary>
 		[Obsolete("For deserialization only")]
-		public AJF_Menu_41_ViewModel() : base(null!) { }
+		public AJF_Menu_611_ViewModel() : base(null!) { }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_41_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="AJF_Menu_611_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
-		public AJF_Menu_41_ViewModel(UserContext userContext) : base(userContext)
+		public AJF_Menu_611_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.ROLE_20;
+			this.RoleToShow = CSGenio.framework.Role.AUTHORIZED;
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_41_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="AJF_Menu_611_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
 		/// <param name="parentCtx">The context of the parent</param>
-		public AJF_Menu_41_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
+		public AJF_Menu_611_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
 		{
 			ParentCtx = parentCtx;
 		}
@@ -144,21 +149,27 @@ namespace GenioMVC.ViewModels.Club
 		{
 			var columns = new List<Exports.QColumn>()
 			{
-				new Exports.QColumn(CSGenioAclub.FldName, FieldType.TEXT, Resources.Resources.CLUB_S_NAME65517, 30, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldAge, FieldType.NUMERIC, Resources.Resources.PLAYER_S_AGE12664, 3, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldPosic, FieldType.TEXT, Resources.Resources.POSITION54869, 30, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldBirthdat, FieldType.DATE, Resources.Resources.BIRTHDATE22743, 8, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldGender, FieldType.ARRAY_TEXT, Resources.Resources.GENDER44172, 1, 0, true, "Gender"),
+				new Exports.QColumn(CSGenioAplayr.FldCountry, FieldType.TEXT, Resources.Resources.COUNTRY64133, 30, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
+				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
 			};
 
 			columns.RemoveAll(item => item == null);
 			return columns;
 		}
 
-		public void LoadToExport(out ListingMVC<CSGenioAclub> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, NameValueCollection requestValues, bool ajaxRequest = false)
+		public void LoadToExport(out ListingMVC<CSGenioAplayr> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, NameValueCollection requestValues, bool ajaxRequest = false)
 		{
 			CSGenio.framework.TableConfiguration.TableConfiguration tableConfig = new CSGenio.framework.TableConfiguration.TableConfiguration();
 
 			LoadToExport(out listing, out conditions, out columns, tableConfig, requestValues, ajaxRequest);
 		}
 
-		public void LoadToExport(out ListingMVC<CSGenioAclub> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest = false)
+		public void LoadToExport(out ListingMVC<CSGenioAplayr> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest = false)
 		{
 			listing = null;
 			conditions = null;
@@ -172,18 +183,6 @@ namespace GenioMVC.ViewModels.Club
 
 			// Reset number of records to original value
 			tableConfig.RowsPerPage = rowsPerPage;
-		}
-
-		/// <summary>
-		/// Loads the viewmodel to export a template.
-		/// </summary>
-		/// <param name="columns">The columns.</param>
-		public void LoadToExportTemplate(out List<Exports.QColumn> columns)
-		{
-			columns = new List<Exports.QColumn>()
-			{
-				new Exports.QColumn(CSGenioAclub.FldName, FieldType.TEXT, Resources.Resources.CLUB_S_NAME65517, 50, 0, true),
-			};
 		}
 
 		/// <inheritdoc/>
@@ -204,7 +203,7 @@ namespace GenioMVC.ViewModels.Club
 
 
 			if (Menu == null)
-				Menu = new TablePartial<AJF_Menu_41_RowViewModel>();
+				Menu = new TablePartial<AJF_Menu_611_RowViewModel>();
 			// Set table name (used in getting searchable column names)
 			Menu.TableName = TableAlias;
 
@@ -223,28 +222,31 @@ namespace GenioMVC.ViewModels.Club
 
 			crs.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
 
+			// Limitations
+			// Limit "DB"
+			crs.Equal(CSGenioAplayr.FldCodagent, Navigation.GetValue("agent"));
 			if (isToExport)
 			{
 				// EPH
-				crs = Models.Club.AddEPH<CSGenioAclub>(ref u, crs, "ML41");
+				crs = Models.Playr.AddEPH<CSGenioAplayr>(ref u, crs, "ML611");
 
 				// Export only records with ZZState == 0
-				crs.Equal(CSGenioAclub.FldZzstate, 0);
+				crs.Equal(CSGenioAplayr.FldZzstate, 0);
 
 				return crs;
 			}
 
 			// Limitation by Zzstate
-			if (!Navigation.checkFormMode("CLUB", FormMode.New)) // TODO: Check in Duplicate mode
-				crs = extendWithZzstateCondition(crs, CSGenioAclub.FldZzstate, null);
+			if (!Navigation.checkFormMode("PLAYR", FormMode.New)) // TODO: Check in Duplicate mode
+				crs = extendWithZzstateCondition(crs, CSGenioAplayr.FldZzstate, null);
 
 
 			if (tableReload)
 			{
-				string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_club");
-				Navigation.DestroyEntry("QMVC_POS_RECORD_club");
+				string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_playr");
+				Navigation.DestroyEntry("QMVC_POS_RECORD_playr");
 				if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
-					crs.Equals(Models.Club.AddEPH<CSGenioAclub>(ref u, null, "ML41"));
+					crs.Equals(Models.Playr.AddEPH<CSGenioAplayr>(ref u, null, "ML611"));
 			}
 
 			return crs;
@@ -269,7 +271,7 @@ namespace GenioMVC.ViewModels.Club
 		/// <param name="conditions">The conditions.</param>
 		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest = false, CriteriaSet conditions = null)
 		{
-			ListingMVC<CSGenioAclub> listing = null;
+			ListingMVC<CSGenioAplayr> listing = null;
 
 			Load(numberListItems, requestValues, ajaxRequest, false, ref listing, ref conditions);
 		}
@@ -283,7 +285,7 @@ namespace GenioMVC.ViewModels.Club
 		/// <param name="isToExport">Whether the list is being loaded to be exported</param>
 		/// <param name="Qlisting">The rows.</param>
 		/// <param name="conditions">The conditions.</param>
-		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAclub> Qlisting, ref CriteriaSet conditions)
+		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAplayr> Qlisting, ref CriteriaSet conditions)
 		{
 			CSGenio.framework.TableConfiguration.TableConfiguration tableConfig = new CSGenio.framework.TableConfiguration.TableConfiguration();
 
@@ -302,7 +304,7 @@ namespace GenioMVC.ViewModels.Club
 		/// <param name="conditions">The conditions.</param>
 		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport = false, CriteriaSet conditions = null)
 		{
-			ListingMVC<CSGenioAclub> listing = null;
+			ListingMVC<CSGenioAplayr> listing = null;
 
 			Load(tableConfig, requestValues, ajaxRequest, isToExport, ref listing, ref conditions);
 		}
@@ -316,24 +318,24 @@ namespace GenioMVC.ViewModels.Club
 		/// <param name="isToExport">Whether the list is being loaded to be exported</param>
 		/// <param name="Qlisting">The rows.</param>
 		/// <param name="conditions">The conditions.</param>
-		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAclub> Qlisting, ref CriteriaSet conditions)
+		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAplayr> Qlisting, ref CriteriaSet conditions)
 		{
 			using (GenioDI.MetricsOtlp.RecordTime("menu_load_time", new List<KeyValuePair<string, object>>()
 			{
-				new("Menu", "41"),
+				new("Menu", "611"),
 				new("Module", "AJF")
 			}, "ms", "Time to load the menu."))
 			{
 				User u = m_userContext.User;
-				Menu = new TablePartial<AJF_Menu_41_RowViewModel>();
+				Menu = new TablePartial<AJF_Menu_611_RowViewModel>();
 
-				CriteriaSet ajf_menu_41Conds = CriteriaSet.And();
+				CriteriaSet ajf_menu_611Conds = CriteriaSet.And();
 				bool tableReload = true;
 
 				//FOR: MENU LIST SORTING
 				Dictionary<string, OrderedDictionary> allSortOrders = new Dictionary<string, OrderedDictionary>();
-				allSortOrders.Add("CLUB.NAME", new OrderedDictionary());
-				allSortOrders["CLUB.NAME"].Add("CLUB.NAME", "A");
+				allSortOrders.Add("PLAYR.POSIC", new OrderedDictionary());
+				allSortOrders["PLAYR.POSIC"].Add("PLAYR.POSIC", "A");
 
 
 
@@ -344,16 +346,16 @@ namespace GenioMVC.ViewModels.Club
 				if (pageNumber < 1)
 					pageNumber = 1;
 
-				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "club", allSortOrders);
+				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "playr", allSortOrders);
 
 				if (sorts == null || sorts.Count == 0)
 				{
 					sorts = new List<ColumnSort>();
-				sorts.Add(new ColumnSort(new ColumnReference(CSGenioAclub.FldName), SortOrder.Ascending));
+				sorts.Add(new ColumnSort(new ColumnReference(CSGenioAplayr.FldPosic), SortOrder.Ascending));
 
 				}
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAclub.FldCodclub, CSGenioAclub.FldZzstate, CSGenioAclub.FldName };
+				FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldAge, CSGenioAplayr.FldPosic, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldName, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
 
 
 				// Totalizers
@@ -365,7 +367,7 @@ namespace GenioMVC.ViewModels.Club
 				{
 					firstVisibleColumn = tableConfig?.getFirstVisibleColumn(TableAlias);
 
-					firstVisibleColumn ??= new FieldRef("club", "name");
+					firstVisibleColumn ??= new FieldRef("playr", "age");
 				}
 
 
@@ -378,21 +380,40 @@ namespace GenioMVC.ViewModels.Club
 				{
 					Limit limit = new Limit();
 					limit.TipoLimite = LimitType.EPH;
-					CSGenioAclub model_limit_area = new CSGenioAclub(m_userContext.User);
-					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "ML41");
+					CSGenioAplayr model_limit_area = new CSGenioAplayr(m_userContext.User);
+					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "ML611");
 					if (area_EPH_limits.Count > 0)
 						this.tableLimits.AddRange(area_EPH_limits);
 				}
 
+				// Tooltips: Making a tooltip for each valid limitation: 1 Limit(s) detected.
+				// Limit origin: menu 
+
+				//Limit type: "DB"
+				//Current Area = "PLAYR"
+				//1st Area Limit: "AGENT"
+				//1st Area Field: "CODAGENT"
+				//1st Area Value: ""
+				{
+					Limit limit = new Limit();
+					limit.TipoLimite = LimitType.DB;
+					limit.NaoAplicaSeNulo = false;
+					CSGenioAagent model_limit_area = new CSGenioAagent(m_userContext.User);
+					string limit_field = "codagent", limit_field_value = "";
+					object this_limit_field = Navigation.GetStrValue(limit_field_value);
+					Limit_Filler(ref limit, model_limit_area, limit_field, limit_field_value, this_limit_field, LimitAreaType.AreaLimita);
+					if (!this.tableLimits.Contains(limit, limitComparer)) //to avoid repetitions (i.e: DB and EPH applying same limit)
+						this.tableLimits.Add(limit);
+				}
 
 				if (conditions == null)
 					conditions = CriteriaSet.And();
 
-				conditions.SubSets.Add(ajf_menu_41Conds);
-				ajf_menu_41Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
+				conditions.SubSets.Add(ajf_menu_611Conds);
+				ajf_menu_611Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
 				tableReload &= hasAllRequiredLimits;
 
-// USE /[MANUAL AJF OVERRQ 41]/
+// USE /[MANUAL AJF OVERRQ 611]/
 
 				bool distinct = false;
 
@@ -401,29 +422,29 @@ namespace GenioMVC.ViewModels.Club
 					if (!tableReload)
 						return;
 
-					Qlisting = Models.ModelBase.Where<CSGenioAclub>(m_userContext, false, ajf_menu_41Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML41", true, firstVisibleColumn: firstVisibleColumn);
+					Qlisting = Models.ModelBase.Where<CSGenioAplayr>(m_userContext, false, ajf_menu_611Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML611", true, firstVisibleColumn: firstVisibleColumn);
 
-// USE /[MANUAL AJF OVERRQLSTEXP 41]/
+// USE /[MANUAL AJF OVERRQLSTEXP 611]/
 
 					return;
 				}
 
 				if (tableReload)
 				{
-// USE /[MANUAL AJF OVERRQLIST 41]/
+// USE /[MANUAL AJF OVERRQLIST 611]/
 
-					string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_club");
-					Navigation.DestroyEntry("QMVC_POS_RECORD_club");
+					string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_playr");
+					Navigation.DestroyEntry("QMVC_POS_RECORD_playr");
 					CriteriaSet m_PagingPosEPHs = null;
 
 					if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
 					{
-						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAclub.GetInformation(), QMVC_POS_RECORD, sorts, ajf_menu_41Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
+						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAplayr.GetInformation(), QMVC_POS_RECORD, sorts, ajf_menu_611Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
 						if (m_iCurPag != -1)
 							pageNumber = ((m_iCurPag - 1) / numberListItems) + 1;
 					}
 
-					ListingMVC<CSGenioAclub> listing = Models.ModelBase.Where<CSGenioAclub>(m_userContext, distinct, ajf_menu_41Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML41", true, true, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
+					ListingMVC<CSGenioAplayr> listing = Models.ModelBase.Where<CSGenioAplayr>(m_userContext, distinct, ajf_menu_611Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML611", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
 
 					if (listing.CurrentPage > 0)
 						pageNumber = listing.CurrentPage;
@@ -435,15 +456,15 @@ namespace GenioMVC.ViewModels.Club
 					//Set document field values to objects
 					SetDocumentFields(listing);
 
-					Menu.Elements = MapAJF_Menu_41(listing);
+					Menu.Elements = MapAJF_Menu_611(listing);
 
-					Menu.Identifier = "ML41";
+					Menu.Identifier = "ML611";
 					Menu.Slots = new Dictionary<string, List<object>>();
 
 					// Last updated by [CJP] at [2015.02.03]
 					// Adds the identifier to each element
 					foreach (var element in Menu.Elements)
-						element.Identifier = "ML41";
+						element.Identifier = "ML611";
 
 					Menu.SetPagination(pageNumber, listing.NumRegs, listing.HasMore, listing.GetTotal, listing.TotalRecords);
 
@@ -463,9 +484,9 @@ namespace GenioMVC.ViewModels.Club
 			}
 		}
 
-		private List<AJF_Menu_41_RowViewModel> MapAJF_Menu_41(ListingMVC<CSGenioAclub> Qlisting)
+		private List<AJF_Menu_611_RowViewModel> MapAJF_Menu_611(ListingMVC<CSGenioAplayr> Qlisting)
 		{
-			List<AJF_Menu_41_RowViewModel> Elements = [];
+			List<AJF_Menu_611_RowViewModel> Elements = [];
 			int i = 0;
 
 			if (Qlisting.Rows != null)
@@ -474,7 +495,7 @@ namespace GenioMVC.ViewModels.Club
 				{
 					if (Qlisting.NumRegs > 0 && i >= Qlisting.NumRegs) // Copiado da versão antiga do RowsToViewModels
 						break;
-					Elements.Add(MapAJF_Menu_41(row));
+					Elements.Add(MapAJF_Menu_611(row));
 					i++;
 				}
 			}
@@ -483,13 +504,13 @@ namespace GenioMVC.ViewModels.Club
 		}
 
 		/// <summary>
-		/// Maps a single CSGenioAclub row
-		/// to a AJF_Menu_41_RowViewModel object.
+		/// Maps a single CSGenioAplayr row
+		/// to a AJF_Menu_611_RowViewModel object.
 		/// </summary>
 		/// <param name="row">The row.</param>
-		private AJF_Menu_41_RowViewModel MapAJF_Menu_41(CSGenioAclub row)
+		private AJF_Menu_611_RowViewModel MapAJF_Menu_611(CSGenioAplayr row)
 		{
-			var model = new AJF_Menu_41_RowViewModel(m_userContext, true, _fieldsToSerialize);
+			var model = new AJF_Menu_611_RowViewModel(m_userContext, true, _fieldsToSerialize);
 			if (row == null)
 				return model;
 
@@ -497,8 +518,10 @@ namespace GenioMVC.ViewModels.Club
 			{
 				switch (Qfield.Area)
 				{
-					case "club":
+					case "playr":
 						model.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
+					case "agent":
+						model.Agent.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
 					default:
 						break;
 				}
@@ -524,19 +547,19 @@ namespace GenioMVC.ViewModels.Club
 		/// Sets the document field values to objects.
 		/// </summary>
 		/// <param name="listing">The rows</param>
-		private void SetDocumentFields(ListingMVC<CSGenioAclub> listing)
+		private void SetDocumentFields(ListingMVC<CSGenioAplayr> listing)
 		{
 		}
 
 		#region Mapper
 
 		/// <inheritdoc />
-		public override void MapFromModel(Models.Club m)
+		public override void MapFromModel(Models.Playr m)
 		{
 		}
 
 		/// <inheritdoc />
-		public override void MapToModel(Models.Club m)
+		public override void MapToModel(Models.Playr m)
 		{
 		}
 
@@ -544,18 +567,24 @@ namespace GenioMVC.ViewModels.Club
 
 		#region Custom code
 
-// USE /[MANUAL AJF VIEWMODEL_CUSTOM AJF_MENU_41]/
+// USE /[MANUAL AJF VIEWMODEL_CUSTOM AJF_MENU_611]/
 
 		#endregion
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Club", "Club.ValCodclub", "Club.ValZzstate", "Club.ValName"
+			"Playr", "Playr.ValCodplayr", "Playr.ValZzstate", "Playr.ValAge", "Playr.ValPosic", "Playr.ValBirthdat", "Playr.ValGender", "Playr.ValCountry", "Playr.ValName", "Agent", "Agent.ValEmail", "Playr.ValCodagent"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
-			new TableSearchColumn("ValName", CSGenioAclub.FldName, typeof(string), defaultSearch : true),
+			new TableSearchColumn("ValAge", CSGenioAplayr.FldAge, typeof(decimal?)),
+			new TableSearchColumn("ValPosic", CSGenioAplayr.FldPosic, typeof(string)),
+			new TableSearchColumn("ValBirthdat", CSGenioAplayr.FldBirthdat, typeof(DateTime?)),
+			new TableSearchColumn("ValGender", CSGenioAplayr.FldGender, typeof(string), array : "Gender"),
+			new TableSearchColumn("ValCountry", CSGenioAplayr.FldCountry, typeof(string)),
+			new TableSearchColumn("ValName", CSGenioAplayr.FldName, typeof(string), defaultSearch : true),
+			new TableSearchColumn("Agent_ValEmail", CSGenioAagent.FldEmail, typeof(string)),
 		];
 	}
 }

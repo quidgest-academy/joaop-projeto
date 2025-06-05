@@ -17,13 +17,13 @@ using Quidgest.Persistence.GenericQuery;
 
 namespace GenioMVC.ViewModels.Contr
 {
-	public class AJF_Menu_611_ViewModel : MenuListViewModel<Models.Contr>
+	public class AJF_Menu_711_ViewModel : MenuListViewModel<Models.Contr>
 	{
 		/// <summary>
 		/// Gets or sets the object that represents the table and its elements.
 		/// </summary>
 		[JsonPropertyName("Table")]
-		public TablePartial<AJF_Menu_611_RowViewModel> Menu { get; set; }
+		public TablePartial<AJF_Menu_711_RowViewModel> Menu { get; set; }
 
 		/// <inheritdoc/>
 		[JsonIgnore]
@@ -86,7 +86,7 @@ namespace GenioMVC.ViewModels.Contr
 
 		public override CriteriaSet GetCustomizedStaticLimits(CriteriaSet crs)
 		{
-// USE /[MANUAL AJF LIST_LIMITS 611]/
+// USE /[MANUAL AJF LIST_LIMITS 711]/
 
 			return crs;
 		}
@@ -97,7 +97,7 @@ namespace GenioMVC.ViewModels.Contr
 			var areaBase = CSGenio.business.Area.createArea("contr", user, "AJF");
 
 			//gets eph conditions to be applied in listing
-			CriteriaSet conditions = CSGenio.business.Listing.CalculateConditionsEphGeneric(areaBase, "ML611");
+			CriteriaSet conditions = CSGenio.business.Listing.CalculateConditionsEphGeneric(areaBase, "ML711");
 			conditions.Equal(CSGenioAcontr.FldZzstate, 0); //valid zzstate only
 
 			// Fixed limits and relations:
@@ -124,23 +124,23 @@ namespace GenioMVC.ViewModels.Contr
 		/// FOR DESERIALIZATION ONLY
 		/// </summary>
 		[Obsolete("For deserialization only")]
-		public AJF_Menu_611_ViewModel() : base(null!) { }
+		public AJF_Menu_711_ViewModel() : base(null!) { }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_611_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="AJF_Menu_711_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
-		public AJF_Menu_611_ViewModel(UserContext userContext) : base(userContext)
+		public AJF_Menu_711_ViewModel(UserContext userContext) : base(userContext)
 		{
 			this.RoleToShow = CSGenio.framework.Role.AUTHORIZED;
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_611_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="AJF_Menu_711_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
 		/// <param name="parentCtx">The context of the parent</param>
-		public AJF_Menu_611_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
+		public AJF_Menu_711_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
 		{
 			ParentCtx = parentCtx;
 		}
@@ -151,8 +151,8 @@ namespace GenioMVC.ViewModels.Contr
 			var columns = new List<Exports.QColumn>()
 			{
 				new Exports.QColumn(CSGenioAcontr.FldStartdat, FieldType.DATE, Resources.Resources.STARTING_DATE47975, 8, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldComiseur, FieldType.NUMERIC, Resources.Resources.MONETARY_VALUE_COMIS27197, 10, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldSalary, FieldType.NUMERIC, Resources.Resources.SALARY_OF_THE_PLAYER18170, 10, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldComiseur, FieldType.CURRENCY, Resources.Resources.MONETARY_VALUE_COMIS27197, 10, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldSalary, FieldType.CURRENCY, Resources.Resources.SALARY_OF_THE_PLAYER18170, 10, 0, true),
 				new Exports.QColumn(CSGenioAcontr.FldFindate, FieldType.DATE, Resources.Resources.FINISH_DATE41863, 8, 0, true),
 				new Exports.QColumn(CSGenioAcontr.FldCtrdurat, FieldType.NUMERIC, Resources.Resources.CONTRACT_DURATION31225, 2, 0, true),
 				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
@@ -206,7 +206,7 @@ namespace GenioMVC.ViewModels.Contr
 
 
 			if (Menu == null)
-				Menu = new TablePartial<AJF_Menu_611_RowViewModel>();
+				Menu = new TablePartial<AJF_Menu_711_RowViewModel>();
 			// Set table name (used in getting searchable column names)
 			Menu.TableName = TableAlias;
 
@@ -229,7 +229,7 @@ namespace GenioMVC.ViewModels.Contr
 			if (isToExport)
 			{
 				// EPH
-				crs = Models.Contr.AddEPH<CSGenioAcontr>(ref u, crs, "ML611");
+				crs = Models.Contr.AddEPH<CSGenioAcontr>(ref u, crs, "ML711");
 
 				// Export only records with ZZState == 0
 				crs.Equal(CSGenioAcontr.FldZzstate, 0);
@@ -247,7 +247,7 @@ namespace GenioMVC.ViewModels.Contr
 				string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_contr");
 				Navigation.DestroyEntry("QMVC_POS_RECORD_contr");
 				if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
-					crs.Equals(Models.Contr.AddEPH<CSGenioAcontr>(ref u, null, "ML611"));
+					crs.Equals(Models.Contr.AddEPH<CSGenioAcontr>(ref u, null, "ML711"));
 			}
 
 			return crs;
@@ -323,14 +323,14 @@ namespace GenioMVC.ViewModels.Contr
 		{
 			using (GenioDI.MetricsOtlp.RecordTime("menu_load_time", new List<KeyValuePair<string, object>>()
 			{
-				new("Menu", "611"),
+				new("Menu", "711"),
 				new("Module", "AJF")
 			}, "ms", "Time to load the menu."))
 			{
 				User u = m_userContext.User;
-				Menu = new TablePartial<AJF_Menu_611_RowViewModel>();
+				Menu = new TablePartial<AJF_Menu_711_RowViewModel>();
 
-				CriteriaSet ajf_menu_611Conds = CriteriaSet.And();
+				CriteriaSet ajf_menu_711Conds = CriteriaSet.And();
 				bool tableReload = true;
 
 				//FOR: MENU LIST SORTING
@@ -382,7 +382,7 @@ namespace GenioMVC.ViewModels.Contr
 					Limit limit = new Limit();
 					limit.TipoLimite = LimitType.EPH;
 					CSGenioAcontr model_limit_area = new CSGenioAcontr(m_userContext.User);
-					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "ML611");
+					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "ML711");
 					if (area_EPH_limits.Count > 0)
 						this.tableLimits.AddRange(area_EPH_limits);
 				}
@@ -410,11 +410,11 @@ namespace GenioMVC.ViewModels.Contr
 				if (conditions == null)
 					conditions = CriteriaSet.And();
 
-				conditions.SubSets.Add(ajf_menu_611Conds);
-				ajf_menu_611Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
+				conditions.SubSets.Add(ajf_menu_711Conds);
+				ajf_menu_711Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
 				tableReload &= hasAllRequiredLimits;
 
-// USE /[MANUAL AJF OVERRQ 611]/
+// USE /[MANUAL AJF OVERRQ 711]/
 
 				bool distinct = false;
 
@@ -423,16 +423,16 @@ namespace GenioMVC.ViewModels.Contr
 					if (!tableReload)
 						return;
 
-					Qlisting = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, false, ajf_menu_611Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML611", true, firstVisibleColumn: firstVisibleColumn);
+					Qlisting = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, false, ajf_menu_711Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML711", true, firstVisibleColumn: firstVisibleColumn);
 
-// USE /[MANUAL AJF OVERRQLSTEXP 611]/
+// USE /[MANUAL AJF OVERRQLSTEXP 711]/
 
 					return;
 				}
 
 				if (tableReload)
 				{
-// USE /[MANUAL AJF OVERRQLIST 611]/
+// USE /[MANUAL AJF OVERRQLIST 711]/
 
 					string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_contr");
 					Navigation.DestroyEntry("QMVC_POS_RECORD_contr");
@@ -440,12 +440,12 @@ namespace GenioMVC.ViewModels.Contr
 
 					if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
 					{
-						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAcontr.GetInformation(), QMVC_POS_RECORD, sorts, ajf_menu_611Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
+						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAcontr.GetInformation(), QMVC_POS_RECORD, sorts, ajf_menu_711Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
 						if (m_iCurPag != -1)
 							pageNumber = ((m_iCurPag - 1) / numberListItems) + 1;
 					}
 
-					ListingMVC<CSGenioAcontr> listing = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, distinct, ajf_menu_611Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML611", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
+					ListingMVC<CSGenioAcontr> listing = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, distinct, ajf_menu_711Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML711", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
 
 					if (listing.CurrentPage > 0)
 						pageNumber = listing.CurrentPage;
@@ -457,15 +457,15 @@ namespace GenioMVC.ViewModels.Contr
 					//Set document field values to objects
 					SetDocumentFields(listing);
 
-					Menu.Elements = MapAJF_Menu_611(listing);
+					Menu.Elements = MapAJF_Menu_711(listing);
 
-					Menu.Identifier = "ML611";
+					Menu.Identifier = "ML711";
 					Menu.Slots = new Dictionary<string, List<object>>();
 
 					// Last updated by [CJP] at [2015.02.03]
 					// Adds the identifier to each element
 					foreach (var element in Menu.Elements)
-						element.Identifier = "ML611";
+						element.Identifier = "ML711";
 
 					Menu.SetPagination(pageNumber, listing.NumRegs, listing.HasMore, listing.GetTotal, listing.TotalRecords);
 
@@ -485,9 +485,9 @@ namespace GenioMVC.ViewModels.Contr
 			}
 		}
 
-		private List<AJF_Menu_611_RowViewModel> MapAJF_Menu_611(ListingMVC<CSGenioAcontr> Qlisting)
+		private List<AJF_Menu_711_RowViewModel> MapAJF_Menu_711(ListingMVC<CSGenioAcontr> Qlisting)
 		{
-			List<AJF_Menu_611_RowViewModel> Elements = [];
+			List<AJF_Menu_711_RowViewModel> Elements = [];
 			int i = 0;
 
 			if (Qlisting.Rows != null)
@@ -496,7 +496,7 @@ namespace GenioMVC.ViewModels.Contr
 				{
 					if (Qlisting.NumRegs > 0 && i >= Qlisting.NumRegs) // Copiado da versão antiga do RowsToViewModels
 						break;
-					Elements.Add(MapAJF_Menu_611(row));
+					Elements.Add(MapAJF_Menu_711(row));
 					i++;
 				}
 			}
@@ -506,12 +506,12 @@ namespace GenioMVC.ViewModels.Contr
 
 		/// <summary>
 		/// Maps a single CSGenioAcontr row
-		/// to a AJF_Menu_611_RowViewModel object.
+		/// to a AJF_Menu_711_RowViewModel object.
 		/// </summary>
 		/// <param name="row">The row.</param>
-		private AJF_Menu_611_RowViewModel MapAJF_Menu_611(CSGenioAcontr row)
+		private AJF_Menu_711_RowViewModel MapAJF_Menu_711(CSGenioAcontr row)
 		{
-			var model = new AJF_Menu_611_RowViewModel(m_userContext, true, _fieldsToSerialize);
+			var model = new AJF_Menu_711_RowViewModel(m_userContext, true, _fieldsToSerialize);
 			if (row == null)
 				return model;
 
@@ -572,7 +572,7 @@ namespace GenioMVC.ViewModels.Contr
 
 		#region Custom code
 
-// USE /[MANUAL AJF VIEWMODEL_CUSTOM AJF_MENU_611]/
+// USE /[MANUAL AJF VIEWMODEL_CUSTOM AJF_MENU_711]/
 
 		#endregion
 

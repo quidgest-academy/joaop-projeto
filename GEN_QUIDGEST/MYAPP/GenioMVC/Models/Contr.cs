@@ -41,11 +41,11 @@ namespace GenioMVC.Models
 		[DateAttribute("D")]
 		public DateTime? ValFindate { get { return klass.ValFindate; } set { klass.ValFindate = value ?? DateTime.MinValue; } }
 
-		[DisplayName("Salary of the player")]
-		/// <summary>Field : "Salary of the player" Tipo: "N" Formula:  ""</summary>
+		[DisplayName("Salary of the player per month")]
+		/// <summary>Field : "Salary of the player per month" Tipo: "$" Formula:  ""</summary>
 		[ShouldSerialize("Contr.ValSalary")]
-		[NumericAttribute(0)]
-		public decimal? ValSalary { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValSalary, 0)); } set { klass.ValSalary = Convert.ToDecimal(value); } }
+		[CurrencyAttribute("EUR", 2)]
+		public decimal? ValSalary { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValSalary, 2)); } set { klass.ValSalary = Convert.ToDecimal(value); } }
 
 		[DisplayName("FK_Player")]
 		/// <summary>Field : "FK_Player" Tipo: "CE" Formula:  ""</summary>
@@ -114,16 +114,22 @@ namespace GenioMVC.Models
 		public decimal? ValTransval { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValTransval, 0)); } set { klass.ValTransval = Convert.ToDecimal(value); } }
 
 		[DisplayName("Monetary Value comissions through each transfer")]
-		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "N" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
+		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "$" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>
 		[ShouldSerialize("Contr.ValComiseur")]
-		[NumericAttribute(0)]
-		public decimal? ValComiseur { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValComiseur, 0)); } set { klass.ValComiseur = Convert.ToDecimal(value); } }
+		[CurrencyAttribute("EUR", 2)]
+		public decimal? ValComiseur { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValComiseur, 2)); } set { klass.ValComiseur = Convert.ToDecimal(value); } }
 
 		[DisplayName("Contract duration")]
 		/// <summary>Field : "Contract duration" Tipo: "N" Formula: + "Year([CONTR->FINDATE]) - Year([CONTR->STARTDAT])"</summary>
 		[ShouldSerialize("Contr.ValCtrdurat")]
 		[NumericAttribute(0)]
 		public decimal? ValCtrdurat { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValCtrdurat, 0)); } set { klass.ValCtrdurat = Convert.ToDecimal(value); } }
+
+		[DisplayName("Yearly Salary")]
+		/// <summary>Field : "Yearly Salary" Tipo: "$" Formula: + "[CONTR->SALARY]*12"</summary>
+		[ShouldSerialize("Contr.ValSlryyr")]
+		[CurrencyAttribute("EUR", 2)]
+		public decimal? ValSlryyr { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValSlryyr, 2)); } set { klass.ValSlryyr = Convert.ToDecimal(value); } }
 
 		[DisplayName("ZZSTATE")]
 		[ShouldSerialize("Contr.ValZzstate")]

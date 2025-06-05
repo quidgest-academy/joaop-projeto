@@ -119,12 +119,12 @@
 				menuInfo: {
 					id: '611',
 					isMenuList: true,
-					designation: computed(() => this.Resources.CONTRACTS23801),
+					designation: computed(() => this.Resources.PLAYERS11892),
 					acronym: 'AJF_611',
-					name: 'CONTR',
+					name: 'PLAYR',
 					route: 'menu-AJF_611',
 					order: '611',
-					controller: 'CONTR',
+					controller: 'PLAYR',
 					action: 'AJF_Menu_611',
 					isPopup: false
 				},
@@ -135,7 +135,7 @@
 					menu: new controlClass.TableListControl({
 						fnHydrateViewModel: (data) => vm.model.hydrate(data),
 						id: 'AJF_Menu_611',
-						controller: 'CONTR',
+						controller: 'PLAYR',
 						action: 'AJF_Menu_611',
 						hasDependencies: false,
 						isInCollapsible: false,
@@ -144,86 +144,66 @@
 							'page-full-height'
 						],
 						columnsOriginal: [
-							new listColumnTypes.DateColumn({
+							new listColumnTypes.NumericColumn({
 								order: 1,
-								name: 'ValStartdat',
-								area: 'CONTR',
-								field: 'STARTDAT',
-								label: computed(() => this.Resources.STARTING_DATE47975),
-								scrollData: 8,
-								dateTimeType: 'date',
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
-								order: 2,
-								name: 'ValComiseur',
-								area: 'CONTR',
-								field: 'COMISEUR',
-								label: computed(() => this.Resources.MONETARY_VALUE_COMIS27197),
-								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
-								order: 3,
-								name: 'ValSalary',
-								area: 'CONTR',
-								field: 'SALARY',
-								label: computed(() => this.Resources.SALARY_OF_THE_PLAYER18170),
-								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.DateColumn({
-								order: 4,
-								name: 'ValFindate',
-								area: 'CONTR',
-								field: 'FINDATE',
-								label: computed(() => this.Resources.FINISH_DATE41863),
-								scrollData: 8,
-								dateTimeType: 'date',
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
-								order: 5,
-								name: 'ValCtrdurat',
-								area: 'CONTR',
-								field: 'CTRDURAT',
-								label: computed(() => this.Resources.CONTRACT_DURATION31225),
-								scrollData: 2,
-								maxDigits: 2,
+								name: 'ValAge',
+								area: 'PLAYR',
+								field: 'AGE',
+								label: computed(() => this.Resources.PLAYER_S_AGE12664),
+								scrollData: 3,
+								maxDigits: 3,
 								decimalPlaces: 0,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.TextColumn({
+								order: 2,
+								name: 'ValPosic',
+								area: 'PLAYR',
+								field: 'POSIC',
+								label: computed(() => this.Resources.POSITION54869),
+								dataLength: 50,
+								scrollData: 30,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.DateColumn({
+								order: 3,
+								name: 'ValBirthdat',
+								area: 'PLAYR',
+								field: 'BIRTHDAT',
+								label: computed(() => this.Resources.BIRTHDATE22743),
+								scrollData: 8,
+								dateTimeType: 'date',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.ArrayColumn({
+								order: 4,
+								name: 'ValGender',
+								area: 'PLAYR',
+								field: 'GENDER',
+								label: computed(() => this.Resources.GENDER44172),
+								dataLength: 1,
+								scrollData: 1,
+								array: computed(() => qProjArrays.QArrayGender.setResources(vm.$getResource).elements),
+								arrayType: qProjArrays.QArrayGender.type,
+								arrayDisplayMode: 'D',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.TextColumn({
+								order: 5,
+								name: 'ValCountry',
+								area: 'PLAYR',
+								field: 'COUNTRY',
+								label: computed(() => this.Resources.COUNTRY64133),
+								dataLength: 50,
+								scrollData: 30,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.TextColumn({
 								order: 6,
-								name: 'Playr.ValName',
+								name: 'ValName',
 								area: 'PLAYR',
 								field: 'NAME',
 								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
 								dataLength: 85,
 								scrollData: 30,
-								pkColumn: 'ValCodplayr',
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.TextColumn({
 								order: 7,
-								name: 'ValTransval',
-								area: 'CONTR',
-								field: 'TRANSVAL',
-								label: computed(() => this.Resources.TRANSFER_VALUE12168),
-								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.TextColumn({
-								order: 8,
-								name: 'Club.ValName',
-								area: 'CLUB',
-								field: 'NAME',
-								label: computed(() => this.Resources.CLUB_S_NAME65517),
-								dataLength: 50,
-								scrollData: 30,
-								pkColumn: 'ValCodclub',
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.TextColumn({
-								order: 9,
 								name: 'Agent.ValEmail',
 								area: 'AGENT',
 								field: 'EMAIL',
@@ -236,12 +216,12 @@
 						config: {
 							name: 'AJF_Menu_611',
 							serverMode: true,
-							pkColumn: 'ValCodcontr',
-							tableAlias: 'CONTR',
-							tableNamePlural: computed(() => this.Resources.CONTRACTS23801),
+							pkColumn: 'ValCodplayr',
+							tableAlias: 'PLAYR',
+							tableNamePlural: computed(() => this.Resources.PLAYERS11892),
 							viewManagement: '',
 							showLimitsInfo: true,
-							tableTitle: computed(() => this.Resources.CONTRACTS23801),
+							tableTitle: computed(() => this.Resources.PLAYERS11892),
 							showAlternatePagination: true,
 							permissions: {
 							},
@@ -264,7 +244,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CNTRCT',
+										formName: 'F_PLAYER',
 										mode: 'SHOW',
 										isControlled: true
 									}
@@ -280,7 +260,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CNTRCT',
+										formName: 'F_PLAYER',
 										mode: 'EDIT',
 										isControlled: true
 									}
@@ -296,7 +276,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CNTRCT',
+										formName: 'F_PLAYER',
 										mode: 'DUPLICATE',
 										isControlled: true
 									}
@@ -312,7 +292,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CNTRCT',
+										formName: 'F_PLAYER',
 										mode: 'DELETE',
 										isControlled: true
 									}
@@ -330,7 +310,7 @@
 									params: {
 										action: vm.openFormAction,
 										type: 'form',
-										formName: 'F_CNTRCT',
+										formName: 'F_PLAYER',
 										mode: 'NEW',
 										repeatInsertion: false,
 										isControlled: true
@@ -347,39 +327,45 @@
 							],
 							rowClickAction: {
 								id: 'RCA_AJF_6111',
-								name: 'form-F_CNTRCT',
+								name: 'form-F_PLAYER',
 								params: {
 									isRoute: true,
 									limits: [
 										{
 											identifier: 'id',
-											fnValueSelector: (row) => row.ValCodcontr
+											fnValueSelector: (row) => row.ValCodplayr
 										},
 									],
 									isControlled: true,
-									action: vm.openFormAction, type: 'form', mode: 'SHOW', formName: 'F_CNTRCT',
+									action: vm.openFormAction, type: 'form', mode: 'SHOW', formName: 'F_PLAYER',
 								}
 							},
 							formsDefinition: {
-								'F_CNTRCT': {
-									fnKeySelector: (row) => row.Fields.ValCodcontr,
+								'F_PLAYER': {
+									fnKeySelector: (row) => row.Fields.ValCodplayr,
 									isPopup: false
 								},
 							},
-							defaultSearchColumnName: '',
-							defaultSearchColumnNameOriginal: '',
+							defaultSearchColumnName: 'ValName',
+							defaultSearchColumnNameOriginal: 'ValName',
 							defaultColumnSorting: {
-								columnName: 'ValStartdat',
+								columnName: 'ValPosic',
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-CONTR', 'changed-PLAYR', 'changed-CLUB', 'changed-AGENT'],
-						uuid: '3bff32b0-21bc-40b0-8fe8-9f2b625160fc',
+						globalEvents: ['changed-PLAYR', 'changed-AGENT'],
+						uuid: '2e1d39da-3d7e-4786-a160-38df1cfaaee2',
 						allSelectedRows: 'false',
 						headerLevel: 1,
 						/** Menu limits */
 						controlLimits: [
-							/** SC */
+							/** DB */
+							{
+								identifier: 'agent',
+								dependencyEvents: [],
+								dependencyField: '',
+								fnValueSelector: () => vm.$route.params['agent'],
+							},
 						]
 					}, this),
 				}

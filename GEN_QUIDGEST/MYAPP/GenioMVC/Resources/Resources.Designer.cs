@@ -270,6 +270,15 @@ namespace GenioMVC.Resources
 		}
 
 		/// <summary>
+		///   Looks up a localized string similar to "Salary of the player per month"
+		/// </summary>
+		public static string SALARY_OF_THE_PLAYER18198 {
+			get {
+				return ResourceManager.GetString("SALARY_OF_THE_PLAYER18198", resourceCulture);
+			}
+		}
+
+		/// <summary>
 		///   Looks up a localized string similar to "Name of the player"
 		/// </summary>
 		public static string NAME_OF_THE_PLAYER61428 {
@@ -873,6 +882,15 @@ namespace GenioMVC.Resources
 		}
 
 		/// <summary>
+		///   Looks up a localized string similar to "Yearly Salary"
+		/// </summary>
+		public static string YEARLY_SALARY01615 {
+			get {
+				return ResourceManager.GetString("YEARLY_SALARY01615", resourceCulture);
+			}
+		}
+
+		/// <summary>
 		///   Looks up a localized string similar to "Players under contract"
 		/// </summary>
 		public static string PLAYERS_UNDER_CONTRA19805 {
@@ -1341,6 +1359,15 @@ namespace GenioMVC.Resources
 		}
 
 		/// <summary>
+		///   Looks up a localized string similar to "Percentage must be between 0 and 1"
+		/// </summary>
+		public static string PERCENTAGE_MUST_BE_B62781 {
+			get {
+				return ResourceManager.GetString("PERCENTAGE_MUST_BE_B62781", resourceCulture);
+			}
+		}
+
+		/// <summary>
 		///   Looks up a localized string similar to "Male"
 		/// </summary>
 		public static string MALE32397 {
@@ -1490,6 +1517,15 @@ namespace GenioMVC.Resources
 		public static string AGENT_S_PHONE23147 {
 			get {
 				return ResourceManager.GetString("AGENT_S_PHONE23147", resourceCulture);
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized string similar to "Players by Agent"
+		/// </summary>
+		public static string PLAYERS_BY_AGENT50722 {
+			get {
+				return ResourceManager.GetString("PLAYERS_BY_AGENT50722", resourceCulture);
 			}
 		}
 

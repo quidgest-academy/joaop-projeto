@@ -153,25 +153,25 @@
 								scrollData: 8,
 								dateTimeType: 'date',
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.CurrencyColumn({
 								order: 2,
 								name: 'ValComiseur',
 								area: 'CONTR',
 								field: 'COMISEUR',
 								label: computed(() => this.Resources.MONETARY_VALUE_COMIS27197),
 								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
+								maxDigits: 7,
+								decimalPlaces: 2,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.CurrencyColumn({
 								order: 3,
 								name: 'ValSalary',
 								area: 'CONTR',
 								field: 'SALARY',
 								label: computed(() => this.Resources.SALARY_OF_THE_PLAYER18170),
 								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
+								maxDigits: 5,
+								decimalPlaces: 2,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.DateColumn({
 								order: 4,

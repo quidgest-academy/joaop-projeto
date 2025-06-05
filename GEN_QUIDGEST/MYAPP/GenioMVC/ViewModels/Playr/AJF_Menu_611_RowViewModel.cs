@@ -4,9 +4,9 @@ using CSGenio.business;
 using CSGenio.framework;
 using GenioMVC.Models.Navigation;
 
-namespace GenioMVC.ViewModels.Contr;
+namespace GenioMVC.ViewModels.Playr;
 
-public class AJF_Menu_611_RowViewModel : Models.Contr
+public class AJF_Menu_611_RowViewModel : Models.Playr
 {
 	#region Constructors
 
@@ -15,7 +15,7 @@ public class AJF_Menu_611_RowViewModel : Models.Contr
 		InitRowProperties();
 	}
 
-	public AJF_Menu_611_RowViewModel(UserContext userContext, CSGenioAcontr val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
+	public AJF_Menu_611_RowViewModel(UserContext userContext, CSGenioAplayr val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
@@ -36,32 +36,32 @@ public class AJF_Menu_611_RowViewModel : Models.Contr
 			new ListColumn()
 			{
 				Order = 1,
-				Area = "CONTR",
-				Field = "STARTDAT",
+				Area = "PLAYR",
+				Field = "AGE",
 			},
 			new ListColumn()
 			{
 				Order = 2,
-				Area = "CONTR",
-				Field = "COMISEUR",
+				Area = "PLAYR",
+				Field = "POSIC",
 			},
 			new ListColumn()
 			{
 				Order = 3,
-				Area = "CONTR",
-				Field = "SALARY",
+				Area = "PLAYR",
+				Field = "BIRTHDAT",
 			},
 			new ListColumn()
 			{
 				Order = 4,
-				Area = "CONTR",
-				Field = "FINDATE",
+				Area = "PLAYR",
+				Field = "GENDER",
 			},
 			new ListColumn()
 			{
 				Order = 5,
-				Area = "CONTR",
-				Field = "CTRDURAT",
+				Area = "PLAYR",
+				Field = "COUNTRY",
 			},
 			new ListColumn()
 			{
@@ -72,18 +72,6 @@ public class AJF_Menu_611_RowViewModel : Models.Contr
 			new ListColumn()
 			{
 				Order = 7,
-				Area = "CONTR",
-				Field = "TRANSVAL",
-			},
-			new ListColumn()
-			{
-				Order = 8,
-				Area = "CLUB",
-				Field = "NAME",
-			},
-			new ListColumn()
-			{
-				Order = 9,
 				Area = "AGENT",
 				Field = "EMAIL",
 			},

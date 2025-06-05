@@ -4,18 +4,18 @@ using CSGenio.business;
 using CSGenio.framework;
 using GenioMVC.Models.Navigation;
 
-namespace GenioMVC.ViewModels.Agent;
+namespace GenioMVC.ViewModels.Contr;
 
-public class AJF_Menu_11_RowViewModel : Models.Agent
+public class AJF_Menu_711_RowViewModel : Models.Contr
 {
 	#region Constructors
 
-	public AJF_Menu_11_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
+	public AJF_Menu_711_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
 
-	public AJF_Menu_11_RowViewModel(UserContext userContext, CSGenioAagent val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
+	public AJF_Menu_711_RowViewModel(UserContext userContext, CSGenioAcontr val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
@@ -36,44 +36,56 @@ public class AJF_Menu_11_RowViewModel : Models.Agent
 			new ListColumn()
 			{
 				Order = 1,
-				Area = "AGENT",
-				Field = "NAME",
+				Area = "CONTR",
+				Field = "STARTDAT",
 			},
 			new ListColumn()
 			{
 				Order = 2,
-				Area = "AGENT",
-				Field = "TOTCOMIS",
+				Area = "CONTR",
+				Field = "COMISEUR",
 			},
 			new ListColumn()
 			{
 				Order = 3,
-				Area = "AGENT",
-				Field = "PHOTO",
+				Area = "CONTR",
+				Field = "SALARY",
 			},
 			new ListColumn()
 			{
 				Order = 4,
-				Area = "AGENT",
-				Field = "GENDER",
+				Area = "CONTR",
+				Field = "FINDATE",
 			},
 			new ListColumn()
 			{
 				Order = 5,
-				Area = "AGENT",
-				Field = "PHONE",
+				Area = "CONTR",
+				Field = "CTRDURAT",
 			},
 			new ListColumn()
 			{
 				Order = 6,
-				Area = "AGENT",
-				Field = "EMAIL",
+				Area = "PLAYR",
+				Field = "NAME",
 			},
 			new ListColumn()
 			{
 				Order = 7,
+				Area = "CONTR",
+				Field = "TRANSVAL",
+			},
+			new ListColumn()
+			{
+				Order = 8,
+				Area = "CLUB",
+				Field = "NAME",
+			},
+			new ListColumn()
+			{
+				Order = 9,
 				Area = "AGENT",
-				Field = "PERC_COM",
+				Field = "EMAIL",
 			},
 		];
 	}
@@ -91,8 +103,6 @@ public class AJF_Menu_11_RowViewModel : Models.Agent
 
 		using (new CSGenio.persistence.ScopedPersistentSupport(m_userContext.PersistentSupport))
 		{
-
-			// Table AGENT CRUD conditions.
 		}
 
 		BtnPermission = new TableRowCrudButtonPermissions()

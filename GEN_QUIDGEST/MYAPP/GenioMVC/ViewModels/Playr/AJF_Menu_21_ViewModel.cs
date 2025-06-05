@@ -101,7 +101,7 @@ namespace GenioMVC.ViewModels.Playr
 			// Checks for foreign tables in fields and conditions
 			FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldAge, CSGenioAplayr.FldPosic, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldName, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
 
-			ListingMVC<CSGenioAplayr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
+			ListingMVC<CSGenioAplayr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, true);
 			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
 
 			// Menu relations:
@@ -180,6 +180,24 @@ namespace GenioMVC.ViewModels.Playr
 			tableConfig.RowsPerPage = rowsPerPage;
 		}
 
+		/// <summary>
+		/// Loads the viewmodel to export a template.
+		/// </summary>
+		/// <param name="columns">The columns.</param>
+		public void LoadToExportTemplate(out List<Exports.QColumn> columns)
+		{
+			columns = new List<Exports.QColumn>()
+			{
+				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 85, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldBirthdat, FieldType.DATE, Resources.Resources.BIRTHDATE22743, 8, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldCountry, FieldType.TEXT, Resources.Resources.COUNTRY64133, 50, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldPosic, FieldType.TEXT, Resources.Resources.POSITION54869, 50, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldGender, FieldType.ARRAY_TEXT, Resources.Resources.GENDER44172, 1, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldUndctc, FieldType.ARRAY_LOGIC, Resources.Resources.UNDER_CONTRACT_12632, 1, 0, true),
+				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
+			};
+		}
+
 		/// <inheritdoc/>
 		public override CriteriaSet BuildCriteriaSet(NameValueCollection requestValues, out bool tableReload, CriteriaSet crs = null, bool isToExport = false)
 		{
@@ -202,7 +220,7 @@ namespace GenioMVC.ViewModels.Playr
 			// Set table name (used in getting searchable column names)
 			Menu.TableName = TableAlias;
 
-			Menu.SetFilters(false, false);
+			Menu.SetFilters(false, true);
 
 
 			crs.SubSets.Add(ProcessSearchFilters(Menu, GetSearchColumns(tableConfig.ColumnConfiguration), tableConfig));
@@ -211,6 +229,40 @@ namespace GenioMVC.ViewModels.Playr
 			//Subfilters
 			CriteriaSet subfilters = CriteriaSet.And();
 
+			if (!tableConfig.StaticFilters.ContainsKey("filter_AJF_Menu_21_GENDER"))
+				tableConfig.StaticFilters.Add("filter_AJF_Menu_21_GENDER", null);
+
+			{
+				var groupFilters = CriteriaSet.Or();
+				bool filter_AJF_Menu_21_GENDER_1 = false;
+				if (tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"] != null)
+					filter_AJF_Menu_21_GENDER_1 = tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"].Contains("1");
+				if (filter_AJF_Menu_21_GENDER_1)
+				{
+					groupFilters.Equal(CSGenioAplayr.FldGender, "M");
+
+				}
+
+				bool filter_AJF_Menu_21_GENDER_2 = false;
+				if (tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"] != null)
+					filter_AJF_Menu_21_GENDER_2 = tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"].Contains("2");
+				if (filter_AJF_Menu_21_GENDER_2)
+				{
+					groupFilters.Equal(CSGenioAplayr.FldGender, "F");
+
+				}
+
+				bool filter_AJF_Menu_21_GENDER_3 = false;
+				if (tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"] != null)
+					filter_AJF_Menu_21_GENDER_3 = tableConfig.StaticFilters["filter_AJF_Menu_21_GENDER"].Contains("3");
+				if (filter_AJF_Menu_21_GENDER_3)
+				{
+					groupFilters.Equal(CSGenioAplayr.FldGender, "O");
+
+				}
+
+				subfilters.SubSets.Add(groupFilters);
+			}
 
 			crs.SubSets.Add(subfilters);
 
@@ -417,7 +469,7 @@ namespace GenioMVC.ViewModels.Playr
 							pageNumber = ((m_iCurPag - 1) / numberListItems) + 1;
 					}
 
-					ListingMVC<CSGenioAplayr> listing = Models.ModelBase.Where<CSGenioAplayr>(m_userContext, distinct, ajf_menu_21Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML21", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
+					ListingMVC<CSGenioAplayr> listing = Models.ModelBase.Where<CSGenioAplayr>(m_userContext, distinct, ajf_menu_21Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML21", true, true, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
 
 					if (listing.CurrentPage > 0)
 						pageNumber = listing.CurrentPage;

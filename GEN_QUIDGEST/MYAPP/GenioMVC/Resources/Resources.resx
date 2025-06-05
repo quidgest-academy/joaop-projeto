@@ -186,6 +186,9 @@
 	<data name="SUCESSO65230" xml:space="preserve">
 		<value>Sucesso</value>
 	</data>
+	<data name="SALARY_OF_THE_PLAYER18198" xml:space="preserve">
+		<value>Salary of the player per month</value>
+	</data>
 	<data name="NAME_OF_THE_PLAYER61428" xml:space="preserve">
 		<value>Name of the player</value>
 	</data>
@@ -387,6 +390,9 @@
 	<data name="PASSWORD09467" xml:space="preserve">
 		<value>Password</value>
 	</data>
+	<data name="YEARLY_SALARY01615" xml:space="preserve">
+		<value>Yearly Salary</value>
+	</data>
 	<data name="PLAYERS_UNDER_CONTRA19805" xml:space="preserve">
 		<value>Players under contract</value>
 	</data>
@@ -543,6 +549,9 @@
 	<data name="AGENT_S_NAME23140" xml:space="preserve">
 		<value>Agent´s Name</value>
 	</data>
+	<data name="PERCENTAGE_MUST_BE_B62781" xml:space="preserve">
+		<value>Percentage must be between 0 and 1</value>
+	</data>
 	<data name="MALE32397" xml:space="preserve">
 		<value>Male</value>
 	</data>
@@ -593,6 +602,9 @@
 	</data>
 	<data name="AGENT_S_PHONE23147" xml:space="preserve">
 		<value>Agent&apos;s Phone</value>
+	</data>
+	<data name="PLAYERS_BY_AGENT50722" xml:space="preserve">
+		<value>Players by Agent</value>
 	</data>
 	<data name="CHANGED_BY08967" xml:space="preserve">
 		<value>Changed by</value>

@@ -50,14 +50,19 @@ public class F_cntrctForm : Form
 	public DateInputControl ContrFindate => new DateInputControl(driver, ContainerLocator, "#F_CNTRCTCONTRFINDATE_");
 
 	/// <summary>
+	/// Contract duration
+	/// </summary>
+	public BaseInputControl ContrCtrdurat => new BaseInputControl(driver, ContainerLocator, "container-F_CNTRCTCONTRCTRDURAT", "#F_CNTRCTCONTRCTRDURAT");
+
+	/// <summary>
 	/// Salary of the player
 	/// </summary>
 	public BaseInputControl ContrSalary => new BaseInputControl(driver, ContainerLocator, "container-F_CNTRCTCONTRSALARY__", "#F_CNTRCTCONTRSALARY__");
 
 	/// <summary>
-	/// Contract duration
+	/// Yearly Salary
 	/// </summary>
-	public BaseInputControl ContrCtrdurat => new BaseInputControl(driver, ContainerLocator, "container-F_CNTRCTCONTRCTRDURAT", "#F_CNTRCTCONTRCTRDURAT");
+	public BaseInputControl ContrSlryyr => new BaseInputControl(driver, ContainerLocator, "container-F_CNTRCTCONTRSLRYYR__", "#F_CNTRCTCONTRSLRYYR__");
 
 	/// <summary>
 	/// Transfer Value

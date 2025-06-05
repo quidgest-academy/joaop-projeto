@@ -80,20 +80,25 @@ namespace GenioMVC.ViewModels.Contr
 		/// </summary>
 		public DateTime? ValFindate { get; set; }
 		/// <summary>
-		/// Title: "Salary of the player" | Type: "N"
-		/// </summary>
-		public decimal? ValSalary { get; set; }
-		/// <summary>
 		/// Title: "Contract duration" | Type: "N"
 		/// </summary>
 		[ValidateSetAccess]
 		public decimal? ValCtrdurat { get; set; }
 		/// <summary>
+		/// Title: "Salary of the player" | Type: "$"
+		/// </summary>
+		public decimal? ValSalary { get; set; }
+		/// <summary>
+		/// Title: "Yearly Salary" | Type: "$"
+		/// </summary>
+		[ValidateSetAccess]
+		public decimal? ValSlryyr { get; set; }
+		/// <summary>
 		/// Title: "Transfer Value" | Type: "N"
 		/// </summary>
 		public decimal? ValTransval { get; set; }
 		/// <summary>
-		/// Title: "Monetary Value comissions through each transfer" | Type: "N"
+		/// Title: "Monetary Value comissions through each transfer" | Type: "$"
 		/// </summary>
 		[ValidateSetAccess]
 		public decimal? ValComiseur { get; set; }
@@ -243,8 +248,9 @@ namespace GenioMVC.ViewModels.Contr
 				funcAgentValEmail = () => ViewModelConversion.ToString(m.Agent.ValEmail);
 				ValStartdat = ViewModelConversion.ToDateTime(m.ValStartdat);
 				ValFindate = ViewModelConversion.ToDateTime(m.ValFindate);
-				ValSalary = ViewModelConversion.ToNumeric(m.ValSalary);
 				ValCtrdurat = ViewModelConversion.ToNumeric(m.ValCtrdurat);
+				ValSalary = ViewModelConversion.ToNumeric(m.ValSalary);
+				ValSlryyr = ViewModelConversion.ToNumeric(m.ValSlryyr);
 				ValTransval = ViewModelConversion.ToNumeric(m.ValTransval);
 				ValComiseur = ViewModelConversion.ToNumeric(m.ValComiseur);
 				funcAgentValPerc_com = () => ViewModelConversion.ToNumeric(m.Agent.ValPerc_com);
@@ -291,6 +297,7 @@ namespace GenioMVC.ViewModels.Contr
 					return;
 
 				m.ValCtrdurat = ViewModelConversion.ToNumeric(ValCtrdurat);
+				m.ValSlryyr = ViewModelConversion.ToNumeric(ValSlryyr);
 				m.ValComiseur = ViewModelConversion.ToNumeric(ValComiseur);
 			}
 			catch (Exception)
@@ -458,7 +465,7 @@ namespace GenioMVC.ViewModels.Contr
 
 			validator.Required("ValFindate", Resources.Resources.FINISH_DATE41863, ViewModelConversion.ToDateTime(ValFindate), FieldType.DATE.GetFormatting());
 
-			validator.Required("ValSalary", Resources.Resources.SALARY_OF_THE_PLAYER18170, ViewModelConversion.ToNumeric(ValSalary), FieldType.NUMERIC.GetFormatting());
+			validator.Required("ValSalary", Resources.Resources.SALARY_OF_THE_PLAYER18170, ViewModelConversion.ToNumeric(ValSalary), FieldType.CURRENCY.GetFormatting());
 
 			validator.Required("ValTransval", Resources.Resources.TRANSFER_VALUE12168, ViewModelConversion.ToNumeric(ValTransval), FieldType.NUMERIC.GetFormatting());
 
@@ -890,8 +897,9 @@ namespace GenioMVC.ViewModels.Contr
 				"agent.email" => ViewModelConversion.ToString(modelValue),
 				"contr.startdat" => ViewModelConversion.ToDateTime(modelValue),
 				"contr.findate" => ViewModelConversion.ToDateTime(modelValue),
-				"contr.salary" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.ctrdurat" => ViewModelConversion.ToNumeric(modelValue),
+				"contr.salary" => ViewModelConversion.ToNumeric(modelValue),
+				"contr.slryyr" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.transval" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.comiseur" => ViewModelConversion.ToNumeric(modelValue),
 				"agent.perc_com" => ViewModelConversion.ToNumeric(modelValue),

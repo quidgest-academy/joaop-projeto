@@ -126,6 +126,17 @@ export default class ViewModel extends FormViewModelBase
 			maxDigits: 10,
 			decimalDigits: 0,
 			isFixed: true,
+			blockWhen: {
+				// eslint-disable-next-line no-unused-vars
+				fnFormula(params)
+				{
+					// Formula: isEmptyN([AGENT->PERC_COM])==1
+					return (this.ValPerc_com.value === 0.0)===1
+				},
+				dependencyEvents: ['fieldChange:agent.perc_com'],
+				isServerRecalc: false,
+				isEmpty: qApi.emptyN,
+			},
 			description: computed(() => this.Resources.TOTAL_EARN_THROUGH_C21845),
 		}).cloneFrom(values?.ValTotcomis))
 		watch(() => this.ValTotcomis.value, (newValue, oldValue) => this.onUpdate('agent.totcomis', this.ValTotcomis, newValue, oldValue))

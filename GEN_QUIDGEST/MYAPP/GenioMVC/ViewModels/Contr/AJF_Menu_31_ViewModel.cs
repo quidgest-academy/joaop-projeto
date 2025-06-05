@@ -145,8 +145,8 @@ namespace GenioMVC.ViewModels.Contr
 			var columns = new List<Exports.QColumn>()
 			{
 				new Exports.QColumn(CSGenioAcontr.FldStartdat, FieldType.DATE, Resources.Resources.STARTING_DATE47975, 8, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldComiseur, FieldType.NUMERIC, Resources.Resources.MONETARY_VALUE_COMIS27197, 10, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldSalary, FieldType.NUMERIC, Resources.Resources.SALARY_OF_THE_PLAYER18170, 10, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldComiseur, FieldType.CURRENCY, Resources.Resources.MONETARY_VALUE_COMIS27197, 10, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldSalary, FieldType.CURRENCY, Resources.Resources.SALARY_OF_THE_PLAYER18170, 10, 0, true),
 				new Exports.QColumn(CSGenioAcontr.FldFindate, FieldType.DATE, Resources.Resources.FINISH_DATE41863, 8, 0, true),
 				new Exports.QColumn(CSGenioAcontr.FldCtrdurat, FieldType.NUMERIC, Resources.Resources.CONTRACT_DURATION31225, 2, 0, true),
 				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),

@@ -138,17 +138,6 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValFindate))
 		watch(() => this.ValFindate.value, (newValue, oldValue) => this.onUpdate('contr.findate', this.ValFindate, newValue, oldValue))
 
-		this.ValSalary = reactive(new modelFieldType.Number({
-			id: 'ValSalary',
-			originId: 'ValSalary',
-			area: 'CONTR',
-			field: 'SALARY',
-			maxDigits: 10,
-			decimalDigits: 0,
-			description: computed(() => this.Resources.SALARY_OF_THE_PLAYER18170),
-		}).cloneFrom(values?.ValSalary))
-		watch(() => this.ValSalary.value, (newValue, oldValue) => this.onUpdate('contr.salary', this.ValSalary, newValue, oldValue))
-
 		this.ValCtrdurat = reactive(new modelFieldType.Number({
 			id: 'ValCtrdurat',
 			originId: 'ValCtrdurat',
@@ -173,6 +162,52 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValCtrdurat))
 		watch(() => this.ValCtrdurat.value, (newValue, oldValue) => this.onUpdate('contr.ctrdurat', this.ValCtrdurat, newValue, oldValue))
 
+		this.ValSalary = reactive(new modelFieldType.Number({
+			id: 'ValSalary',
+			originId: 'ValSalary',
+			area: 'CONTR',
+			field: 'SALARY',
+			maxDigits: 5,
+			decimalDigits: 2,
+			description: computed(() => this.Resources.SALARY_OF_THE_PLAYER18198),
+		}).cloneFrom(values?.ValSalary))
+		watch(() => this.ValSalary.value, (newValue, oldValue) => this.onUpdate('contr.salary', this.ValSalary, newValue, oldValue))
+
+		this.ValSlryyr = reactive(new modelFieldType.Number({
+			id: 'ValSlryyr',
+			originId: 'ValSlryyr',
+			area: 'CONTR',
+			field: 'SLRYYR',
+			maxDigits: 9,
+			decimalDigits: 2,
+			isFixed: true,
+			valueFormula: {
+				stopRecalcCondition() { return false },
+				// eslint-disable-next-line no-unused-vars
+				fnFormula(params)
+				{
+					// Formula: [CONTR->SALARY]*12
+					return this.ValSalary.value*12
+				},
+				dependencyEvents: ['fieldChange:contr.salary'],
+				isServerRecalc: false,
+				isEmpty: qApi.emptyN,
+			},
+			showWhen: {
+				// eslint-disable-next-line no-unused-vars
+				fnFormula(params)
+				{
+					// Formula: [CONTR->SALARY]>1
+					return this.ValSalary.value>1
+				},
+				dependencyEvents: ['fieldChange:contr.salary'],
+				isServerRecalc: false,
+				isEmpty: qApi.emptyN,
+			},
+			description: computed(() => this.Resources.YEARLY_SALARY01615),
+		}).cloneFrom(values?.ValSlryyr))
+		watch(() => this.ValSlryyr.value, (newValue, oldValue) => this.onUpdate('contr.slryyr', this.ValSlryyr, newValue, oldValue))
+
 		this.ValTransval = reactive(new modelFieldType.Number({
 			id: 'ValTransval',
 			originId: 'ValTransval',
@@ -189,8 +224,8 @@ export default class ViewModel extends FormViewModelBase
 			originId: 'ValComiseur',
 			area: 'CONTR',
 			field: 'COMISEUR',
-			maxDigits: 10,
-			decimalDigits: 0,
+			maxDigits: 7,
+			decimalDigits: 2,
 			isFixed: true,
 			valueFormula: {
 				stopRecalcCondition() { return false },
@@ -201,6 +236,17 @@ export default class ViewModel extends FormViewModelBase
 					return this.ValTransval.value*this.AgentValPerc_com.value
 				},
 				dependencyEvents: ['fieldChange:contr.transval', 'fieldChange:agent.perc_com'],
+				isServerRecalc: false,
+				isEmpty: qApi.emptyN,
+			},
+			showWhen: {
+				// eslint-disable-next-line no-unused-vars
+				fnFormula(params)
+				{
+					// Formula: [CONTR->TRANSVAL]>1
+					return this.ValTransval.value>1
+				},
+				dependencyEvents: ['fieldChange:contr.transval'],
 				isServerRecalc: false,
 				isEmpty: qApi.emptyN,
 			},

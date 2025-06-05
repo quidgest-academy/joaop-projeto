@@ -79,6 +79,8 @@ public class F_player_ValAgtinfo_RowViewModel : Models.Agent
 
 		using (new CSGenio.persistence.ScopedPersistentSupport(m_userContext.PersistentSupport))
 		{
+
+			// Table AGENT CRUD conditions.
 		}
 
 		BtnPermission = new TableRowCrudButtonPermissions()

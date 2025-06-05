@@ -69,6 +69,9 @@
   <msg id="Sucesso" code="SUCESSO65230">
     <ENUS>Sucesso</ENUS>
   </msg>
+  <msg id="Salary of the player per month" code="SALARY_OF_THE_PLAYER18198">
+    <ENUS>Salary of the player per month</ENUS>
+  </msg>
   <msg id="Name of the player" code="NAME_OF_THE_PLAYER61428">
     <ENUS>Name of the player</ENUS>
   </msg>
@@ -270,6 +273,9 @@
   <msg id="Password" code="PASSWORD09467">
     <ENUS>Password</ENUS>
   </msg>
+  <msg id="Yearly Salary" code="YEARLY_SALARY01615">
+    <ENUS>Yearly Salary</ENUS>
+  </msg>
   <msg id="Players under contract" code="PLAYERS_UNDER_CONTRA19805">
     <ENUS>Players under contract</ENUS>
   </msg>
@@ -426,6 +432,9 @@
   <msg id="Agent´s Name" code="AGENT_S_NAME23140">
     <ENUS>Agent´s Name</ENUS>
   </msg>
+  <msg id="Percentage must be between 0 and 1" code="PERCENTAGE_MUST_BE_B62781">
+    <ENUS>Percentage must be between 0 and 1</ENUS>
+  </msg>
   <msg id="Male" code="MALE32397">
     <ENUS>Male</ENUS>
   </msg>
@@ -476,6 +485,9 @@
   </msg>
   <msg id="Agent&apos;s Phone" code="AGENT_S_PHONE23147">
     <ENUS>Agent&apos;s Phone</ENUS>
+  </msg>
+  <msg id="Players by Agent" code="PLAYERS_BY_AGENT50722">
+    <ENUS>Players by Agent</ENUS>
   </msg>
   <msg id="Changed by" code="CHANGED_BY08967">
     <ENUS>Changed by</ENUS>
