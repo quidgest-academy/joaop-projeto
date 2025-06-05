@@ -204,13 +204,13 @@ namespace CSGenio.business
 			//Write conditions
 			List<ConditionFormula> conditions = new List<ConditionFormula>();
 
-			// 0 < [AGENT->PERC_COM] < 1
+			// [AGENT->PERC_COM] > 0 && [AGENT->PERC_COM]< 1
 			{
 			List<ByAreaArguments> argumentsListByArea = new List<ByAreaArguments>();
 			argumentsListByArea= new List<ByAreaArguments>();
-			argumentsListByArea.Add(new ByAreaArguments(new string[] {"perc_com"},new int[] {0},"agent","codagent"));
-			ConditionFormula writeCondition = new ConditionFormula(argumentsListByArea, 1, delegate(object []args,User user,string module,PersistentSupport sp) {
-				return 0<((decimal)args[0])<1;
+			argumentsListByArea.Add(new ByAreaArguments(new string[] {"perc_com","perc_com"},new int[] {0,1},"agent","codagent"));
+			ConditionFormula writeCondition = new ConditionFormula(argumentsListByArea, 2, delegate(object []args,User user,string module,PersistentSupport sp) {
+				return ((decimal)args[0])>0&&((decimal)args[1])<1;
 			});
 			writeCondition.ErrorWarning = "Percentage must be between 0 and 1";
             writeCondition.Type =  ConditionType.ERROR;
