@@ -28,11 +28,11 @@ namespace CSGenio.business
 		/// <summary>
 		/// Yes
 		/// </summary>
-		public const int E_Y_1 = Y;
+		public const int E_1_1 = 1;
 		/// <summary>
 		/// No
 		/// </summary>
-		public const int E_N_2 = N;
+		public const int E_0_2 = 0;
 
 		/// <summary>
 		/// Prevents a default instance of the <see cref="ArrayUndercontract"/> class from being created.
@@ -47,8 +47,8 @@ namespace CSGenio.business
 		{
 			return new Dictionary<int, ArrayElement>()
 			{
-				{ E_Y_1, new ArrayElement() { ResourceId = "YES34196", HelpId = "", Group = "" } },
-				{ E_N_2, new ArrayElement() { ResourceId = "NO57340", HelpId = "", Group = "" } },
+				{ E_1_1, new ArrayElement() { ResourceId = "YES34196", HelpId = "", Group = "" } },
+				{ E_0_2, new ArrayElement() { ResourceId = "NO57340", HelpId = "", Group = "" } },
 			};
 		}
 

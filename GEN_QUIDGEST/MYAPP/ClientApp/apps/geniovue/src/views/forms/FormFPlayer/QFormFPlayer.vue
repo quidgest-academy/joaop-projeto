@@ -595,8 +595,8 @@
 						maxIntegers: 1,
 						maxDecimals: 0,
 						arrayName: 'UnderContract',
-computed(() => this.Resources.YES34196),
-computed(() => this.Resources.NO57340),
+						trueLabel: computed(() => this.Resources.YES34196),
+						falseLabel: computed(() => this.Resources.NO57340),
 						controlLimits: [
 						],
 					}, this),

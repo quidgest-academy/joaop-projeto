@@ -69,8 +69,8 @@ namespace CSGenio.business
             todasArrays.Add("s_tpproc", Qresult.ToString());
 			// undercontract
             Qresult = new StringBuilder();
-			            Qresult.AppendLine("if {{{0}}} = \"Y\" then \"Yes\" else");
-			            Qresult.AppendLine("if {{{0}}} = \"N\" then \"No\" else");
+			            Qresult.AppendLine("if {{{0}}} = \"1\" then \"Yes\" else");
+			            Qresult.AppendLine("if {{{0}}} = \"0\" then \"No\" else");
             Qresult.Append("\"                                              \"");
             todasArrays.Add("undercontract", Qresult.ToString());
         }

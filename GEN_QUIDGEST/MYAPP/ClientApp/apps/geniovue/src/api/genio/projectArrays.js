@@ -304,13 +304,13 @@ export const QArrayUndercontract = {
 		return [
 			{
 				num: 1,
-				key: Y,
+				key: 1,
 				resourceId: 'YES34196',
 				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
 			},
 			{
 				num: 2,
-				key: N,
+				key: 0,
 				resourceId: 'NO57340',
 				get value() { return computed(() => vm.fnResources ? vm.fnResources(this.resourceId) : this.resourceId) },
 			},
