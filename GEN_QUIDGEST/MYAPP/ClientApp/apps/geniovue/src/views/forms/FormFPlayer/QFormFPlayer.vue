@@ -690,16 +690,6 @@
 						maxDecimals: 0,
 						controlLimits: [
 						],
-						showWhen: {
-							// eslint-disable-next-line no-unused-vars
-							fnFormula(params)
-							{
-								// Formula: [PLAYR->BIRTHDAT]==1
-								return this.ValBirthdat.value===1
-							},
-							dependencyEvents: ['fieldChange:playr.birthdat'],
-							isServerRecalc: false,
-						},
 					}, this),
 					F_PLAYERPLAYRCOUNTRY_: new fieldControlClass.StringControl({
 						modelField: 'ValCountry',
