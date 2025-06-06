@@ -8,11 +8,6 @@ namespace quidgest.uitests.pages.forms;
 public class F_cntrctForm : Form
 {
 	/// <summary>
-	/// Percentage of the Comission
-	/// </summary>
-	public IWebElement AgentPerc_com => throw new NotImplementedException();
-
-	/// <summary>
 	/// New Zone
 	/// </summary>
 	public IWebElement PseudNewgrp03 => throw new NotImplementedException();
@@ -29,15 +24,20 @@ public class F_cntrctForm : Form
 	public SeeMorePage PlayrNameSeeMorePage => new SeeMorePage(driver, "F_CNTRCT", "F_CNTRCTPLAYRNAME____");
 
 	/// <summary>
+	/// Club's Name
+	/// </summary>
+	public LookupControl ClubName => new LookupControl(driver, ContainerLocator, "container-F_CNTRCTCLUB_NAME____");
+	public SeeMorePage ClubNameSeeMorePage => new SeeMorePage(driver, "F_CNTRCT", "F_CNTRCTCLUB_NAME____");
+
+	/// <summary>
 	/// Agent´s Name
 	/// </summary>
 	public IWebElement AgentName => throw new NotImplementedException();
 
 	/// <summary>
-	/// Club's Name
+	/// Percentage of the Comission
 	/// </summary>
-	public LookupControl ClubName => new LookupControl(driver, ContainerLocator, "container-F_CNTRCTCLUB_NAME____");
-	public SeeMorePage ClubNameSeeMorePage => new SeeMorePage(driver, "F_CNTRCT", "F_CNTRCTCLUB_NAME____");
+	public IWebElement AgentPerc_com => throw new NotImplementedException();
 
 	/// <summary>
 	/// contract details

@@ -129,24 +129,6 @@
 										</base-input-structure>
 									</q-control-wrapper>
 								</q-row-container>
-								<q-row-container v-show="controls.F_CNTRCTAGENTNAME____.isVisible">
-									<q-control-wrapper
-										v-show="controls.F_CNTRCTAGENTNAME____.isVisible"
-										class="control-join-group">
-										<base-input-structure
-											class="i-text"
-											v-bind="controls.F_CNTRCTAGENTNAME____"
-											v-on="controls.F_CNTRCTAGENTNAME____.handlers"
-											:loading="controls.F_CNTRCTAGENTNAME____.props.loading"
-											:reporting-mode-on="reportingModeCAV"
-											:suggestion-mode-on="suggestionModeOn">
-											<q-text-field
-												v-bind="controls.F_CNTRCTAGENTNAME____.props"
-												@blur="onBlur(controls.F_CNTRCTAGENTNAME____, model.AgentValName.value)"
-												@change="model.AgentValName.fnUpdateValueOnChange" />
-										</base-input-structure>
-									</q-control-wrapper>
-								</q-row-container>
 								<q-row-container v-show="controls.F_CNTRCTCLUB_NAME____.isVisible">
 									<q-control-wrapper
 										v-show="controls.F_CNTRCTCLUB_NAME____.isVisible"
@@ -166,6 +148,40 @@
 												v-if="controls.F_CNTRCTCLUB_NAME____.seeMoreIsVisible"
 												v-bind="controls.F_CNTRCTCLUB_NAME____.seeMoreParams"
 												v-on="controls.F_CNTRCTCLUB_NAME____.handlers" />
+										</base-input-structure>
+									</q-control-wrapper>
+								</q-row-container>
+								<q-row-container v-show="controls.F_CNTRCTAGENTNAME____.isVisible || controls.F_CNTRCTAGENTPERC_COM.isVisible">
+									<q-control-wrapper
+										v-show="controls.F_CNTRCTAGENTNAME____.isVisible"
+										class="control-join-group">
+										<base-input-structure
+											class="i-text"
+											v-bind="controls.F_CNTRCTAGENTNAME____"
+											v-on="controls.F_CNTRCTAGENTNAME____.handlers"
+											:loading="controls.F_CNTRCTAGENTNAME____.props.loading"
+											:reporting-mode-on="reportingModeCAV"
+											:suggestion-mode-on="suggestionModeOn">
+											<q-text-field
+												v-bind="controls.F_CNTRCTAGENTNAME____.props"
+												@blur="onBlur(controls.F_CNTRCTAGENTNAME____, model.AgentValName.value)"
+												@change="model.AgentValName.fnUpdateValueOnChange" />
+										</base-input-structure>
+									</q-control-wrapper>
+									<q-control-wrapper
+										v-show="controls.F_CNTRCTAGENTPERC_COM.isVisible"
+										class="control-join-group">
+										<base-input-structure
+											class="i-text"
+											v-bind="controls.F_CNTRCTAGENTPERC_COM"
+											v-on="controls.F_CNTRCTAGENTPERC_COM.handlers"
+											:loading="controls.F_CNTRCTAGENTPERC_COM.props.loading"
+											:reporting-mode-on="reportingModeCAV"
+											:suggestion-mode-on="suggestionModeOn">
+											<q-numeric-input
+												v-if="controls.F_CNTRCTAGENTPERC_COM.isVisible"
+												v-bind="controls.F_CNTRCTAGENTPERC_COM.props"
+												@update:model-value="model.AgentValPerc_com.fnUpdateValue" />
 										</base-input-structure>
 									</q-control-wrapper>
 								</q-row-container>
@@ -662,7 +678,7 @@
 						container: 'F_CNTRCTPSEUDNEWGRP03',
 						isCollapsible: true,
 						anchored: false,
-						directChildren: ['F_CNTRCTPLAYRNAME____', 'F_CNTRCTAGENTNAME____', 'F_CNTRCTCLUB_NAME____'],
+						directChildren: ['F_CNTRCTPLAYRNAME____', 'F_CNTRCTCLUB_NAME____', 'F_CNTRCTAGENTNAME____', 'F_CNTRCTAGENTPERC_COM'],
 						controlLimits: [
 						],
 					}, this),
@@ -691,24 +707,11 @@
 						dependentFields: () => ({
 							set 'playr.codplayr'(value) { vm.model.ValCodplayr.updateValue(value) },
 							set 'playr.name'(value) { vm.model.TablePlayrName.updateValue(value) },
+							set 'contr.codagent'(value) { vm.model.ValCodagent.updateValue(value) },
+							set 'agent.codagent'(value) { vm.model.ValCodagent.updateValue(value) },
+							set 'agent.name'(value) { vm.model.AgentValName.updateValue(value) },
+							set 'agent.perc_com'(value) { vm.model.AgentValPerc_com.updateValue(value) },
 						}),
-						controlLimits: [
-						],
-					}, this),
-					F_CNTRCTAGENTNAME____: new fieldControlClass.StringControl({
-						modelField: 'AgentValName',
-						valueChangeEvent: 'fieldChange:agent.name',
-						dependentModelField: 'ValCodagent',
-						dependentChangeEvent: 'fieldChange:contr.codagent',
-						id: 'F_CNTRCTAGENTNAME____',
-						name: 'NAME',
-						size: 'xxlarge',
-						label: computed(() => this.Resources.AGENT_S_NAME23140),
-						placeholder: '',
-						labelPosition: computed(() => this.labelAlignment.topleft),
-						container: 'F_CNTRCTPSEUDNEWGRP01',
-						maxLength: 85,
-						labelId: 'label_F_CNTRCTAGENTNAME____',
 						controlLimits: [
 						],
 					}, this),
@@ -738,6 +741,40 @@
 							set 'club.codclub'(value) { vm.model.ValCodclub.updateValue(value) },
 							set 'club.name'(value) { vm.model.TableClubName.updateValue(value) },
 						}),
+						controlLimits: [
+						],
+					}, this),
+					F_CNTRCTAGENTNAME____: new fieldControlClass.StringControl({
+						modelField: 'AgentValName',
+						valueChangeEvent: 'fieldChange:agent.name',
+						dependentModelField: 'ValCodagent',
+						dependentChangeEvent: 'fieldChange:contr.codagent',
+						id: 'F_CNTRCTAGENTNAME____',
+						name: 'NAME',
+						size: 'xxlarge',
+						label: computed(() => this.Resources.AGENT_S_NAME23140),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						container: 'F_CNTRCTPSEUDNEWGRP01',
+						maxLength: 85,
+						labelId: 'label_F_CNTRCTAGENTNAME____',
+						controlLimits: [
+						],
+					}, this),
+					F_CNTRCTAGENTPERC_COM: new fieldControlClass.NumberControl({
+						modelField: 'AgentValPerc_com',
+						valueChangeEvent: 'fieldChange:agent.perc_com',
+						dependentModelField: 'ValCodagent',
+						dependentChangeEvent: 'fieldChange:contr.codagent',
+						id: 'F_CNTRCTAGENTPERC_COM',
+						name: 'PERC_COM',
+						size: 'xlarge',
+						label: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						container: 'F_CNTRCTPSEUDNEWGRP01',
+						maxIntegers: 1,
+						maxDecimals: 2,
 						controlLimits: [
 						],
 					}, this),

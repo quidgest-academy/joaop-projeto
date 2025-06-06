@@ -86,18 +86,6 @@ export default class ViewModel extends FormViewModelBase
 		watch(() => this.ValCodclub.value, (newValue, oldValue) => this.onUpdate('contr.codclub', this.ValCodclub, newValue, oldValue))
 
 		/** The remaining form fields. */
-		this.AgentValPerc_com = reactive(new modelFieldType.Number({
-			id: 'AgentValPerc_com',
-			originId: 'ValPerc_com',
-			area: 'AGENT',
-			field: 'PERC_COM',
-			maxDigits: 1,
-			decimalDigits: 2,
-			isFixed: true,
-			description: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
-		}).cloneFrom(values?.AgentValPerc_com))
-		watch(() => this.AgentValPerc_com.value, (newValue, oldValue) => this.onUpdate('agent.perc_com', this.AgentValPerc_com, newValue, oldValue))
-
 		this.TablePlayrName = reactive(new modelFieldType.String({
 			type: 'Lookup',
 			id: 'TablePlayrName',
@@ -108,6 +96,17 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
 		}).cloneFrom(values?.TablePlayrName))
 		watch(() => this.TablePlayrName.value, (newValue, oldValue) => this.onUpdate('playr.name', this.TablePlayrName, newValue, oldValue))
+
+		this.TableClubName = reactive(new modelFieldType.String({
+			type: 'Lookup',
+			id: 'TableClubName',
+			originId: 'ValName',
+			area: 'CLUB',
+			field: 'NAME',
+			maxLength: 50,
+			description: computed(() => this.Resources.CLUB_S_NAME65517),
+		}).cloneFrom(values?.TableClubName))
+		watch(() => this.TableClubName.value, (newValue, oldValue) => this.onUpdate('club.name', this.TableClubName, newValue, oldValue))
 
 		this.AgentValName = reactive(new modelFieldType.String({
 			id: 'AgentValName',
@@ -120,16 +119,17 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.AgentValName))
 		watch(() => this.AgentValName.value, (newValue, oldValue) => this.onUpdate('agent.name', this.AgentValName, newValue, oldValue))
 
-		this.TableClubName = reactive(new modelFieldType.String({
-			type: 'Lookup',
-			id: 'TableClubName',
-			originId: 'ValName',
-			area: 'CLUB',
-			field: 'NAME',
-			maxLength: 50,
-			description: computed(() => this.Resources.CLUB_S_NAME65517),
-		}).cloneFrom(values?.TableClubName))
-		watch(() => this.TableClubName.value, (newValue, oldValue) => this.onUpdate('club.name', this.TableClubName, newValue, oldValue))
+		this.AgentValPerc_com = reactive(new modelFieldType.Number({
+			id: 'AgentValPerc_com',
+			originId: 'ValPerc_com',
+			area: 'AGENT',
+			field: 'PERC_COM',
+			maxDigits: 1,
+			decimalDigits: 2,
+			isFixed: true,
+			description: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
+		}).cloneFrom(values?.AgentValPerc_com))
+		watch(() => this.AgentValPerc_com.value, (newValue, oldValue) => this.onUpdate('agent.perc_com', this.AgentValPerc_com, newValue, oldValue))
 
 		this.ValStartdat = reactive(new modelFieldType.Date({
 			id: 'ValStartdat',
