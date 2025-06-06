@@ -156,24 +156,6 @@
 									</base-input-structure>
 								</q-control-wrapper>
 							</q-row-container>
-							<q-row-container v-show="controls.F_PLAYERPLAYRPOSIC___.isVisible">
-								<q-control-wrapper
-									v-show="controls.F_PLAYERPLAYRPOSIC___.isVisible"
-									class="control-join-group">
-									<base-input-structure
-										class="i-text"
-										v-bind="controls.F_PLAYERPLAYRPOSIC___"
-										v-on="controls.F_PLAYERPLAYRPOSIC___.handlers"
-										:loading="controls.F_PLAYERPLAYRPOSIC___.props.loading"
-										:reporting-mode-on="reportingModeCAV"
-										:suggestion-mode-on="suggestionModeOn">
-										<q-text-field
-											v-bind="controls.F_PLAYERPLAYRPOSIC___.props"
-											@blur="onBlur(controls.F_PLAYERPLAYRPOSIC___, model.ValPosic.value)"
-											@change="model.ValPosic.fnUpdateValueOnChange" />
-									</base-input-structure>
-								</q-control-wrapper>
-							</q-row-container>
 							<q-row-container v-show="controls.F_PLAYERPLAYRBIRTHDAT.isVisible || controls.F_PLAYERPLAYRAGE_____.isVisible">
 								<q-control-wrapper
 									v-show="controls.F_PLAYERPLAYRBIRTHDAT.isVisible"
@@ -210,21 +192,43 @@
 									</base-input-structure>
 								</q-control-wrapper>
 							</q-row-container>
-							<q-row-container v-show="controls.F_PLAYERPLAYRCOUNTRY_.isVisible">
+							<q-row-container v-show="controls.F_PLAYERCNTRYCOUNTRY_.isVisible">
 								<q-control-wrapper
-									v-show="controls.F_PLAYERPLAYRCOUNTRY_.isVisible"
+									v-show="controls.F_PLAYERCNTRYCOUNTRY_.isVisible"
 									class="control-join-group">
 									<base-input-structure
 										class="i-text"
-										v-bind="controls.F_PLAYERPLAYRCOUNTRY_"
-										v-on="controls.F_PLAYERPLAYRCOUNTRY_.handlers"
-										:loading="controls.F_PLAYERPLAYRCOUNTRY_.props.loading"
+										v-bind="controls.F_PLAYERCNTRYCOUNTRY_"
+										v-on="controls.F_PLAYERCNTRYCOUNTRY_.handlers"
+										:loading="controls.F_PLAYERCNTRYCOUNTRY_.props.loading"
+										:reporting-mode-on="reportingModeCAV"
+										:suggestion-mode-on="suggestionModeOn">
+										<q-lookup
+											v-if="controls.F_PLAYERCNTRYCOUNTRY_.isVisible"
+											v-bind="controls.F_PLAYERCNTRYCOUNTRY_.props"
+											v-on="controls.F_PLAYERCNTRYCOUNTRY_.handlers" />
+										<q-see-more-f-playercntrycountry
+											v-if="controls.F_PLAYERCNTRYCOUNTRY_.seeMoreIsVisible"
+											v-bind="controls.F_PLAYERCNTRYCOUNTRY_.seeMoreParams"
+											v-on="controls.F_PLAYERCNTRYCOUNTRY_.handlers" />
+									</base-input-structure>
+								</q-control-wrapper>
+							</q-row-container>
+							<q-row-container v-show="controls.F_PLAYERPLAYRPOSIC___.isVisible">
+								<q-control-wrapper
+									v-show="controls.F_PLAYERPLAYRPOSIC___.isVisible"
+									class="control-join-group">
+									<base-input-structure
+										class="i-text"
+										v-bind="controls.F_PLAYERPLAYRPOSIC___"
+										v-on="controls.F_PLAYERPLAYRPOSIC___.handlers"
+										:loading="controls.F_PLAYERPLAYRPOSIC___.props.loading"
 										:reporting-mode-on="reportingModeCAV"
 										:suggestion-mode-on="suggestionModeOn">
 										<q-text-field
-											v-bind="controls.F_PLAYERPLAYRCOUNTRY_.props"
-											@blur="onBlur(controls.F_PLAYERPLAYRCOUNTRY_, model.ValCountry.value)"
-											@change="model.ValCountry.fnUpdateValueOnChange" />
+											v-bind="controls.F_PLAYERPLAYRPOSIC___.props"
+											@blur="onBlur(controls.F_PLAYERPLAYRPOSIC___, model.ValPosic.value)"
+											@change="model.ValPosic.fnUpdateValueOnChange" />
 									</base-input-structure>
 								</q-control-wrapper>
 							</q-row-container>
@@ -313,6 +317,7 @@
 		name: 'QFormFPlayer',
 
 		components: {
+			QSeeMoreFPlayercntrycountry: defineAsyncComponent(() => import('@/views/forms/FormFPlayer/dbedits/FPlayercntrycountrySeeMore.vue')),
 		},
 
 		mixins: [
@@ -609,7 +614,7 @@
 						labelPosition: computed(() => this.labelAlignment.topleft),
 						isCollapsible: false,
 						anchored: false,
-						directChildren: ['F_PLAYERPLAYRGENDER__', 'F_PLAYERPLAYRNAME____', 'F_PLAYERPLAYRPOSIC___', 'F_PLAYERPLAYRBIRTHDAT', 'F_PLAYERPLAYRAGE_____', 'F_PLAYERPLAYRCOUNTRY_'],
+						directChildren: ['F_PLAYERPLAYRGENDER__', 'F_PLAYERPLAYRNAME____', 'F_PLAYERPLAYRBIRTHDAT', 'F_PLAYERPLAYRAGE_____', 'F_PLAYERCNTRYCOUNTRY_', 'F_PLAYERPLAYRPOSIC___'],
 						controlLimits: [
 						],
 					}, this),
@@ -646,21 +651,6 @@
 						controlLimits: [
 						],
 					}, this),
-					F_PLAYERPLAYRPOSIC___: new fieldControlClass.StringControl({
-						modelField: 'ValPosic',
-						valueChangeEvent: 'fieldChange:playr.posic',
-						id: 'F_PLAYERPLAYRPOSIC___',
-						name: 'POSIC',
-						size: 'xxlarge',
-						label: computed(() => this.Resources.POSITION54869),
-						placeholder: '',
-						labelPosition: computed(() => this.labelAlignment.topleft),
-						container: 'F_PLAYERPSEUDNEWGRP01',
-						maxLength: 50,
-						labelId: 'label_F_PLAYERPLAYRPOSIC___',
-						controlLimits: [
-						],
-					}, this),
 					F_PLAYERPLAYRBIRTHDAT: new fieldControlClass.DateControl({
 						modelField: 'ValBirthdat',
 						valueChangeEvent: 'fieldChange:playr.birthdat',
@@ -691,18 +681,47 @@
 						controlLimits: [
 						],
 					}, this),
-					F_PLAYERPLAYRCOUNTRY_: new fieldControlClass.StringControl({
-						modelField: 'ValCountry',
-						valueChangeEvent: 'fieldChange:playr.country',
-						id: 'F_PLAYERPLAYRCOUNTRY_',
+					F_PLAYERCNTRYCOUNTRY_: new fieldControlClass.LookupControl({
+						modelField: 'TableCntryCountry',
+						valueChangeEvent: 'fieldChange:cntry.country',
+						id: 'F_PLAYERCNTRYCOUNTRY_',
 						name: 'COUNTRY',
 						size: 'xxlarge',
 						label: computed(() => this.Resources.COUNTRY64133),
 						placeholder: '',
 						labelPosition: computed(() => this.labelAlignment.topleft),
 						container: 'F_PLAYERPSEUDNEWGRP01',
+						externalCallbacks: {
+							getModelField: vm.getModelField,
+							getModelFieldValue: vm.getModelFieldValue,
+							setModelFieldValue: vm.setModelFieldValue
+						},
+						externalProperties: {
+							modelKeys: computed(() => vm.modelKeys)
+						},
+						lookupKeyModelField: {
+							name: 'ValCodcntry',
+							dependencyEvent: 'fieldChange:playr.codcntry'
+						},
+						dependentFields: () => ({
+							set 'cntry.codcntry'(value) { vm.model.ValCodcntry.updateValue(value) },
+							set 'cntry.country'(value) { vm.model.TableCntryCountry.updateValue(value) },
+						}),
+						controlLimits: [
+						],
+					}, this),
+					F_PLAYERPLAYRPOSIC___: new fieldControlClass.StringControl({
+						modelField: 'ValPosic',
+						valueChangeEvent: 'fieldChange:playr.posic',
+						id: 'F_PLAYERPLAYRPOSIC___',
+						name: 'POSIC',
+						size: 'xxlarge',
+						label: computed(() => this.Resources.POSITION54869),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						container: 'F_PLAYERPSEUDNEWGRP01',
 						maxLength: 50,
-						labelId: 'label_F_PLAYERPLAYRCOUNTRY_',
+						labelId: 'label_F_PLAYERPLAYRPOSIC___',
 						controlLimits: [
 						],
 					}, this),
@@ -942,6 +961,10 @@
 				 * The Data API for easy access to model variables.
 				 */
 				dataApi: {
+					Cntry: {
+						get ValCountry() { return vm.model.TableCntryCountry.value },
+						set ValCountry(value) { vm.model.TableCntryCountry.updateValue(value) },
+					},
 					Playr: {
 						get ValAge() { return vm.model.ValAge.value },
 						set ValAge(value) { vm.model.ValAge.updateValue(value) },
@@ -949,8 +972,8 @@
 						set ValBirthdat(value) { vm.model.ValBirthdat.updateValue(value) },
 						get ValCodagent() { return vm.model.ValCodagent.value },
 						set ValCodagent(value) { vm.model.ValCodagent.updateValue(value) },
-						get ValCountry() { return vm.model.ValCountry.value },
-						set ValCountry(value) { vm.model.ValCountry.updateValue(value) },
+						get ValCodcntry() { return vm.model.ValCodcntry.value },
+						set ValCodcntry(value) { vm.model.ValCodcntry.updateValue(value) },
 						get ValGender() { return vm.model.ValGender.value },
 						set ValGender(value) { vm.model.ValGender.updateValue(value) },
 						get ValName() { return vm.model.ValName.value },
@@ -965,6 +988,8 @@
 						get playr() { return vm.model.ValCodplayr },
 						/** The foreign key to the AGENT table */
 						get agent() { return vm.model.ValCodagent },
+						/** The foreign key to the CNTRY table */
+						get cntry() { return vm.model.ValCodcntry },
 					},
 					get extraProperties() { return vm.model.extraProperties },
 				},

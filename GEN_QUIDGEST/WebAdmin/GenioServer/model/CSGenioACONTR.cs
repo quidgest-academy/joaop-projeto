@@ -221,10 +221,11 @@ namespace CSGenio.business
 		{
 			// Pathways
 			//------------------------------
-			info.Pathways = new Dictionary<string, string>(3);
+			info.Pathways = new Dictionary<string, string>(4);
 			info.Pathways.Add("club","club");
 			info.Pathways.Add("agent","agent");
 			info.Pathways.Add("playr","playr");
+			info.Pathways.Add("cntry","playr");
 		}
 
 		/// <summary>

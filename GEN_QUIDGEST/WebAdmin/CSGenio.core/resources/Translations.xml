@@ -249,6 +249,9 @@
   <msg id="Em fila de espera" code="EM_FILA_DE_ESPERA21822">
     <ENUS>Em fila de espera</ENUS>
   </msg>
+  <msg id="Fk_country" code="FK_COUNTRY04348">
+    <ENUS>Fk_country</ENUS>
+  </msg>
   <msg id="Notification Email Signature" code="NOTIFICATION_EMAIL_S62518">
     <ENUS>Notification Email Signature</ENUS>
   </msg>

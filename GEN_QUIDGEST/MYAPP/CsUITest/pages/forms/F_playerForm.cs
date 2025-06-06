@@ -28,11 +28,6 @@ public class F_playerForm : Form
 	public BaseInputControl PlayrName => new BaseInputControl(driver, ContainerLocator, "container-F_PLAYERPLAYRNAME____", "#F_PLAYERPLAYRNAME____");
 
 	/// <summary>
-	/// Position
-	/// </summary>
-	public BaseInputControl PlayrPosic => new BaseInputControl(driver, ContainerLocator, "container-F_PLAYERPLAYRPOSIC___", "#F_PLAYERPLAYRPOSIC___");
-
-	/// <summary>
 	/// Birthdate
 	/// </summary>
 	public DateInputControl PlayrBirthdat => new DateInputControl(driver, ContainerLocator, "#F_PLAYERPLAYRBIRTHDAT");
@@ -45,7 +40,13 @@ public class F_playerForm : Form
 	/// <summary>
 	/// Country
 	/// </summary>
-	public BaseInputControl PlayrCountry => new BaseInputControl(driver, ContainerLocator, "container-F_PLAYERPLAYRCOUNTRY_", "#F_PLAYERPLAYRCOUNTRY_");
+	public LookupControl CntryCountry => new LookupControl(driver, ContainerLocator, "container-F_PLAYERCNTRYCOUNTRY_");
+	public SeeMorePage CntryCountrySeeMorePage => new SeeMorePage(driver, "F_PLAYER", "F_PLAYERCNTRYCOUNTRY_");
+
+	/// <summary>
+	/// Position
+	/// </summary>
+	public BaseInputControl PlayrPosic => new BaseInputControl(driver, ContainerLocator, "container-F_PLAYERPLAYRPOSIC___", "#F_PLAYERPLAYRPOSIC___");
 
 	/// <summary>
 	/// Agent info

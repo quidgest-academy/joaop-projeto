@@ -366,6 +366,9 @@
 	<data name="EM_FILA_DE_ESPERA21822" xml:space="preserve">
 		<value>Em fila de espera</value>
 	</data>
+	<data name="FK_COUNTRY04348" xml:space="preserve">
+		<value>Fk_country</value>
+	</data>
 	<data name="NOTIFICATION_EMAIL_S62518" xml:space="preserve">
 		<value>Notification Email Signature</value>
 	</data>

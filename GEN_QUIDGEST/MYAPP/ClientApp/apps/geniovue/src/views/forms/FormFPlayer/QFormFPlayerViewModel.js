@@ -64,6 +64,17 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValCodagent))
 		watch(() => this.ValCodagent.value, (newValue, oldValue) => this.onUpdate('playr.codagent', this.ValCodagent, newValue, oldValue))
 
+		/** The used foreign keys. */
+		this.ValCodcntry = reactive(new modelFieldType.ForeignKey({
+			id: 'ValCodcntry',
+			originId: 'ValCodcntry',
+			area: 'PLAYR',
+			field: 'CODCNTRY',
+			relatedArea: 'CNTRY',
+			description: computed(() => this.Resources.FK_COUNTRY04348),
+		}).cloneFrom(values?.ValCodcntry))
+		watch(() => this.ValCodcntry.value, (newValue, oldValue) => this.onUpdate('playr.codcntry', this.ValCodcntry, newValue, oldValue))
+
 		/** The remaining form fields. */
 		this.ValUndctc = reactive(new modelFieldType.Number({
 			id: 'ValUndctc',
@@ -96,16 +107,6 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
 		}).cloneFrom(values?.ValName))
 		watch(() => this.ValName.value, (newValue, oldValue) => this.onUpdate('playr.name', this.ValName, newValue, oldValue))
-
-		this.ValPosic = reactive(new modelFieldType.String({
-			id: 'ValPosic',
-			originId: 'ValPosic',
-			area: 'PLAYR',
-			field: 'POSIC',
-			maxLength: 50,
-			description: computed(() => this.Resources.POSITION54869),
-		}).cloneFrom(values?.ValPosic))
-		watch(() => this.ValPosic.value, (newValue, oldValue) => this.onUpdate('playr.posic', this.ValPosic, newValue, oldValue))
 
 		this.ValBirthdat = reactive(new modelFieldType.Date({
 			id: 'ValBirthdat',
@@ -140,15 +141,26 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValAge))
 		watch(() => this.ValAge.value, (newValue, oldValue) => this.onUpdate('playr.age', this.ValAge, newValue, oldValue))
 
-		this.ValCountry = reactive(new modelFieldType.String({
-			id: 'ValCountry',
+		this.TableCntryCountry = reactive(new modelFieldType.String({
+			type: 'Lookup',
+			id: 'TableCntryCountry',
 			originId: 'ValCountry',
-			area: 'PLAYR',
+			area: 'CNTRY',
 			field: 'COUNTRY',
 			maxLength: 50,
 			description: computed(() => this.Resources.COUNTRY64133),
-		}).cloneFrom(values?.ValCountry))
-		watch(() => this.ValCountry.value, (newValue, oldValue) => this.onUpdate('playr.country', this.ValCountry, newValue, oldValue))
+		}).cloneFrom(values?.TableCntryCountry))
+		watch(() => this.TableCntryCountry.value, (newValue, oldValue) => this.onUpdate('cntry.country', this.TableCntryCountry, newValue, oldValue))
+
+		this.ValPosic = reactive(new modelFieldType.String({
+			id: 'ValPosic',
+			originId: 'ValPosic',
+			area: 'PLAYR',
+			field: 'POSIC',
+			maxLength: 50,
+			description: computed(() => this.Resources.POSITION54869),
+		}).cloneFrom(values?.ValPosic))
+		watch(() => this.ValPosic.value, (newValue, oldValue) => this.onUpdate('playr.posic', this.ValPosic, newValue, oldValue))
 	}
 
 	/**

@@ -353,7 +353,7 @@
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-PLAYR', 'changed-AGENT'],
+						globalEvents: ['changed-PLAYR', 'changed-CNTRY', 'changed-AGENT'],
 						uuid: '2e1d39da-3d7e-4786-a160-38df1cfaaee2',
 						allSelectedRows: 'false',
 						headerLevel: 1,

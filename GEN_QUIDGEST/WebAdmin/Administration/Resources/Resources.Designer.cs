@@ -808,6 +808,15 @@ namespace Administration.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to "Fk_country"
+        /// </summary>
+        public static string FK_COUNTRY04348 {
+            get {
+                return ResourceManager.GetString("FK_COUNTRY04348", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to "Notification Email Signature"
         /// </summary>
         public static string NOTIFICATION_EMAIL_S62518 {

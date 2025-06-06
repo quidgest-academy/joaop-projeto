@@ -144,6 +144,16 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
+			Qfield = new Field(info.Alias, "codcntry", FieldType.KEY_INT);
+			Qfield.FieldDescription = "Fk_country";
+			Qfield.FieldSize =  8;
+			Qfield.MQueue = false;
+			Qfield.CavDesignation = "FK_COUNTRY04348";
+
+			Qfield.Dupmsg = "";
+			info.RegisterFieldDB(Qfield);
+
+			//- - - - - - - - - - - - - - - - - - -
 			Qfield = new Field(info.Alias, "zzstate", FieldType.INTEGER);
 			Qfield.FieldDescription = "Estado da ficha";
 			info.RegisterFieldDB(Qfield);
@@ -164,6 +174,7 @@ namespace CSGenio.business
 			//------------------------------
 			info.ParentTables = new Dictionary<string, Relation>();
 			info.ParentTables.Add("agent", new Relation("AJF", "ajfplayer", "playr", "codplayr", "codagent", "AJF", "ajfagente", "agent", "codagent", "codagent"));
+			info.ParentTables.Add("cntry", new Relation("AJF", "ajfplayer", "playr", "codplayr", "codcntry", "AJF", "ajfcountry", "cntry", "codcntry", "codcntry"));
 		}
 
 		/// <summary>
@@ -173,7 +184,8 @@ namespace CSGenio.business
 		{
 			// Pathways
 			//------------------------------
-			info.Pathways = new Dictionary<string, string>(1);
+			info.Pathways = new Dictionary<string, string>(2);
+			info.Pathways.Add("cntry","cntry");
 			info.Pathways.Add("agent","agent");
 		}
 
@@ -397,6 +409,17 @@ namespace CSGenio.business
 			set { insertNameValueField(FldUndctc, value); }
 		}
 
+		/// <summary>Field : "Fk_country" Tipo: "CE" Formula:  ""</summary>
+		public static FieldRef FldCodcntry { get { return m_fldCodcntry; } }
+		private static FieldRef m_fldCodcntry = new FieldRef("playr", "codcntry");
+
+		/// <summary>Field : "Fk_country" Tipo: "CE" Formula:  ""</summary>
+		public string ValCodcntry
+		{
+			get { return (string)returnValueField(FldCodcntry); }
+			set { insertNameValueField(FldCodcntry, value); }
+		}
+
 		/// <summary>Field : "ZZSTATE" Type: "INT" Formula:  ""</summary>
 		public static FieldRef FldZzstate { get { return m_fldZzstate; } }
 		private static FieldRef m_fldZzstate = new FieldRef("playr", "zzstate");
@@ -493,7 +516,7 @@ namespace CSGenio.business
 
  
 
-          
+           
 
 	}
 }

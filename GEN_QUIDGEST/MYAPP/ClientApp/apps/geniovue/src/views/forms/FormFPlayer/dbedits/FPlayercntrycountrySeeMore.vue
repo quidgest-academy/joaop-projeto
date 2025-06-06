@@ -1,7 +1,7 @@
 ﻿<template>
 	<teleport
 		v-if="isReady"
-		to="#q-modal-see-more-f-cntrctplayrname-body">
+		to="#q-modal-see-more-f-playercntrycountry-body">
 		<q-row-container>
 			<q-table
 				v-bind="listCtrl"
@@ -39,10 +39,10 @@
 
 	import ViewModelBase from '@/mixins/viewModelBase.js'
 
-	const requiredTextResources = ['F_CNTRCTPLAYRNAME_____SeeMore', 'hardcoded', 'messages']
+	const requiredTextResources = ['F_PLAYERCNTRYCOUNTRY__SeeMore', 'hardcoded', 'messages']
 
 	export default {
-		name: 'FCntrctplayrnameSeeMore',
+		name: 'FPlayercntrycountrySeeMore',
 
 		inheritAttrs: false,
 
@@ -87,18 +87,18 @@
 			return {
 				isReady: false,
 
-				componentOnLoadProc: asyncProcM.getProcListMonitor('F_CNTRCTPLAYRNAME_____SeeMore', false),
+				componentOnLoadProc: asyncProcM.getProcListMonitor('F_PLAYERCNTRYCOUNTRY__SeeMore', false),
 
 				interfaceMetadata: {
-					id: 'F_CNTRCTPLAYRNAME_____SeeMore', // Used for resources
+					id: 'F_PLAYERCNTRYCOUNTRY__SeeMore', // Used for resources
 					requiredTextResources
 				},
 
 				menuInfo: {
-					acronym: 'F_CNTRCTPLAYRNAME_____SeeMore',
-					name: 'F_CNTRCTPLAYRNAME_____SeeMore',
-					controller: 'CONTR',
-					action: 'F_CNTRCT_PlayrValName'
+					acronym: 'F_PLAYERCNTRYCOUNTRY__SeeMore',
+					name: 'F_PLAYERCNTRYCOUNTRY__SeeMore',
+					controller: 'PLAYR',
+					action: 'F_PLAYER_CntryValCountry'
 				},
 
 				listCtrl: new TableListControl(this.getListConfig(), this),
@@ -127,14 +127,14 @@
 			this.$eventHub.onMany(this.listCtrl.globalEvents, this.onTableDBDataChanged)
 
 			const modalProps = {
-				id: 'see-more-f-cntrctplayrname',
-				headerTitle: computed(() => this.Resources.PLAYERS11892),
+				id: 'see-more-f-playercntrycountry',
+				headerTitle: computed(() => this.Resources.COUNTRIES64527),
 				closeButtonEnable: true,
 				hideFooter: true,
 				dismissWithEsc: true,
 				dismissAction: this.close,
 				isActive: true,
-				returnElement: 'F_CNTRCTPLAYRNAME_____see-more_button'
+				returnElement: 'F_PLAYERCNTRYCOUNTRY__see-more_button'
 			}
 			this.setModal(modalProps)
 		},
@@ -146,7 +146,7 @@
 			this.listCtrl.destroy()
 			this.componentOnLoadProc.destroy()
 
-			removeModal('see-more-f-cntrctplayrname')
+			removeModal('see-more-f-playercntrycountry')
 		},
 
 		methods: {
@@ -194,36 +194,27 @@
 				const vm = this
 				const listProps = {
 					configuration: {
-						controller: 'CONTR',
-						action: 'F_cntrct_PlayrValName',
+						controller: 'PLAYR',
+						action: 'F_player_CntryValCountry',
 						hasDependencies: false,
-						isInCollapsible: true,
+						isInCollapsible: false,
 						columnsOriginal: [
 							new listColumnTypes.TextColumn({
 								order: 1,
-								name: 'ValName',
-								area: 'PLAYR',
-								field: 'NAME',
-								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
-								dataLength: 85,
-								scrollData: 85,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.DateColumn({
-								order: 2,
-								name: 'ValBirthdat',
-								area: 'PLAYR',
-								field: 'BIRTHDAT',
-								label: computed(() => this.Resources.BIRTHDATE22743),
-								scrollData: 8,
-								dateTimeType: 'date',
+								name: 'ValCountry',
+								area: 'CNTRY',
+								field: 'COUNTRY',
+								label: computed(() => this.Resources.COUNTRY64133),
+								dataLength: 50,
+								scrollData: 50,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 						],
 						config: {
-							name: 'F_cntrct_PlayrValName',
+							name: 'F_player_CntryValCountry',
 							serverMode: true,
-							pkColumn: 'ValCodplayr',
-							tableAlias: 'PLAYR',
-							tableNamePlural: computed(() => this.Resources.PLAYERS11892),
+							pkColumn: 'ValCodcntry',
+							tableAlias: 'CNTRY',
+							tableNamePlural: computed(() => this.Resources.COUNTRIES64527),
 							viewManagement: '',
 							showLimitsInfo: true,
 							tableTitle: '',
@@ -251,15 +242,15 @@
 							},
 							formsDefinition: {
 							},
-							defaultSearchColumnName: 'ValName',
-							defaultSearchColumnNameOriginal: 'ValName',
+							defaultSearchColumnName: 'ValCountry',
+							defaultSearchColumnNameOriginal: 'ValCountry',
 							defaultColumnSorting: {
-								columnName: 'ValName',
+								columnName: 'ValCountry',
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-PLAYR', 'changed-CNTRY', 'changed-AGENT'],
-						uuid: 'F_cntrct_F_cntrct_PlayrValName',
+						globalEvents: ['changed-CNTRY'],
+						uuid: 'F_player_F_player_CntryValCountry',
 						allSelectedRows: 'false',
 						handlers: {
 							rowAction: vm.handleRowAction

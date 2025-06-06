@@ -4,18 +4,18 @@ using CSGenio.business;
 using CSGenio.framework;
 using GenioMVC.Models.Navigation;
 
-namespace GenioMVC.ViewModels.Contr;
+namespace GenioMVC.ViewModels.Playr;
 
-public class AJF_Menu_31_RowViewModel : Models.Contr
+public class F_player_CntryValCountry_RowViewModel : Models.Cntry
 {
 	#region Constructors
 
-	public AJF_Menu_31_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
+	public F_player_CntryValCountry_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
 
-	public AJF_Menu_31_RowViewModel(UserContext userContext, CSGenioAcontr val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
+	public F_player_CntryValCountry_RowViewModel(UserContext userContext, CSGenioAcntry val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
@@ -36,56 +36,8 @@ public class AJF_Menu_31_RowViewModel : Models.Contr
 			new ListColumn()
 			{
 				Order = 1,
-				Area = "CONTR",
-				Field = "STARTDAT",
-			},
-			new ListColumn()
-			{
-				Order = 2,
-				Area = "CONTR",
-				Field = "COMISEUR",
-			},
-			new ListColumn()
-			{
-				Order = 3,
-				Area = "CONTR",
-				Field = "SALARY",
-			},
-			new ListColumn()
-			{
-				Order = 4,
-				Area = "CONTR",
-				Field = "FINDATE",
-			},
-			new ListColumn()
-			{
-				Order = 5,
-				Area = "CONTR",
-				Field = "CTRDURAT",
-			},
-			new ListColumn()
-			{
-				Order = 6,
-				Area = "PLAYR",
-				Field = "NAME",
-			},
-			new ListColumn()
-			{
-				Order = 7,
-				Area = "CONTR",
-				Field = "TRANSVAL",
-			},
-			new ListColumn()
-			{
-				Order = 8,
-				Area = "CLUB",
-				Field = "NAME",
-			},
-			new ListColumn()
-			{
-				Order = 9,
-				Area = "AGENT",
-				Field = "EMAIL",
+				Area = "CNTRY",
+				Field = "COUNTRY",
 			},
 		];
 	}
@@ -100,10 +52,6 @@ public class AJF_Menu_31_RowViewModel : Models.Contr
 		bool canDelete = true;
 		bool canDuplicate = true;
 		bool canInsert = true;
-
-		using (new CSGenio.persistence.ScopedPersistentSupport(m_userContext.PersistentSupport))
-		{
-		}
 
 		BtnPermission = new TableRowCrudButtonPermissions()
 		{
@@ -162,10 +110,9 @@ public class AJF_Menu_31_RowViewModel : Models.Contr
 
 	/// <summary>
 	/// The background color
-	/// Formula: iif ([CONTR->SALARY] < 50000, HEXCOLOUR ("Ff007f"), iif ([CONTR->SALARY] > 100000, HEXCOLOUR ("e8bcf0"), HEXCOLOUR ("ffffff")))
 	/// </summary>
 	[JsonPropertyName("backgroundColor")]
-	public string BackgroundColor => ((((decimal)this.ValSalary)<50000)?("#"+"Ff007f"):(((((decimal)this.ValSalary)>100000)?("#"+"e8bcf0"):("#"+"ffffff"))));
+	public string BackgroundColor => "";
 
 	/// <summary>
 	/// Runs init logic that depends on row data.

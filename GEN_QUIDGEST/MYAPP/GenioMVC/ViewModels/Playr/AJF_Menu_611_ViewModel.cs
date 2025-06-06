@@ -573,7 +573,7 @@ namespace GenioMVC.ViewModels.Playr
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Playr", "Playr.ValCodplayr", "Playr.ValZzstate", "Playr.ValAge", "Playr.ValPosic", "Playr.ValBirthdat", "Playr.ValGender", "Playr.ValCountry", "Playr.ValName", "Agent", "Agent.ValEmail", "Playr.ValCodagent"
+			"Playr", "Playr.ValCodplayr", "Playr.ValZzstate", "Playr.ValAge", "Playr.ValPosic", "Playr.ValBirthdat", "Playr.ValGender", "Playr.ValCountry", "Playr.ValName", "Agent", "Agent.ValEmail", "Playr.ValCodagent", "Playr.ValCodcntry"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
