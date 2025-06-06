@@ -32,6 +32,26 @@ namespace GenioMVC.Models
 		[ShouldSerialize("Club.ValName")]
 		public string ValName { get { return klass.ValName; } set { klass.ValName = value; } }
 
+		[DisplayName("Fk_country")]
+		/// <summary>Field : "Fk_country" Tipo: "CE" Formula:  ""</summary>
+		[ShouldSerialize("Club.ValCodcntry")]
+		public string ValCodcntry { get { return klass.ValCodcntry; } set { klass.ValCodcntry = value; } }
+
+		private Cntry _cntry;
+		[DisplayName("Cntry")]
+		[ShouldSerialize("Cntry")]
+		public virtual Cntry Cntry
+		{
+			get
+			{
+				if (!isEmptyModel && (_cntry == null || (!string.IsNullOrEmpty(ValCodcntry) && (_cntry.isEmptyModel || _cntry.klass.QPrimaryKey != ValCodcntry))))
+					_cntry = Models.Cntry.Find(ValCodcntry, m_userContext, Identifier, _fieldsToSerialize);
+				_cntry ??= new Models.Cntry(m_userContext, true, _fieldsToSerialize);
+				return _cntry;
+			}
+			set { _cntry = value; }
+		}
+
 		[DisplayName("ZZSTATE")]
 		[ShouldSerialize("Club.ValZzstate")]
 		/// <summary>Field: "ZZSTATE", Type: "INT", Formula: ""</summary>
@@ -63,6 +83,10 @@ namespace GenioMVC.Models
 			{
 				switch (Qfield.Area)
 				{
+					case "cntry":
+						_cntry ??= new Cntry(m_userContext, true, _fieldsToSerialize);
+						_cntry.klass.insertNameValueField(Qfield.FullName, Qfield.Value);
+						break;
 					default:
 						break;
 				}

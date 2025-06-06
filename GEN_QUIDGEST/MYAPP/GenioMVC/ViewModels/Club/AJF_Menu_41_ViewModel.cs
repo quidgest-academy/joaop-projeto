@@ -550,7 +550,7 @@ namespace GenioMVC.ViewModels.Club
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Club", "Club.ValCodclub", "Club.ValZzstate", "Club.ValName"
+			"Club", "Club.ValCodclub", "Club.ValZzstate", "Club.ValName", "Club.ValCodcntry"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =

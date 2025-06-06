@@ -86,6 +86,18 @@ export default class ViewModel extends FormViewModelBase
 		watch(() => this.ValCodclub.value, (newValue, oldValue) => this.onUpdate('contr.codclub', this.ValCodclub, newValue, oldValue))
 
 		/** The remaining form fields. */
+		this.AgentValPerc_com = reactive(new modelFieldType.Number({
+			id: 'AgentValPerc_com',
+			originId: 'ValPerc_com',
+			area: 'AGENT',
+			field: 'PERC_COM',
+			maxDigits: 1,
+			decimalDigits: 2,
+			isFixed: true,
+			description: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
+		}).cloneFrom(values?.AgentValPerc_com))
+		watch(() => this.AgentValPerc_com.value, (newValue, oldValue) => this.onUpdate('agent.perc_com', this.AgentValPerc_com, newValue, oldValue))
+
 		this.TablePlayrName = reactive(new modelFieldType.String({
 			type: 'Lookup',
 			id: 'TablePlayrName',
@@ -213,8 +225,8 @@ export default class ViewModel extends FormViewModelBase
 			originId: 'ValTransval',
 			area: 'CONTR',
 			field: 'TRANSVAL',
-			maxDigits: 10,
-			decimalDigits: 0,
+			maxDigits: 7,
+			decimalDigits: 2,
 			description: computed(() => this.Resources.TRANSFER_VALUE12168),
 		}).cloneFrom(values?.ValTransval))
 		watch(() => this.ValTransval.value, (newValue, oldValue) => this.onUpdate('contr.transval', this.ValTransval, newValue, oldValue))
@@ -253,19 +265,6 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.MONETARY_VALUE_COMIS27197),
 		}).cloneFrom(values?.ValComiseur))
 		watch(() => this.ValComiseur.value, (newValue, oldValue) => this.onUpdate('contr.comiseur', this.ValComiseur, newValue, oldValue))
-
-		/** The form fields used only in formulas. */
-		this.AgentValPerc_com = reactive(new modelFieldType.Number({
-			id: 'AgentValPerc_com',
-			originId: 'ValPerc_com',
-			area: 'AGENT',
-			field: 'PERC_COM',
-			maxDigits: 1,
-			decimalDigits: 2,
-			isFixed: true,
-			description: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
-		}).cloneFrom(values?.AgentValPerc_com))
-		watch(() => this.AgentValPerc_com.value, (newValue, oldValue) => this.onUpdate('agent.perc_com', this.AgentValPerc_com, newValue, oldValue))
 	}
 
 	/**

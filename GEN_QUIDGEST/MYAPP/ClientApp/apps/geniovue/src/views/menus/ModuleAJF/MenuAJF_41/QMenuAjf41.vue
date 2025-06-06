@@ -296,7 +296,7 @@
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-CLUB'],
+						globalEvents: ['changed-CNTRY', 'changed-CLUB'],
 						uuid: 'd5f1df5a-812a-41a4-ab2e-d8614d1e6a84',
 						allSelectedRows: 'false',
 						headerLevel: 1,

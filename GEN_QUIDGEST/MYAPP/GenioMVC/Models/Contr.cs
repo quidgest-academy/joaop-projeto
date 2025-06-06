@@ -108,10 +108,10 @@ namespace GenioMVC.Models
 		}
 
 		[DisplayName("Transfer Value")]
-		/// <summary>Field : "Transfer Value" Tipo: "N" Formula:  ""</summary>
+		/// <summary>Field : "Transfer Value" Tipo: "$" Formula:  ""</summary>
 		[ShouldSerialize("Contr.ValTransval")]
-		[NumericAttribute(0)]
-		public decimal? ValTransval { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValTransval, 0)); } set { klass.ValTransval = Convert.ToDecimal(value); } }
+		[CurrencyAttribute("EUR", 2)]
+		public decimal? ValTransval { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValTransval, 2)); } set { klass.ValTransval = Convert.ToDecimal(value); } }
 
 		[DisplayName("Monetary Value comissions through each transfer")]
 		/// <summary>Field : "Monetary Value comissions through each transfer" Tipo: "$" Formula: + "[CONTR->TRANSVAL]*[AGENT->PERC_COM]"</summary>

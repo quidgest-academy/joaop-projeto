@@ -8,6 +8,11 @@ namespace quidgest.uitests.pages.forms;
 public class F_cntrctForm : Form
 {
 	/// <summary>
+	/// Percentage of the Comission
+	/// </summary>
+	public IWebElement AgentPerc_com => throw new NotImplementedException();
+
+	/// <summary>
 	/// New Zone
 	/// </summary>
 	public IWebElement PseudNewgrp03 => throw new NotImplementedException();

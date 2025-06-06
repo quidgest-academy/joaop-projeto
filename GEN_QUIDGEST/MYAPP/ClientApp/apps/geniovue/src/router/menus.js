@@ -59,6 +59,21 @@ export default function getMenusRoutes()
 			}
 		},
 		{
+			path: '/:culture/:system/AJF/menu/AJF_6111',
+			name: 'menu-AJF_6111',
+			component: () => import('@/views/menus/ModuleAJF/MenuAJF_6111/QMenuAjf6111.vue'),
+			beforeEnter: [updateQueryParams],
+			meta: {
+				routeType: 'menu',
+				module: 'AJF',
+				order: '6111',
+				baseArea: 'CONTR',
+				hasInitialPHE: false,
+				humanKeyFields: ['ValCodplayr', 'ValCodclub'],
+				limitations: ['agent' /* DB */, 'playr' /* DB */]
+			}
+		},
+		{
 			path: '/:culture/:system/AJF/menu/AJF_711',
 			name: 'menu-AJF_711',
 			component: () => import('@/views/menus/ModuleAJF/MenuAJF_711/QMenuAjf711.vue'),

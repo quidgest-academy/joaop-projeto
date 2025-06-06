@@ -119,11 +119,12 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
-			Qfield = new Field(info.Alias, "transval", FieldType.NUMERIC);
+			Qfield = new Field(info.Alias, "transval", FieldType.CURRENCY);
 			Qfield.FieldDescription = "Transfer Value";
 			Qfield.FieldSize =  10;
 			Qfield.MQueue = false;
-			Qfield.IntegerDigits = 10;
+			Qfield.IntegerDigits = 7;
+			Qfield.Decimals = 2;
 			Qfield.CavDesignation = "TRANSFER_VALUE12168";
 
             Qfield.NotNull = true;
@@ -222,10 +223,10 @@ namespace CSGenio.business
 			// Pathways
 			//------------------------------
 			info.Pathways = new Dictionary<string, string>(4);
-			info.Pathways.Add("club","club");
 			info.Pathways.Add("agent","agent");
+			info.Pathways.Add("club","club");
 			info.Pathways.Add("playr","playr");
-			info.Pathways.Add("cntry","playr");
+			info.Pathways.Add("cntry","club");
 		}
 
 		/// <summary>
@@ -429,11 +430,11 @@ namespace CSGenio.business
 			set { insertNameValueField(FldCodagent, value); }
 		}
 
-		/// <summary>Field : "Transfer Value" Tipo: "N" Formula:  ""</summary>
+		/// <summary>Field : "Transfer Value" Tipo: "$" Formula:  ""</summary>
 		public static FieldRef FldTransval { get { return m_fldTransval; } }
 		private static FieldRef m_fldTransval = new FieldRef("contr", "transval");
 
-		/// <summary>Field : "Transfer Value" Tipo: "N" Formula:  ""</summary>
+		/// <summary>Field : "Transfer Value" Tipo: "$" Formula:  ""</summary>
 		public decimal ValTransval
 		{
 			get { return (decimal)returnValueField(FldTransval); }

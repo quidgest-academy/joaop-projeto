@@ -64,6 +64,16 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
+			Qfield = new Field(info.Alias, "codcntry", FieldType.KEY_INT);
+			Qfield.FieldDescription = "Fk_country";
+			Qfield.FieldSize =  8;
+			Qfield.MQueue = false;
+			Qfield.CavDesignation = "FK_COUNTRY04348";
+
+			Qfield.Dupmsg = "";
+			info.RegisterFieldDB(Qfield);
+
+			//- - - - - - - - - - - - - - - - - - -
 			Qfield = new Field(info.Alias, "zzstate", FieldType.INTEGER);
 			Qfield.FieldDescription = "Estado da ficha";
 			info.RegisterFieldDB(Qfield);
@@ -83,6 +93,7 @@ namespace CSGenio.business
 			// Mother Relations
 			//------------------------------
 			info.ParentTables = new Dictionary<string, Relation>();
+			info.ParentTables.Add("cntry", new Relation("AJF", "ajfclub", "club", "codclub", "codcntry", "AJF", "ajfcountry", "cntry", "codcntry", "codcntry"));
 		}
 
 		/// <summary>
@@ -92,7 +103,8 @@ namespace CSGenio.business
 		{
 			// Pathways
 			//------------------------------
-			info.Pathways = new Dictionary<string, string>(0);
+			info.Pathways = new Dictionary<string, string>(1);
+			info.Pathways.Add("cntry","cntry");
 		}
 
 		/// <summary>
@@ -234,6 +246,17 @@ namespace CSGenio.business
 			set { insertNameValueField(FldName, value); }
 		}
 
+		/// <summary>Field : "Fk_country" Tipo: "CE" Formula:  ""</summary>
+		public static FieldRef FldCodcntry { get { return m_fldCodcntry; } }
+		private static FieldRef m_fldCodcntry = new FieldRef("club", "codcntry");
+
+		/// <summary>Field : "Fk_country" Tipo: "CE" Formula:  ""</summary>
+		public string ValCodcntry
+		{
+			get { return (string)returnValueField(FldCodcntry); }
+			set { insertNameValueField(FldCodcntry, value); }
+		}
+
 		/// <summary>Field : "ZZSTATE" Type: "INT" Formula:  ""</summary>
 		public static FieldRef FldZzstate { get { return m_fldZzstate; } }
 		private static FieldRef m_fldZzstate = new FieldRef("club", "zzstate");
@@ -330,7 +353,7 @@ namespace CSGenio.business
 
  
 
-   
+    
 
 	}
 }

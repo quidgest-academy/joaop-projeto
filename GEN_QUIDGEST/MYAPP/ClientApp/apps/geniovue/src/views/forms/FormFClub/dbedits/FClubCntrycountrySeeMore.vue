@@ -1,7 +1,7 @@
 ﻿<template>
 	<teleport
 		v-if="isReady"
-		to="#q-modal-see-more-f-cntrctclub-name-body">
+		to="#q-modal-see-more-f-club-cntrycountry-body">
 		<q-row-container>
 			<q-table
 				v-bind="listCtrl"
@@ -39,10 +39,10 @@
 
 	import ViewModelBase from '@/mixins/viewModelBase.js'
 
-	const requiredTextResources = ['F_CNTRCTCLUB_NAME_____SeeMore', 'hardcoded', 'messages']
+	const requiredTextResources = ['F_CLUB__CNTRYCOUNTRY__SeeMore', 'hardcoded', 'messages']
 
 	export default {
-		name: 'FCntrctclubNameSeeMore',
+		name: 'FClubCntrycountrySeeMore',
 
 		inheritAttrs: false,
 
@@ -87,18 +87,18 @@
 			return {
 				isReady: false,
 
-				componentOnLoadProc: asyncProcM.getProcListMonitor('F_CNTRCTCLUB_NAME_____SeeMore', false),
+				componentOnLoadProc: asyncProcM.getProcListMonitor('F_CLUB__CNTRYCOUNTRY__SeeMore', false),
 
 				interfaceMetadata: {
-					id: 'F_CNTRCTCLUB_NAME_____SeeMore', // Used for resources
+					id: 'F_CLUB__CNTRYCOUNTRY__SeeMore', // Used for resources
 					requiredTextResources
 				},
 
 				menuInfo: {
-					acronym: 'F_CNTRCTCLUB_NAME_____SeeMore',
-					name: 'F_CNTRCTCLUB_NAME_____SeeMore',
-					controller: 'CONTR',
-					action: 'F_CNTRCT_ClubValName'
+					acronym: 'F_CLUB__CNTRYCOUNTRY__SeeMore',
+					name: 'F_CLUB__CNTRYCOUNTRY__SeeMore',
+					controller: 'CLUB',
+					action: 'F_CLUB_CntryValCountry'
 				},
 
 				listCtrl: new TableListControl(this.getListConfig(), this),
@@ -127,14 +127,14 @@
 			this.$eventHub.onMany(this.listCtrl.globalEvents, this.onTableDBDataChanged)
 
 			const modalProps = {
-				id: 'see-more-f-cntrctclub-name',
-				headerTitle: computed(() => this.Resources.CLUBS_NAMES11563),
+				id: 'see-more-f-club-cntrycountry',
+				headerTitle: computed(() => this.Resources.COUNTRIES64527),
 				closeButtonEnable: true,
 				hideFooter: true,
 				dismissWithEsc: true,
 				dismissAction: this.close,
 				isActive: true,
-				returnElement: 'F_CNTRCTCLUB_NAME_____see-more_button'
+				returnElement: 'F_CLUB__CNTRYCOUNTRY__see-more_button'
 			}
 			this.setModal(modalProps)
 		},
@@ -146,7 +146,7 @@
 			this.listCtrl.destroy()
 			this.componentOnLoadProc.destroy()
 
-			removeModal('see-more-f-cntrctclub-name')
+			removeModal('see-more-f-club-cntrycountry')
 		},
 
 		methods: {
@@ -194,27 +194,27 @@
 				const vm = this
 				const listProps = {
 					configuration: {
-						controller: 'CONTR',
-						action: 'F_cntrct_ClubValName',
+						controller: 'CLUB',
+						action: 'F_club_CntryValCountry',
 						hasDependencies: false,
-						isInCollapsible: true,
+						isInCollapsible: false,
 						columnsOriginal: [
 							new listColumnTypes.TextColumn({
 								order: 1,
-								name: 'ValName',
-								area: 'CLUB',
-								field: 'NAME',
-								label: computed(() => this.Resources.CLUB_S_NAME65517),
+								name: 'ValCountry',
+								area: 'CNTRY',
+								field: 'COUNTRY',
+								label: computed(() => this.Resources.COUNTRY64133),
 								dataLength: 50,
 								scrollData: 50,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 						],
 						config: {
-							name: 'F_cntrct_ClubValName',
+							name: 'F_club_CntryValCountry',
 							serverMode: true,
-							pkColumn: 'ValCodclub',
-							tableAlias: 'CLUB',
-							tableNamePlural: computed(() => this.Resources.CLUBS_NAMES11563),
+							pkColumn: 'ValCodcntry',
+							tableAlias: 'CNTRY',
+							tableNamePlural: computed(() => this.Resources.COUNTRIES64527),
 							viewManagement: '',
 							showLimitsInfo: true,
 							tableTitle: '',
@@ -242,15 +242,15 @@
 							},
 							formsDefinition: {
 							},
-							defaultSearchColumnName: 'ValName',
-							defaultSearchColumnNameOriginal: 'ValName',
+							defaultSearchColumnName: 'ValCountry',
+							defaultSearchColumnNameOriginal: 'ValCountry',
 							defaultColumnSorting: {
-								columnName: 'ValName',
+								columnName: 'ValCountry',
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-CNTRY', 'changed-CLUB'],
-						uuid: 'F_cntrct_F_cntrct_ClubValName',
+						globalEvents: ['changed-CNTRY'],
+						uuid: 'F_club_F_club_CntryValCountry',
 						allSelectedRows: 'false',
 						handlers: {
 							rowAction: vm.handleRowAction

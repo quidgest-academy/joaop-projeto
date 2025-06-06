@@ -91,7 +91,7 @@
 			data-key="F_CLUB"
 			:data-loading="!formInitialDataLoaded">
 			<template v-if="formControl.initialized && showFormBody">
-				<q-row-container v-show="controls.F_CLUB__CLUB_NAME____.isVisible">
+				<q-row-container v-show="controls.F_CLUB__CLUB_NAME____.isVisible || controls.F_CLUB__CNTRYCOUNTRY_.isVisible">
 					<q-control-wrapper
 						v-show="controls.F_CLUB__CLUB_NAME____.isVisible"
 						class="control-join-group">
@@ -106,6 +106,26 @@
 								v-bind="controls.F_CLUB__CLUB_NAME____.props"
 								@blur="onBlur(controls.F_CLUB__CLUB_NAME____, model.ValName.value)"
 								@change="model.ValName.fnUpdateValueOnChange" />
+						</base-input-structure>
+					</q-control-wrapper>
+					<q-control-wrapper
+						v-show="controls.F_CLUB__CNTRYCOUNTRY_.isVisible"
+						class="control-join-group">
+						<base-input-structure
+							class="i-text"
+							v-bind="controls.F_CLUB__CNTRYCOUNTRY_"
+							v-on="controls.F_CLUB__CNTRYCOUNTRY_.handlers"
+							:loading="controls.F_CLUB__CNTRYCOUNTRY_.props.loading"
+							:reporting-mode-on="reportingModeCAV"
+							:suggestion-mode-on="suggestionModeOn">
+							<q-lookup
+								v-if="controls.F_CLUB__CNTRYCOUNTRY_.isVisible"
+								v-bind="controls.F_CLUB__CNTRYCOUNTRY_.props"
+								v-on="controls.F_CLUB__CNTRYCOUNTRY_.handlers" />
+							<q-see-more-f-club-cntrycountry
+								v-if="controls.F_CLUB__CNTRYCOUNTRY_.seeMoreIsVisible"
+								v-bind="controls.F_CLUB__CNTRYCOUNTRY_.seeMoreParams"
+								v-on="controls.F_CLUB__CNTRYCOUNTRY_.handlers" />
 						</base-input-structure>
 					</q-control-wrapper>
 				</q-row-container>
@@ -179,6 +199,7 @@
 		name: 'QFormFClub',
 
 		components: {
+			QSeeMoreFClubCntrycountry: defineAsyncComponent(() => import('@/views/forms/FormFClub/dbedits/FClubCntrycountrySeeMore.vue')),
 		},
 
 		mixins: [
@@ -463,6 +484,34 @@
 						controlLimits: [
 						],
 					}, this),
+					F_CLUB__CNTRYCOUNTRY_: new fieldControlClass.LookupControl({
+						modelField: 'TableCntryCountry',
+						valueChangeEvent: 'fieldChange:cntry.country',
+						id: 'F_CLUB__CNTRYCOUNTRY_',
+						name: 'COUNTRY',
+						size: 'xxlarge',
+						label: computed(() => this.Resources.COUNTRY64133),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						externalCallbacks: {
+							getModelField: vm.getModelField,
+							getModelFieldValue: vm.getModelFieldValue,
+							setModelFieldValue: vm.setModelFieldValue
+						},
+						externalProperties: {
+							modelKeys: computed(() => vm.modelKeys)
+						},
+						lookupKeyModelField: {
+							name: 'ValCodcntry',
+							dependencyEvent: 'fieldChange:club.codcntry'
+						},
+						dependentFields: () => ({
+							set 'cntry.codcntry'(value) { vm.model.ValCodcntry.updateValue(value) },
+							set 'cntry.country'(value) { vm.model.TableCntryCountry.updateValue(value) },
+						}),
+						controlLimits: [
+						],
+					}, this),
 				},
 
 				model: new FormViewModel(this, {
@@ -486,12 +535,20 @@
 				 */
 				dataApi: {
 					Club: {
+						get ValCodcntry() { return vm.model.ValCodcntry.value },
+						set ValCodcntry(value) { vm.model.ValCodcntry.updateValue(value) },
 						get ValName() { return vm.model.ValName.value },
 						set ValName(value) { vm.model.ValName.updateValue(value) },
+					},
+					Cntry: {
+						get ValCountry() { return vm.model.TableCntryCountry.value },
+						set ValCountry(value) { vm.model.TableCntryCountry.updateValue(value) },
 					},
 					keys: {
 						/** The primary key of the CLUB table */
 						get club() { return vm.model.ValCodclub },
+						/** The foreign key to the CNTRY table */
+						get cntry() { return vm.model.ValCodcntry },
 					},
 					get extraProperties() { return vm.model.extraProperties },
 				},

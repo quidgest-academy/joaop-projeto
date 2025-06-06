@@ -70,17 +70,17 @@
 	import qProjArrays from '@/api/genio/projectArrays.js'
 	/* eslint-enable no-unused-vars */
 
-	import MenuViewModel from './QMenuAJF_31ViewModel.js'
+	import MenuViewModel from './QMenuAJF_6111ViewModel.js'
 
-	const requiredTextResources = ['QMenuAJF_31', 'hardcoded', 'messages']
+	const requiredTextResources = ['QMenuAJF_6111', 'hardcoded', 'messages']
 
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FORM_INCLUDEJS AJF_MENU_31]/
+// USE /[MANUAL AJF FORM_INCLUDEJS AJF_MENU_6111]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 
 	export default {
-		name: 'QMenuAjf31',
+		name: 'QMenuAjf6111',
 
 		mixins: [
 			MenuHandlers
@@ -109,23 +109,23 @@
 			// eslint-disable-next-line
 			const vm = this
 			return {
-				componentOnLoadProc: asyncProcM.getProcListMonitor('QMenuAJF_31', false),
+				componentOnLoadProc: asyncProcM.getProcListMonitor('QMenuAJF_6111', false),
 
 				interfaceMetadata: {
-					id: 'QMenuAJF_31', // Used for resources
+					id: 'QMenuAJF_6111', // Used for resources
 					requiredTextResources
 				},
 
 				menuInfo: {
-					id: '31',
+					id: '6111',
 					isMenuList: true,
 					designation: computed(() => this.Resources.CONTRACTS23801),
-					acronym: 'AJF_31',
+					acronym: 'AJF_6111',
 					name: 'CONTR',
-					route: 'menu-AJF_31',
-					order: '31',
+					route: 'menu-AJF_6111',
+					order: '6111',
 					controller: 'CONTR',
-					action: 'AJF_Menu_31',
+					action: 'AJF_Menu_6111',
 					isPopup: false
 				},
 
@@ -134,9 +134,9 @@
 				controls: {
 					menu: new controlClass.TableListControl({
 						fnHydrateViewModel: (data) => vm.model.hydrate(data),
-						id: 'AJF_Menu_31',
+						id: 'AJF_Menu_6111',
 						controller: 'CONTR',
-						action: 'AJF_Menu_31',
+						action: 'AJF_Menu_6111',
 						hasDependencies: false,
 						isInCollapsible: false,
 						tableModeClasses: [
@@ -234,7 +234,7 @@
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 						],
 						config: {
-							name: 'AJF_Menu_31',
+							name: 'AJF_Menu_6111',
 							serverMode: true,
 							pkColumn: 'ValCodcontr',
 							tableAlias: 'CONTR',
@@ -346,7 +346,7 @@
 							MCActions: [
 							],
 							rowClickAction: {
-								id: 'RCA_AJF_311',
+								id: 'RCA_AJF_61111',
 								name: 'form-F_CNTRCT',
 								params: {
 									isRoute: true,
@@ -374,9 +374,26 @@
 							}
 						},
 						globalEvents: ['changed-CONTR', 'changed-PLAYR', 'changed-CLUB', 'changed-AGENT'],
-						uuid: 'c6ed0761-ca1b-4db8-848f-1a356d36e32f',
+						uuid: '53ee76ad-5fed-47ca-9f8d-c66a415f5baa',
 						allSelectedRows: 'false',
 						headerLevel: 1,
+						/** Menu limits */
+						controlLimits: [
+							/** DB */
+							{
+								identifier: 'agent',
+								dependencyEvents: [],
+								dependencyField: '',
+								fnValueSelector: () => vm.$route.params['agent'],
+							},
+							/** DB */
+							{
+								identifier: 'playr',
+								dependencyEvents: [],
+								dependencyField: '',
+								fnValueSelector: () => vm.$route.params['playr'],
+							},
+						]
 					}, this),
 				}
 			}
@@ -399,18 +416,18 @@
 		mounted()
 		{
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FORM_CODEJS AJF_MENU_31]/
+// USE /[MANUAL AJF FORM_CODEJS AJF_MENU_6111]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 		},
 
 		methods: {
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF FUNCTIONS_JS AJF_31]/
+// USE /[MANUAL AJF FUNCTIONS_JS AJF_6111]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 /* eslint-disable indent, vue/html-indent, vue/script-indent */
-// USE /[MANUAL AJF LISTING_CODEJS AJF_MENU_31]/
+// USE /[MANUAL AJF LISTING_CODEJS AJF_MENU_6111]/
 // eslint-disable-next-line
 /* eslint-enable indent, vue/html-indent, vue/script-indent */
 		}

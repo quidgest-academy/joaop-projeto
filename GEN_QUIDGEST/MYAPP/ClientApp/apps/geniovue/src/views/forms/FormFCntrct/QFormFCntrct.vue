@@ -692,9 +692,6 @@
 						dependentFields: () => ({
 							set 'playr.codplayr'(value) { vm.model.ValCodplayr.updateValue(value) },
 							set 'playr.name'(value) { vm.model.TablePlayrName.updateValue(value) },
-							set 'contr.codagent'(value) { vm.model.ValCodagent.updateValue(value) },
-							set 'agent.codagent'(value) { vm.model.ValCodagent.updateValue(value) },
-							set 'agent.email'(value) { vm.model.AgentValEmail.updateValue(value) },
 						}),
 						controlLimits: [
 						],
@@ -838,7 +835,7 @@
 						controlLimits: [
 						],
 					}, this),
-					F_CNTRCTCONTRTRANSVAL: new fieldControlClass.NumberControl({
+					F_CNTRCTCONTRTRANSVAL: new fieldControlClass.CurrencyControl({
 						modelField: 'ValTransval',
 						valueChangeEvent: 'fieldChange:contr.transval',
 						id: 'F_CNTRCTCONTRTRANSVAL',
@@ -848,8 +845,8 @@
 						placeholder: '',
 						labelPosition: computed(() => this.labelAlignment.topleft),
 						container: 'F_CNTRCTPSEUDNEWGRP02',
-						maxIntegers: 10,
-						maxDecimals: 0,
+						maxIntegers: 7,
+						maxDecimals: 2,
 						mustBeFilled: true,
 						controlLimits: [
 						],

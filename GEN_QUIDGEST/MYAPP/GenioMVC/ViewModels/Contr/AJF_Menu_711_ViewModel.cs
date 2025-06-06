@@ -156,7 +156,7 @@ namespace GenioMVC.ViewModels.Contr
 				new Exports.QColumn(CSGenioAcontr.FldFindate, FieldType.DATE, Resources.Resources.FINISH_DATE41863, 8, 0, true),
 				new Exports.QColumn(CSGenioAcontr.FldCtrdurat, FieldType.NUMERIC, Resources.Resources.CONTRACT_DURATION31225, 2, 0, true),
 				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldTransval, FieldType.NUMERIC, Resources.Resources.TRANSFER_VALUE12168, 10, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldTransval, FieldType.CURRENCY, Resources.Resources.TRANSFER_VALUE12168, 10, 0, true),
 				new Exports.QColumn(CSGenioAclub.FldName, FieldType.TEXT, Resources.Resources.CLUB_S_NAME65517, 30, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
 			};

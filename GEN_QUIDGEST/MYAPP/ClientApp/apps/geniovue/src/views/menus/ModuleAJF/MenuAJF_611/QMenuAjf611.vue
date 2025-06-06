@@ -327,17 +327,16 @@
 							],
 							rowClickAction: {
 								id: 'RCA_AJF_6111',
-								name: 'form-F_PLAYER',
+								name: 'menu-AJF_6111',
 								params: {
 									isRoute: true,
 									limits: [
 										{
-											identifier: 'id',
+											identifier: 'playr',
 											fnValueSelector: (row) => row.ValCodplayr
 										},
 									],
-									isControlled: true,
-									action: vm.openFormAction, type: 'form', mode: 'SHOW', formName: 'F_PLAYER',
+									action: vm.openMenuAction, type: 'menu', menuName: 'AJF_6111',
 								}
 							},
 							formsDefinition: {

@@ -15,28 +15,34 @@ using GenioMVC.Models.Navigation;
 using Quidgest.Persistence;
 using Quidgest.Persistence.GenericQuery;
 
-namespace GenioMVC.ViewModels.Contr
+namespace GenioMVC.ViewModels.Club
 {
-	public class AJF_Menu_31_ViewModel : MenuListViewModel<Models.Contr>
+	public class F_club_CntryValCountry_ViewModel : MenuListViewModel<Models.Cntry>
 	{
 		/// <summary>
 		/// Gets or sets the object that represents the table and its elements.
 		/// </summary>
 		[JsonPropertyName("Table")]
-		public TablePartial<AJF_Menu_31_RowViewModel> Menu { get; set; }
+		public TablePartial<F_club_CntryValCountry_RowViewModel> Menu { get; set; }
 
 		/// <inheritdoc/>
 		[JsonIgnore]
-		public override string TableAlias => "contr";
+		public override string TableAlias => "cntry";
 
 		/// <inheritdoc/>
-		public override string Uuid => "c6ed0761-ca1b-4db8-848f-1a356d36e32f";
+		public override string Uuid => "F_club_CntryValCountry";
 
 		/// <inheritdoc/>
 		protected override string[] FieldsToSerialize => _fieldsToSerialize;
 
 		/// <inheritdoc/>
 		protected override List<TableSearchColumn> SearchableColumns => _searchableColumns;
+
+		/// <summary>
+		/// The primary key field.
+		/// </summary>
+		[JsonIgnore]
+		public string ValCodclub { get; set; }
 
 		/// <summary>
 		/// The context of the parent.
@@ -81,60 +87,37 @@ namespace GenioMVC.ViewModels.Contr
 
 		public override CriteriaSet GetCustomizedStaticLimits(CriteriaSet crs)
 		{
-// USE /[MANUAL AJF LIST_LIMITS 31]/
+// USE /[MANUAL AJF LIST_LIMITS F_CLUB_CNTRYCOUNTRY]/
 
 			return crs;
 		}
 
 		public override int GetCount(User user)
 		{
-			CSGenio.persistence.PersistentSupport sp = m_userContext.PersistentSupport;
-			var areaBase = CSGenio.business.Area.createArea("contr", user, "AJF");
-
-			//gets eph conditions to be applied in listing
-			CriteriaSet conditions = CSGenio.business.Listing.CalculateConditionsEphGeneric(areaBase, "ML31");
-			conditions.Equal(CSGenioAcontr.FldZzstate, 0); //valid zzstate only
-
-			// Fixed limits and relations:
-			conditions.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
-
-			// Checks for foreign tables in fields and conditions
-			FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldStartdat, CSGenioAcontr.FldComiseur, CSGenioAcontr.FldSalary, CSGenioAcontr.FldFindate, CSGenioAcontr.FldCtrdurat, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldTransval, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
-
-			ListingMVC<CSGenioAcontr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
-			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
-
-			// Menu relations:
-			if (qs.FromTable == null)
-				qs.From(areaBase.QSystem, areaBase.TableName, areaBase.Alias);
-
-
-
-			//operation: Count menu records
-			return CSGenio.persistence.DBConversion.ToInteger(sp.ExecuteScalar(CSGenio.persistence.QueryUtils.buildQueryCount(qs)));
+			throw new NotImplementedException("This operation is not supported");
 		}
 
 		/// <summary>
 		/// FOR DESERIALIZATION ONLY
 		/// </summary>
 		[Obsolete("For deserialization only")]
-		public AJF_Menu_31_ViewModel() : base(null!) { }
+		public F_club_CntryValCountry_ViewModel() : base(null!) { }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_31_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="F_club_CntryValCountry_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
-		public AJF_Menu_31_ViewModel(UserContext userContext) : base(userContext)
+		public F_club_CntryValCountry_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.ROLE_20;
+			ValCodclub = userContext.CurrentNavigation.CurrentLevel.GetEntry("club")?.ToString();
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AJF_Menu_31_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="F_club_CntryValCountry_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
 		/// <param name="parentCtx">The context of the parent</param>
-		public AJF_Menu_31_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
+		public F_club_CntryValCountry_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
 		{
 			ParentCtx = parentCtx;
 		}
@@ -144,29 +127,21 @@ namespace GenioMVC.ViewModels.Contr
 		{
 			var columns = new List<Exports.QColumn>()
 			{
-				new Exports.QColumn(CSGenioAcontr.FldStartdat, FieldType.DATE, Resources.Resources.STARTING_DATE47975, 8, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldComiseur, FieldType.CURRENCY, Resources.Resources.MONETARY_VALUE_COMIS27197, 10, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldSalary, FieldType.CURRENCY, Resources.Resources.SALARY_OF_THE_PLAYER18170, 10, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldFindate, FieldType.DATE, Resources.Resources.FINISH_DATE41863, 8, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldCtrdurat, FieldType.NUMERIC, Resources.Resources.CONTRACT_DURATION31225, 2, 0, true),
-				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldTransval, FieldType.CURRENCY, Resources.Resources.TRANSFER_VALUE12168, 10, 0, true),
-				new Exports.QColumn(CSGenioAclub.FldName, FieldType.TEXT, Resources.Resources.CLUB_S_NAME65517, 30, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
+				new Exports.QColumn(CSGenioAcntry.FldCountry, FieldType.TEXT, Resources.Resources.COUNTRY64133, 50, 0, true),
 			};
 
 			columns.RemoveAll(item => item == null);
 			return columns;
 		}
 
-		public void LoadToExport(out ListingMVC<CSGenioAcontr> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, NameValueCollection requestValues, bool ajaxRequest = false)
+		public void LoadToExport(out ListingMVC<CSGenioAcntry> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, NameValueCollection requestValues, bool ajaxRequest = false)
 		{
 			CSGenio.framework.TableConfiguration.TableConfiguration tableConfig = new CSGenio.framework.TableConfiguration.TableConfiguration();
 
 			LoadToExport(out listing, out conditions, out columns, tableConfig, requestValues, ajaxRequest);
 		}
 
-		public void LoadToExport(out ListingMVC<CSGenioAcontr> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest = false)
+		public void LoadToExport(out ListingMVC<CSGenioAcntry> listing, out CriteriaSet conditions, out List<Exports.QColumn> columns, CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest = false)
 		{
 			listing = null;
 			conditions = null;
@@ -199,8 +174,9 @@ namespace GenioMVC.ViewModels.Contr
 				crs = CriteriaSet.And();
 
 
+
 			if (Menu == null)
-				Menu = new TablePartial<AJF_Menu_31_RowViewModel>();
+				Menu = new TablePartial<F_club_CntryValCountry_RowViewModel>();
 			// Set table name (used in getting searchable column names)
 			Menu.TableName = TableAlias;
 
@@ -222,25 +198,23 @@ namespace GenioMVC.ViewModels.Contr
 			if (isToExport)
 			{
 				// EPH
-				crs = Models.Contr.AddEPH<CSGenioAcontr>(ref u, crs, "ML31");
+				crs = Models.Cntry.AddEPH<CSGenioAcntry>(ref u, crs, "IBL_F_CLUB__CNTRYCOUNTRY_");
 
 				// Export only records with ZZState == 0
-				crs.Equal(CSGenioAcontr.FldZzstate, 0);
+				crs.Equal(CSGenioAcntry.FldZzstate, 0);
 
 				return crs;
 			}
 
 			// Limitation by Zzstate
-			if (!Navigation.checkFormMode("CONTR", FormMode.New)) // TODO: Check in Duplicate mode
-				crs = extendWithZzstateCondition(crs, CSGenioAcontr.FldZzstate, null);
+			crs.Criterias.Add(new Criteria(new ColumnReference(CSGenioAcntry.FldZzstate), CriteriaOperator.Equal, 0));
 
 
 			if (tableReload)
 			{
-				string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_contr");
-				Navigation.DestroyEntry("QMVC_POS_RECORD_contr");
+				string QMVC_POS_RECORD = requestValues["Q_POS_RECORD_cntry"];
 				if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
-					crs.Equals(Models.Contr.AddEPH<CSGenioAcontr>(ref u, null, "ML31"));
+					crs.Equals(Models.Cntry.AddEPH<CSGenioAcntry>(ref u, null, "IBL_F_CLUB__CNTRYCOUNTRY_"));
 			}
 
 			return crs;
@@ -265,7 +239,7 @@ namespace GenioMVC.ViewModels.Contr
 		/// <param name="conditions">The conditions.</param>
 		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest = false, CriteriaSet conditions = null)
 		{
-			ListingMVC<CSGenioAcontr> listing = null;
+			ListingMVC<CSGenioAcntry> listing = null;
 
 			Load(numberListItems, requestValues, ajaxRequest, false, ref listing, ref conditions);
 		}
@@ -279,7 +253,7 @@ namespace GenioMVC.ViewModels.Contr
 		/// <param name="isToExport">Whether the list is being loaded to be exported</param>
 		/// <param name="Qlisting">The rows.</param>
 		/// <param name="conditions">The conditions.</param>
-		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAcontr> Qlisting, ref CriteriaSet conditions)
+		public void Load(int numberListItems, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAcntry> Qlisting, ref CriteriaSet conditions)
 		{
 			CSGenio.framework.TableConfiguration.TableConfiguration tableConfig = new CSGenio.framework.TableConfiguration.TableConfiguration();
 
@@ -298,7 +272,7 @@ namespace GenioMVC.ViewModels.Contr
 		/// <param name="conditions">The conditions.</param>
 		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport = false, CriteriaSet conditions = null)
 		{
-			ListingMVC<CSGenioAcontr> listing = null;
+			ListingMVC<CSGenioAcntry> listing = null;
 
 			Load(tableConfig, requestValues, ajaxRequest, isToExport, ref listing, ref conditions);
 		}
@@ -312,24 +286,23 @@ namespace GenioMVC.ViewModels.Contr
 		/// <param name="isToExport">Whether the list is being loaded to be exported</param>
 		/// <param name="Qlisting">The rows.</param>
 		/// <param name="conditions">The conditions.</param>
-		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAcontr> Qlisting, ref CriteriaSet conditions)
+		public void Load(CSGenio.framework.TableConfiguration.TableConfiguration tableConfig, NameValueCollection requestValues, bool ajaxRequest, bool isToExport, ref ListingMVC<CSGenioAcntry> Qlisting, ref CriteriaSet conditions)
 		{
-			using (GenioDI.MetricsOtlp.RecordTime("menu_load_time", new List<KeyValuePair<string, object>>()
+			using (GenioDI.MetricsOtlp.RecordTime("form_load_time", new List<KeyValuePair<string, object>>()
 			{
-				new("Menu", "31"),
-				new("Module", "AJF")
-			}, "ms", "Time to load the menu."))
+				new("Form", "F_CLUB")
+			}, "ms", "Time to load the form."))
 			{
 				User u = m_userContext.User;
-				Menu = new TablePartial<AJF_Menu_31_RowViewModel>();
+				Menu = new TablePartial<F_club_CntryValCountry_RowViewModel>();
 
-				CriteriaSet ajf_menu_31Conds = CriteriaSet.And();
+				CriteriaSet f_club__cntrycountry_Conds = CriteriaSet.And();
 				bool tableReload = true;
 
 				//FOR: MENU LIST SORTING
 				Dictionary<string, OrderedDictionary> allSortOrders = new Dictionary<string, OrderedDictionary>();
-				allSortOrders.Add("CONTR.STARTDAT", new OrderedDictionary());
-				allSortOrders["CONTR.STARTDAT"].Add("CONTR.STARTDAT", "A");
+				allSortOrders.Add("CNTRY.COUNTRY", new OrderedDictionary());
+				allSortOrders["CNTRY.COUNTRY"].Add("CNTRY.COUNTRY", "A");
 
 
 
@@ -340,16 +313,16 @@ namespace GenioMVC.ViewModels.Contr
 				if (pageNumber < 1)
 					pageNumber = 1;
 
-				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "contr", allSortOrders);
+				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "cntry", allSortOrders);
 
 				if (sorts == null || sorts.Count == 0)
 				{
 					sorts = new List<ColumnSort>();
-				sorts.Add(new ColumnSort(new ColumnReference(CSGenioAcontr.FldStartdat), SortOrder.Ascending));
+				sorts.Add(new ColumnSort(new ColumnReference(CSGenioAcntry.FldCountry), SortOrder.Ascending));
 
 				}
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldStartdat, CSGenioAcontr.FldComiseur, CSGenioAcontr.FldSalary, CSGenioAcontr.FldFindate, CSGenioAcontr.FldCtrdurat, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldTransval, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
+				FieldRef[] fields = new FieldRef[] { CSGenioAcntry.FldCodcntry, CSGenioAcntry.FldZzstate, CSGenioAcntry.FldCountry };
 
 
 				// Totalizers
@@ -361,7 +334,7 @@ namespace GenioMVC.ViewModels.Contr
 				{
 					firstVisibleColumn = tableConfig?.getFirstVisibleColumn(TableAlias);
 
-					firstVisibleColumn ??= new FieldRef("contr", "startdat");
+					firstVisibleColumn ??= new FieldRef("cntry", "country");
 				}
 
 
@@ -374,8 +347,8 @@ namespace GenioMVC.ViewModels.Contr
 				{
 					Limit limit = new Limit();
 					limit.TipoLimite = LimitType.EPH;
-					CSGenioAcontr model_limit_area = new CSGenioAcontr(m_userContext.User);
-					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "ML31");
+					CSGenioAcntry model_limit_area = new CSGenioAcntry(m_userContext.User);
+					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "IBL_F_CLUB__CNTRYCOUNTRY_");
 					if (area_EPH_limits.Count > 0)
 						this.tableLimits.AddRange(area_EPH_limits);
 				}
@@ -384,11 +357,11 @@ namespace GenioMVC.ViewModels.Contr
 				if (conditions == null)
 					conditions = CriteriaSet.And();
 
-				conditions.SubSets.Add(ajf_menu_31Conds);
-				ajf_menu_31Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
+				conditions.SubSets.Add(f_club__cntrycountry_Conds);
+				f_club__cntrycountry_Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
 				tableReload &= hasAllRequiredLimits;
 
-// USE /[MANUAL AJF OVERRQ 31]/
+// USE /[MANUAL AJF OVERRQ F_CLUB_CNTRYCOUNTRY]/
 
 				bool distinct = false;
 
@@ -397,29 +370,28 @@ namespace GenioMVC.ViewModels.Contr
 					if (!tableReload)
 						return;
 
-					Qlisting = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, false, ajf_menu_31Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML31", true, firstVisibleColumn: firstVisibleColumn);
+					Qlisting = Models.ModelBase.Where<CSGenioAcntry>(m_userContext, false, f_club__cntrycountry_Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_CLUB__CNTRYCOUNTRY_", true, firstVisibleColumn: firstVisibleColumn);
 
-// USE /[MANUAL AJF OVERRQLSTEXP 31]/
+// USE /[MANUAL AJF OVERRQLSTEXP F_CLUB_CNTRYCOUNTRY]/
 
 					return;
 				}
 
 				if (tableReload)
 				{
-// USE /[MANUAL AJF OVERRQLIST 31]/
+// USE /[MANUAL AJF OVERRQLIST F_CLUB_CNTRYCOUNTRY]/
 
-					string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_contr");
-					Navigation.DestroyEntry("QMVC_POS_RECORD_contr");
+					string QMVC_POS_RECORD = requestValues["Q_POS_RECORD_cntry"];
 					CriteriaSet m_PagingPosEPHs = null;
 
 					if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
 					{
-						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAcontr.GetInformation(), QMVC_POS_RECORD, sorts, ajf_menu_31Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
+						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAcntry.GetInformation(), QMVC_POS_RECORD, sorts, f_club__cntrycountry_Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
 						if (m_iCurPag != -1)
 							pageNumber = ((m_iCurPag - 1) / numberListItems) + 1;
 					}
 
-					ListingMVC<CSGenioAcontr> listing = Models.ModelBase.Where<CSGenioAcontr>(m_userContext, distinct, ajf_menu_31Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "ML31", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
+					ListingMVC<CSGenioAcntry> listing = Models.ModelBase.Where<CSGenioAcntry>(m_userContext, distinct, f_club__cntrycountry_Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_CLUB__CNTRYCOUNTRY_", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
 
 					if (listing.CurrentPage > 0)
 						pageNumber = listing.CurrentPage;
@@ -431,15 +403,14 @@ namespace GenioMVC.ViewModels.Contr
 					//Set document field values to objects
 					SetDocumentFields(listing);
 
-					Menu.Elements = MapAJF_Menu_31(listing);
+					Menu.Elements = MapF_club_CntryValCountry(listing);
 
-					Menu.Identifier = "ML31";
-					Menu.Slots = new Dictionary<string, List<object>>();
+					Menu.Identifier = "IBL_F_CLUB__CNTRYCOUNTRY_";
 
 					// Last updated by [CJP] at [2015.02.03]
 					// Adds the identifier to each element
 					foreach (var element in Menu.Elements)
-						element.Identifier = "ML31";
+						element.Identifier = "IBL_F_CLUB__CNTRYCOUNTRY_";
 
 					Menu.SetPagination(pageNumber, listing.NumRegs, listing.HasMore, listing.GetTotal, listing.TotalRecords);
 
@@ -459,9 +430,9 @@ namespace GenioMVC.ViewModels.Contr
 			}
 		}
 
-		private List<AJF_Menu_31_RowViewModel> MapAJF_Menu_31(ListingMVC<CSGenioAcontr> Qlisting)
+		private List<F_club_CntryValCountry_RowViewModel> MapF_club_CntryValCountry(ListingMVC<CSGenioAcntry> Qlisting)
 		{
-			List<AJF_Menu_31_RowViewModel> Elements = [];
+			List<F_club_CntryValCountry_RowViewModel> Elements = [];
 			int i = 0;
 
 			if (Qlisting.Rows != null)
@@ -470,7 +441,7 @@ namespace GenioMVC.ViewModels.Contr
 				{
 					if (Qlisting.NumRegs > 0 && i >= Qlisting.NumRegs) // Copiado da versão antiga do RowsToViewModels
 						break;
-					Elements.Add(MapAJF_Menu_31(row));
+					Elements.Add(MapF_club_CntryValCountry(row));
 					i++;
 				}
 			}
@@ -479,13 +450,13 @@ namespace GenioMVC.ViewModels.Contr
 		}
 
 		/// <summary>
-		/// Maps a single CSGenioAcontr row
-		/// to a AJF_Menu_31_RowViewModel object.
+		/// Maps a single CSGenioAcntry row
+		/// to a F_club_CntryValCountry_RowViewModel object.
 		/// </summary>
 		/// <param name="row">The row.</param>
-		private AJF_Menu_31_RowViewModel MapAJF_Menu_31(CSGenioAcontr row)
+		private F_club_CntryValCountry_RowViewModel MapF_club_CntryValCountry(CSGenioAcntry row)
 		{
-			var model = new AJF_Menu_31_RowViewModel(m_userContext, true, _fieldsToSerialize);
+			var model = new F_club_CntryValCountry_RowViewModel(m_userContext, true, _fieldsToSerialize);
 			if (row == null)
 				return model;
 
@@ -493,14 +464,8 @@ namespace GenioMVC.ViewModels.Contr
 			{
 				switch (Qfield.Area)
 				{
-					case "contr":
+					case "cntry":
 						model.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
-					case "playr":
-						model.Playr.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
-					case "club":
-						model.Club.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
-					case "agent":
-						model.Agent.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
 					default:
 						break;
 				}
@@ -526,19 +491,19 @@ namespace GenioMVC.ViewModels.Contr
 		/// Sets the document field values to objects.
 		/// </summary>
 		/// <param name="listing">The rows</param>
-		private void SetDocumentFields(ListingMVC<CSGenioAcontr> listing)
+		private void SetDocumentFields(ListingMVC<CSGenioAcntry> listing)
 		{
 		}
 
 		#region Mapper
 
 		/// <inheritdoc />
-		public override void MapFromModel(Models.Contr m)
+		public override void MapFromModel(Models.Cntry m)
 		{
 		}
 
 		/// <inheritdoc />
-		public override void MapToModel(Models.Contr m)
+		public override void MapToModel(Models.Cntry m)
 		{
 		}
 
@@ -546,26 +511,18 @@ namespace GenioMVC.ViewModels.Contr
 
 		#region Custom code
 
-// USE /[MANUAL AJF VIEWMODEL_CUSTOM AJF_MENU_31]/
+// USE /[MANUAL AJF VIEWMODEL_CUSTOM F_CLUB_CNTRYVALCOUNTRY]/
 
 		#endregion
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Contr", "Contr.ValCodcontr", "Contr.ValZzstate", "Contr.ValStartdat", "Contr.ValComiseur", "Contr.ValSalary", "Contr.ValFindate", "Contr.ValCtrdurat", "Playr", "Playr.ValName", "Contr.ValTransval", "Club", "Club.ValName", "Agent", "Agent.ValEmail", "Contr.ValCodagent", "Contr.ValCodclub", "Contr.ValCodplayr"
+			"Cntry", "Cntry.ValCodcntry", "Cntry.ValZzstate", "Cntry.ValCountry"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
-			new TableSearchColumn("ValStartdat", CSGenioAcontr.FldStartdat, typeof(DateTime?)),
-			new TableSearchColumn("ValComiseur", CSGenioAcontr.FldComiseur, typeof(decimal?)),
-			new TableSearchColumn("ValSalary", CSGenioAcontr.FldSalary, typeof(decimal?)),
-			new TableSearchColumn("ValFindate", CSGenioAcontr.FldFindate, typeof(DateTime?)),
-			new TableSearchColumn("ValCtrdurat", CSGenioAcontr.FldCtrdurat, typeof(decimal?)),
-			new TableSearchColumn("Playr_ValName", CSGenioAplayr.FldName, typeof(string)),
-			new TableSearchColumn("ValTransval", CSGenioAcontr.FldTransval, typeof(decimal?)),
-			new TableSearchColumn("Club_ValName", CSGenioAclub.FldName, typeof(string)),
-			new TableSearchColumn("Agent_ValEmail", CSGenioAagent.FldEmail, typeof(string)),
+			new TableSearchColumn("ValCountry", CSGenioAcntry.FldCountry, typeof(string), defaultSearch : true),
 		];
 	}
 }

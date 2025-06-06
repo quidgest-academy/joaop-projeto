@@ -33,6 +33,7 @@ namespace GenioMVC.ViewModels.Contr
 		/// <summary>
 		/// Title: "" | Type: "CE"
 		/// </summary>
+		[ValidateSetAccess]
 		public string ValCodagent { get; set; }
 		/// <summary>
 		/// Title: "Club's Name" | Type: "CE"
@@ -44,6 +45,23 @@ namespace GenioMVC.ViewModels.Contr
 		public string ValCodplayr { get; set; }
 
 		#endregion
+		/// <summary>
+		/// Title: "Percentage of the Comission" | Type: "N"
+		/// </summary>
+		[ValidateSetAccess]
+		public decimal? AgentValPerc_com 
+		{
+			get
+			{
+				return funcAgentValPerc_com != null ? funcAgentValPerc_com() : _auxAgentValPerc_com;
+			}
+			set { funcAgentValPerc_com = () => value; }
+		}
+
+		[JsonIgnore]
+		public Func<decimal?> funcAgentValPerc_com { get; set; }
+
+		private decimal? _auxAgentValPerc_com { get; set; }
 		/// <summary>
 		/// Title: "Name of the player" | Type: "C"
 		/// </summary>
@@ -94,7 +112,7 @@ namespace GenioMVC.ViewModels.Contr
 		[ValidateSetAccess]
 		public decimal? ValSlryyr { get; set; }
 		/// <summary>
-		/// Title: "Transfer Value" | Type: "N"
+		/// Title: "Transfer Value" | Type: "$"
 		/// </summary>
 		public decimal? ValTransval { get; set; }
 		/// <summary>
@@ -120,15 +138,6 @@ namespace GenioMVC.ViewModels.Contr
 
 		#region Fields for formulas
 
-		// Field for formula
-		/// <summary>Used only for lazy loading of the AgentValPerc_com field</summary>
-		[JsonIgnore]
-		[ValidateSetAccess]
-		public Func<decimal?> funcAgentValPerc_com { get; set; }
-		private decimal? _auxAgentValPerc_com { get; set; }
-		/// <summary>Field: "Percentage of the Comission" Tipo: "N"</summary>
-		[ValidateSetAccess]
-		public decimal? AgentValPerc_com { get { return funcAgentValPerc_com != null ? funcAgentValPerc_com() : _auxAgentValPerc_com; } private set { funcAgentValPerc_com = () => value; } }
 
 		#endregion
 
@@ -245,6 +254,7 @@ namespace GenioMVC.ViewModels.Contr
 				ValCodagent = ViewModelConversion.ToString(m.ValCodagent);
 				ValCodclub = ViewModelConversion.ToString(m.ValCodclub);
 				ValCodplayr = ViewModelConversion.ToString(m.ValCodplayr);
+				funcAgentValPerc_com = () => ViewModelConversion.ToNumeric(m.Agent.ValPerc_com);
 				funcAgentValEmail = () => ViewModelConversion.ToString(m.Agent.ValEmail);
 				ValStartdat = ViewModelConversion.ToDateTime(m.ValStartdat);
 				ValFindate = ViewModelConversion.ToDateTime(m.ValFindate);
@@ -253,7 +263,6 @@ namespace GenioMVC.ViewModels.Contr
 				ValSlryyr = ViewModelConversion.ToNumeric(m.ValSlryyr);
 				ValTransval = ViewModelConversion.ToNumeric(m.ValTransval);
 				ValComiseur = ViewModelConversion.ToNumeric(m.ValComiseur);
-				funcAgentValPerc_com = () => ViewModelConversion.ToNumeric(m.Agent.ValPerc_com);
 				ValCodcontr = ViewModelConversion.ToString(m.ValCodcontr);
 			}
 			catch (Exception)
@@ -280,7 +289,6 @@ namespace GenioMVC.ViewModels.Contr
 
 			try
 			{
-				m.ValCodagent = ViewModelConversion.ToString(ValCodagent);
 				m.ValCodclub = ViewModelConversion.ToString(ValCodclub);
 				m.ValCodplayr = ViewModelConversion.ToString(ValCodplayr);
 				m.ValStartdat = ViewModelConversion.ToDateTime(ValStartdat);
@@ -296,6 +304,7 @@ namespace GenioMVC.ViewModels.Contr
 				if (!HasDisabledUserValuesSecurity)
 					return;
 
+				m.ValCodagent = ViewModelConversion.ToString(ValCodagent);
 				m.ValCtrdurat = ViewModelConversion.ToNumeric(ValCtrdurat);
 				m.ValSlryyr = ViewModelConversion.ToNumeric(ValSlryyr);
 				m.ValComiseur = ViewModelConversion.ToNumeric(ValComiseur);
@@ -323,9 +332,6 @@ namespace GenioMVC.ViewModels.Contr
 
 				switch (fullFieldName)
 				{
-					case "contr.codagent":
-						this.ValCodagent = ViewModelConversion.ToString(_value);
-						break;
 					case "contr.codclub":
 						this.ValCodclub = ViewModelConversion.ToString(_value);
 						break;
@@ -467,7 +473,7 @@ namespace GenioMVC.ViewModels.Contr
 
 			validator.Required("ValSalary", Resources.Resources.SALARY_OF_THE_PLAYER18170, ViewModelConversion.ToNumeric(ValSalary), FieldType.CURRENCY.GetFormatting());
 
-			validator.Required("ValTransval", Resources.Resources.TRANSFER_VALUE12168, ViewModelConversion.ToNumeric(ValTransval), FieldType.NUMERIC.GetFormatting());
+			validator.Required("ValTransval", Resources.Resources.TRANSFER_VALUE12168, ViewModelConversion.ToNumeric(ValTransval), FieldType.CURRENCY.GetFormatting());
 
 
 			return validator.GetResult();
@@ -612,7 +618,7 @@ namespace GenioMVC.ViewModels.Contr
 		/// <param name="PKey">Primary Key of Playr</param>
 		public ConcurrentDictionary<string, object> GetDependant_F_cntrctTablePlayrName(string PKey)
 		{
-			FieldRef[] refDependantFields = [CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail];
+			FieldRef[] refDependantFields = [CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName];
 
 			var returnEmptyDependants = false;
 			CriteriaSet wherecodition = CriteriaSet.And();
@@ -661,8 +667,6 @@ namespace GenioMVC.ViewModels.Contr
 			var row = GetDependant_F_cntrctTablePlayrName(this.ValCodplayr);
 			try
 			{
-				this.ValCodagent = (string)row["agent.codagent"];
-				this.funcAgentValEmail = () => (string)row["agent.email"];
 
 				// Fill List fields
 				this.ValCodplayr = ViewModelConversion.ToString(row["playr.codplayr"]);
@@ -894,6 +898,7 @@ namespace GenioMVC.ViewModels.Contr
 				"contr.codagent" => ViewModelConversion.ToString(modelValue),
 				"contr.codclub" => ViewModelConversion.ToString(modelValue),
 				"contr.codplayr" => ViewModelConversion.ToString(modelValue),
+				"agent.perc_com" => ViewModelConversion.ToNumeric(modelValue),
 				"agent.email" => ViewModelConversion.ToString(modelValue),
 				"contr.startdat" => ViewModelConversion.ToDateTime(modelValue),
 				"contr.findate" => ViewModelConversion.ToDateTime(modelValue),
@@ -902,11 +907,10 @@ namespace GenioMVC.ViewModels.Contr
 				"contr.slryyr" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.transval" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.comiseur" => ViewModelConversion.ToNumeric(modelValue),
-				"agent.perc_com" => ViewModelConversion.ToNumeric(modelValue),
 				"contr.codcontr" => ViewModelConversion.ToString(modelValue),
+				"agent.codagent" => ViewModelConversion.ToString(modelValue),
 				"playr.codplayr" => ViewModelConversion.ToString(modelValue),
 				"playr.name" => ViewModelConversion.ToString(modelValue),
-				"agent.codagent" => ViewModelConversion.ToString(modelValue),
 				"club.codclub" => ViewModelConversion.ToString(modelValue),
 				"club.name" => ViewModelConversion.ToString(modelValue),
 				_ => modelValue

@@ -35,15 +35,15 @@
       <ACCESS />
       <MENU TYPE="ITEM" DESC="AGENTES60642" ID="61" PRTID="6" IMG="" ACT="GenGenio.MenuDBEdit" ACTMVC="AJF_Menu_61" ACTVUE="menu-AJF_61" CONT="AGENT" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="61">
         <MENU TYPE="ITEM" DESC="PLAYERS11892" ID="611" PRTID="61" IMG="" ACT="GenGenio.MenuDBEdit" ACTMVC="AJF_Menu_611" ACTVUE="menu-AJF_611" CONT="PLAYR" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="611">
-          <MENU TYPE="ITEM" ID="6111" PRTID="611" IMG="" ACT="GenGenio.MenuFormConsulta" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="6111" />
+          <MENU TYPE="ITEM" DESC="CONTRACTS23801" ID="6111" PRTID="611" IMG="" ACT="GenGenio.MenuDBEdit" ACTMVC="AJF_Menu_6111" ACTVUE="menu-AJF_6111" CONT="CONTR" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="6111">
+            <MENU TYPE="ITEM" ID="61111" PRTID="6111" IMG="" ACT="GenGenio.MenuFormConsulta" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="61111" />
+          </MENU>
         </MENU>
       </MENU>
     </MENU>
     <MENU TYPE="ITEM" DESC="PLAYERS_UNDER_CONTRA19805" SIGLA="" ID="7" HELPTITLE="" LVL="1" PREVIEW="false" SEPARATES="true" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="7" DEFAULTACTION="">
       <ACCESS />
-      <MENU TYPE="ITEM" DESC="CONTRACTS23801" ID="71" PRTID="7" IMG="" ACT="GenGenio.MenuDBEdit" ACTMVC="AJF_Menu_711" ACTVUE="menu-AJF_711" CONT="CONTR" FILTERS="seleoComCondies" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="71">
-        <MENU TYPE="ITEM" ID="7111" PRTID="711" IMG="" ACT="GenGenio.MenuFormConsulta" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="7111" />
-      </MENU>
+      <MENU TYPE="ITEM" DESC="CONTRACTS23801" ID="71" PRTID="7" IMG="" ACT="GenGenio.MenuDBEdit" ACTMVC="AJF_Menu_711" ACTVUE="menu-AJF_711" CONT="CONTR" FILTERS="seleoComCondies" LVL="-1" PREVIEW="false" SEPARATES="false" SUMMENU="false" HIDEMENUSUM="false" HASCONDITION="false" ISFORM="false" ORDER="71" />
     </MENU>
   </MenuEntry>
 </ArrayOfMenuEntry>

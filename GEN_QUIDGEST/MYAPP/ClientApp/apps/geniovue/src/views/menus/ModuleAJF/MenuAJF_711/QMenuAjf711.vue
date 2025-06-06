@@ -202,15 +202,15 @@
 								scrollData: 30,
 								pkColumn: 'ValCodplayr',
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.CurrencyColumn({
 								order: 7,
 								name: 'ValTransval',
 								area: 'CONTR',
 								field: 'TRANSVAL',
 								label: computed(() => this.Resources.TRANSFER_VALUE12168),
 								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
+								maxDigits: 7,
+								decimalPlaces: 2,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.TextColumn({
 								order: 8,
@@ -346,19 +346,6 @@
 							MCActions: [
 							],
 							rowClickAction: {
-								id: 'RCA_AJF_7111',
-								name: 'form-F_CNTRCT',
-								params: {
-									isRoute: true,
-									limits: [
-										{
-											identifier: 'id',
-											fnValueSelector: (row) => row.ValCodcontr
-										},
-									],
-									isControlled: true,
-									action: vm.openFormAction, type: 'form', mode: 'SHOW', formName: 'F_CNTRCT',
-								}
 							},
 							formsDefinition: {
 								'F_CNTRCT': {

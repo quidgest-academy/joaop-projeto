@@ -52,6 +52,17 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValCodclub))
 		watch(() => this.ValCodclub.value, (newValue, oldValue) => this.onUpdate('club.codclub', this.ValCodclub, newValue, oldValue))
 
+		/** The used foreign keys. */
+		this.ValCodcntry = reactive(new modelFieldType.ForeignKey({
+			id: 'ValCodcntry',
+			originId: 'ValCodcntry',
+			area: 'CLUB',
+			field: 'CODCNTRY',
+			relatedArea: 'CNTRY',
+			description: computed(() => this.Resources.FK_COUNTRY04348),
+		}).cloneFrom(values?.ValCodcntry))
+		watch(() => this.ValCodcntry.value, (newValue, oldValue) => this.onUpdate('club.codcntry', this.ValCodcntry, newValue, oldValue))
+
 		/** The remaining form fields. */
 		this.ValName = reactive(new modelFieldType.String({
 			id: 'ValName',
@@ -62,6 +73,17 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.CLUB_S_NAME65517),
 		}).cloneFrom(values?.ValName))
 		watch(() => this.ValName.value, (newValue, oldValue) => this.onUpdate('club.name', this.ValName, newValue, oldValue))
+
+		this.TableCntryCountry = reactive(new modelFieldType.String({
+			type: 'Lookup',
+			id: 'TableCntryCountry',
+			originId: 'ValCountry',
+			area: 'CNTRY',
+			field: 'COUNTRY',
+			maxLength: 50,
+			description: computed(() => this.Resources.COUNTRY64133),
+		}).cloneFrom(values?.TableCntryCountry))
+		watch(() => this.TableCntryCountry.value, (newValue, oldValue) => this.onUpdate('cntry.country', this.TableCntryCountry, newValue, oldValue))
 	}
 
 	/**

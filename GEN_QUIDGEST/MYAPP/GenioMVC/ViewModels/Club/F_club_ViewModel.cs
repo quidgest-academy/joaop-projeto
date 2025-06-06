@@ -30,12 +30,21 @@ namespace GenioMVC.ViewModels.Club
 		public bool MsqActive { get; set; } = false;
 
 		#region Foreign keys
+		/// <summary>
+		/// Title: "Country" | Type: "CE"
+		/// </summary>
+		public string ValCodcntry { get; set; }
 
 		#endregion
 		/// <summary>
 		/// Title: "Club's Name" | Type: "C"
 		/// </summary>
 		public string ValName { get; set; }
+		/// <summary>
+		/// Title: "Country" | Type: "C"
+		/// </summary>
+		[ValidateSetAccess]
+		public TableDBEdit<GenioMVC.Models.Cntry> TableCntryCountry { get; set; }
 
 		#region Navigations
 		#endregion
@@ -167,6 +176,7 @@ namespace GenioMVC.ViewModels.Club
 
 			try
 			{
+				ValCodcntry = ViewModelConversion.ToString(m.ValCodcntry);
 				ValName = ViewModelConversion.ToString(m.ValName);
 				ValCodclub = ViewModelConversion.ToString(m.ValCodclub);
 			}
@@ -194,6 +204,7 @@ namespace GenioMVC.ViewModels.Club
 
 			try
 			{
+				m.ValCodcntry = ViewModelConversion.ToString(ValCodcntry);
 				m.ValName = ViewModelConversion.ToString(ValName);
 				m.ValCodclub = ViewModelConversion.ToString(ValCodclub);
 			}
@@ -220,6 +231,9 @@ namespace GenioMVC.ViewModels.Club
 
 				switch (fullFieldName)
 				{
+					case "club.codcntry":
+						this.ValCodcntry = ViewModelConversion.ToString(_value);
+						break;
 					case "club.name":
 						this.ValName = ViewModelConversion.ToString(_value);
 						break;
@@ -322,6 +336,7 @@ namespace GenioMVC.ViewModels.Club
 			// Add characteristics
 			Characs = new List<string>();
 
+			Load_F_club__cntrycountry_(qs, lazyLoad);
 // USE /[MANUAL AJF VIEWMODEL_LOADPARTIAL F_CLUB]/
 		}
 
@@ -374,12 +389,205 @@ namespace GenioMVC.ViewModels.Club
 		{
 		}
 
+		/// <summary>
+		/// TableCntryCountry -> (DB)
+		/// </summary>
+		/// <param name="qs"></param>
+		/// <param name="lazyLoad">Lazy loading of dropdown items</param>
+		public void Load_F_club__cntrycountry_(NameValueCollection qs, bool lazyLoad = false)
+		{
+			bool f_club__cntrycountry_DoLoad = true;
+			CriteriaSet f_club__cntrycountry_Conds = CriteriaSet.And();
+			{
+				object hValue = Navigation.GetValue("cntry", true);
+				if (hValue != null && !(hValue is Array) && !string.IsNullOrEmpty(Convert.ToString(hValue)))
+				{
+					f_club__cntrycountry_Conds.Equal(CSGenioAcntry.FldCodcntry, hValue);
+					this.ValCodcntry = DBConversion.ToString(hValue);
+				}
+			}
+
+			TableCntryCountry = new TableDBEdit<Models.Cntry>
+			{
+				IsLazyLoad = lazyLoad
+			};
+
+			if (lazyLoad)
+			{
+				if (Navigation.CurrentLevel.GetEntry("RETURN_cntry") != null)
+				{
+					this.ValCodcntry = Navigation.GetStrValue("RETURN_cntry");
+					Navigation.CurrentLevel.SetEntry("RETURN_cntry", null);
+				}
+				FillDependant_F_clubTableCntryCountry(lazyLoad);
+				return;
+			}
+
+			if (f_club__cntrycountry_DoLoad)
+			{
+				List<ColumnSort> sorts = new List<ColumnSort>();
+				ColumnSort requestedSort = GetRequestSort(TableCntryCountry, "sTableCntryCountry", "dTableCntryCountry", qs, "cntry");
+				if (requestedSort != null)
+					sorts.Add(requestedSort);
+				sorts.Add(new ColumnSort(new ColumnReference(CSGenioAcntry.FldCountry), SortOrder.Ascending));
+
+				string query = "";
+				if (!string.IsNullOrEmpty(qs["TableCntryCountry_tableFilters"]))
+					TableCntryCountry.TableFilters = bool.Parse(qs["TableCntryCountry_tableFilters"]);
+				else
+					TableCntryCountry.TableFilters = false;
+
+				query = qs["qTableCntryCountry"];
+
+				//RS 26.07.2016 O preenchimento da lista de ajuda dos Dbedits passa a basear-se apenas no campo do próprio DbEdit
+				// O interface de pesquisa rápida não fica coerente quando se visualiza apenas uma coluna mas a pesquisa faz matching com 5 ou 6 colunas diferentes
+				//  tornando confuso to o user porque determinada row foi devolvida quando o Qresult não mostra como o matching foi feito
+				CriteriaSet search_filters = CriteriaSet.And();
+				if (!string.IsNullOrEmpty(query))
+				{
+					search_filters.Like(CSGenioAcntry.FldCountry, query + "%");
+				}
+				f_club__cntrycountry_Conds.SubSet(search_filters);
+
+				string tryParsePage = qs["pTableCntryCountry"] != null ? qs["pTableCntryCountry"].ToString() : "1";
+				int page = !string.IsNullOrEmpty(tryParsePage) ? int.Parse(tryParsePage) : 1;
+				int numberItems = CSGenio.framework.Configuration.NrRegDBedit;
+				int offset = (page - 1) * numberItems;
+
+				FieldRef[] fields = new FieldRef[] { CSGenioAcntry.FldCodcntry, CSGenioAcntry.FldCountry, CSGenioAcntry.FldZzstate };
+
+// USE /[MANUAL AJF OVERRQ F_CLUB_CNTRYCOUNTRY]/
+
+				// Limitation by Zzstate
+				/*
+					Records that are currently being inserted or duplicated will also be included.
+					Client-side persistence will try to fill the "text" value of that option.
+				*/
+				if (Navigation.checkFormMode("cntry", FormMode.New) || Navigation.checkFormMode("cntry", FormMode.Duplicate))
+					f_club__cntrycountry_Conds.SubSet(CriteriaSet.Or()
+						.Equal(CSGenioAcntry.FldZzstate, 0)
+						.Equal(CSGenioAcntry.FldCodcntry, Navigation.GetStrValue("cntry")));
+				else
+					f_club__cntrycountry_Conds.Criterias.Add(new Criteria(new ColumnReference(CSGenioAcntry.FldZzstate), CriteriaOperator.Equal, 0));
+
+				FieldRef firstVisibleColumn = new FieldRef("cntry", "country");
+				ListingMVC<CSGenioAcntry> listing = Models.ModelBase.Where<CSGenioAcntry>(m_userContext, false, f_club__cntrycountry_Conds, fields, offset, numberItems, sorts, "LED_F_CLUB__CNTRYCOUNTRY_", true, false, firstVisibleColumn: firstVisibleColumn);
+
+				TableCntryCountry.SetPagination(page, numberItems, listing.HasMore, listing.GetTotal, listing.TotalRecords);
+				TableCntryCountry.Query = query;
+				TableCntryCountry.Elements = listing.RowsForViewModel<GenioMVC.Models.Cntry>((r) => new GenioMVC.Models.Cntry(m_userContext, r, true, _fieldsToSerialize_F_CLUB__CNTRYCOUNTRY_));
+
+				//created by [ MH ] at [ 14.04.2016 ] - Foi alterada a forma de retornar a key do novo registo inserido / editado no form de apoio do DBEdit.
+				//last update by [ MH ] at [ 10.05.2016 ] - Validação se key encontra-se no level atual, as chaves dos niveis anteriores devem ser ignorados.
+				if (Navigation.CurrentLevel.GetEntry("RETURN_cntry") != null)
+				{
+					this.ValCodcntry = Navigation.GetStrValue("RETURN_cntry");
+					Navigation.CurrentLevel.SetEntry("RETURN_cntry", null);
+				}
+
+				TableCntryCountry.List = new SelectList(TableCntryCountry.Elements.ToSelectList(x => x.ValCountry, x => x.ValCodcntry,  x => x.ValCodcntry == this.ValCodcntry), "Value", "Text", this.ValCodcntry);
+				FillDependant_F_clubTableCntryCountry();
+			}
+		}
+
+		/// <summary>
+		/// Get Dependant fields values -> TableCntryCountry (DB)
+		/// </summary>
+		/// <param name="PKey">Primary Key of Cntry</param>
+		public ConcurrentDictionary<string, object> GetDependant_F_clubTableCntryCountry(string PKey)
+		{
+			FieldRef[] refDependantFields = [CSGenioAcntry.FldCodcntry, CSGenioAcntry.FldCountry];
+
+			var returnEmptyDependants = false;
+			CriteriaSet wherecodition = CriteriaSet.And();
+
+			// Return default values
+			if (GenFunctions.emptyG(PKey) == 1)
+				returnEmptyDependants = true;
+
+			// Check if the limit(s) is filled if exists
+			// - - - - - - - - - - - - - - - - - - - - -
+
+			if (returnEmptyDependants)
+				return GetViewModelFieldValues(refDependantFields);
+
+			PersistentSupport sp = m_userContext.PersistentSupport;
+			User u = m_userContext.User;
+
+			CSGenioAcntry tempArea = new(u);
+
+			// Fields to select
+			SelectQuery querySelect = new();
+			querySelect.PageSize(1);
+			foreach (FieldRef field in refDependantFields)
+				querySelect.Select(field);
+
+			querySelect.From(tempArea.QSystem, tempArea.TableName, tempArea.Alias)
+				.Where(wherecodition.Equal(CSGenioAcntry.FldCodcntry, PKey));
+
+			string[] dependantFields = refDependantFields.Select(f => f.FullName).ToArray();
+			QueryUtils.SetInnerJoins(dependantFields, null, tempArea, querySelect);
+
+			ArrayList values = sp.executeReaderOneRow(querySelect);
+			bool useDefaults = values.Count == 0;
+
+			if (useDefaults)
+				return GetViewModelFieldValues(refDependantFields);
+			return GetViewModelFieldValues(refDependantFields, values);
+		}
+
+		/// <summary>
+		/// Fill Dependant fields values -> TableCntryCountry (DB)
+		/// </summary>
+		/// <param name="lazyLoad">Lazy loading of dropdown items</param>
+		public void FillDependant_F_clubTableCntryCountry(bool lazyLoad = false)
+		{
+			var row = GetDependant_F_clubTableCntryCountry(this.ValCodcntry);
+			try
+			{
+
+				// Fill List fields
+				this.ValCodcntry = ViewModelConversion.ToString(row["cntry.codcntry"]);
+				TableCntryCountry.Value = (string)row["cntry.country"];
+				if (GenFunctions.emptyG(this.ValCodcntry) == 1)
+				{
+					this.ValCodcntry = "";
+					TableCntryCountry.Value = "";
+					Navigation.ClearValue("cntry");
+				}
+				else if (lazyLoad)
+				{
+					TableCntryCountry.SetPagination(1, 0, false, false, 1);
+					TableCntryCountry.List = new SelectList(new List<SelectListItem>()
+					{
+						new SelectListItem
+						{
+							Value = Convert.ToString(this.ValCodcntry),
+							Text = Convert.ToString(TableCntryCountry.Value),
+							Selected = true
+						}
+					}, "Value", "Text", this.ValCodcntry);
+				}
+
+				TableCntryCountry.Selected = this.ValCodcntry;
+			}
+			catch (Exception ex)
+			{
+				CSGenio.framework.Log.Error(string.Format("FillDependant_Error (TableCntryCountry): {0}; {1}", ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+			}
+		}
+
+		private readonly string[] _fieldsToSerialize_F_CLUB__CNTRYCOUNTRY_ = ["Cntry", "Cntry.ValCodcntry", "Cntry.ValZzstate", "Cntry.ValCountry"];
+
 		protected override object GetViewModelValue(string identifier, object modelValue)
 		{
 			return identifier switch
 			{
+				"club.codcntry" => ViewModelConversion.ToString(modelValue),
 				"club.name" => ViewModelConversion.ToString(modelValue),
 				"club.codclub" => ViewModelConversion.ToString(modelValue),
+				"cntry.codcntry" => ViewModelConversion.ToString(modelValue),
+				"cntry.country" => ViewModelConversion.ToString(modelValue),
 				_ => modelValue
 			};
 		}
