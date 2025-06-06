@@ -283,7 +283,7 @@ namespace GenioMVC.Controllers
 			}
 
 
-			Navigation.SetValue("playr.undctc", "1");
+			Navigation.SetValue("playr.undctc", "0");
 
 // USE /[MANUAL AJF MENU_GET 711]/
 

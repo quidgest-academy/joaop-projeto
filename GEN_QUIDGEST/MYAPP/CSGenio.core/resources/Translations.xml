@@ -117,6 +117,9 @@
   <msg id="Feminine" code="FEMININE01419">
     <ENUS>Feminine</ENUS>
   </msg>
+  <msg id="Players that are not under contract" code="PLAYERS_THAT_ARE_NOT65477">
+    <ENUS>Players that are not under contract</ENUS>
+  </msg>
   <msg id="Created on" code="CREATED_ON00051">
     <ENUS>Created on</ENUS>
   </msg>

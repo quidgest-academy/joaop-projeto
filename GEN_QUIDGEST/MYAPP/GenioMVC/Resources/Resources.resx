@@ -234,6 +234,9 @@
 	<data name="FEMININE01419" xml:space="preserve">
 		<value>Feminine</value>
 	</data>
+	<data name="PLAYERS_THAT_ARE_NOT65477" xml:space="preserve">
+		<value>Players that are not under contract</value>
+	</data>
 	<data name="CREATED_ON00051" xml:space="preserve">
 		<value>Created on</value>
 	</data>

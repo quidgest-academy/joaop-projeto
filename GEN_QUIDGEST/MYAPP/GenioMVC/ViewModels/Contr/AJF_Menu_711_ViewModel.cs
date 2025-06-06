@@ -53,7 +53,7 @@ namespace GenioMVC.ViewModels.Contr
 				CriteriaSet conditions = CriteriaSet.And();
 				// Limitations
 				// Limit "SC"
-				conditions.Equal(CSGenioAplayr.FldUndctc, "1");
+				conditions.Equal(CSGenioAplayr.FldUndctc, "0");
 
 				return conditions;
 			}
@@ -382,13 +382,13 @@ namespace GenioMVC.ViewModels.Contr
 				//Current Area = "CONTR"
 				//1st Area Limit: "PLAYR"
 				//1st Area Field: "UNDCTC"
-				//1st Area Value: "1"
+				//1st Area Value: "0"
 				{
 					Limit limit = new Limit();
 					limit.TipoLimite = LimitType.SC;
 					limit.NaoAplicaSeNulo = false;
 					CSGenioAplayr model_limit_area = new CSGenioAplayr(m_userContext.User);
-					string limit_field = "undctc", limit_field_value = "1";
+					string limit_field = "undctc", limit_field_value = "0";
 					object this_limit_field = Navigation.GetStrValue(limit_field_value);
 					Limit_Filler(ref limit, model_limit_area, limit_field, limit_field_value, this_limit_field, LimitAreaType.AreaLimita);
 					if (!this.tableLimits.Contains(limit, limitComparer)) //to avoid repetitions (i.e: DB and EPH applying same limit)

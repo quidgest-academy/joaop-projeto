@@ -34,6 +34,18 @@ namespace Administration.Models
                 Module = "AJF"
             },
             new ModuleRoleModel() {
+                Role = "40",
+                Designation = "AGENT00994",
+                Description = "",              
+                Module = "AJF"
+            },
+            new ModuleRoleModel() {
+                Role = "50",
+                Designation = "PLAYER57424",
+                Description = "",              
+                Module = "AJF"
+            },
+            new ModuleRoleModel() {
                 Role = "70",
                 Designation = "DEVELOPER60750",
                 Description = "",              

@@ -414,6 +414,15 @@ namespace GenioMVC.Resources
 		}
 
 		/// <summary>
+		///   Looks up a localized string similar to "Players that are not under contract"
+		/// </summary>
+		public static string PLAYERS_THAT_ARE_NOT65477 {
+			get {
+				return ResourceManager.GetString("PLAYERS_THAT_ARE_NOT65477", resourceCulture);
+			}
+		}
+
+		/// <summary>
 		///   Looks up a localized string similar to "Created on"
 		/// </summary>
 		public static string CREATED_ON00051 {
