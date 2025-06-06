@@ -57,10 +57,10 @@ namespace GenioMVC.Models
 		public decimal? ValPerc_com { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValPerc_com, 2)); } set { klass.ValPerc_com = Convert.ToDecimal(value); } }
 
 		[DisplayName("Total earn through comission")]
-		/// <summary>Field : "Total earn through comission" Tipo: "N" Formula: SR "[CONTR->COMISEUR]"</summary>
+		/// <summary>Field : "Total earn through comission" Tipo: "$" Formula: SR "[CONTR->COMISEUR]"</summary>
 		[ShouldSerialize("Agent.ValTotcomis")]
-		[NumericAttribute(0)]
-		public decimal? ValTotcomis { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValTotcomis, 0)); } set { klass.ValTotcomis = Convert.ToDecimal(value); } }
+		[CurrencyAttribute("EUR", 2)]
+		public decimal? ValTotcomis { get { return Convert.ToDecimal(GenFunctions.RoundQG(klass.ValTotcomis, 2)); } set { klass.ValTotcomis = Convert.ToDecimal(value); } }
 
 		[DisplayName("Gender")]
 		/// <summary>Field : "Gender" Tipo: "AC" Formula:  ""</summary>

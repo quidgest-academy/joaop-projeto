@@ -31,9 +31,9 @@ namespace Administration
         public List<ModulesLevel> GetPermissions()
         {
             List<ModulesLevel> perm = new List<ModulesLevel>();
-            perm.Add(new ModulesLevel("AJF", Resources.Resources.MY_APPLICATION56216, "20", Resources.Resources.CONSULTA40695));
-            perm.Add(new ModulesLevel("AJF", Resources.Resources.MY_APPLICATION56216, "50", Resources.Resources.DEVELOPER60750));
-            perm.Add(new ModulesLevel("AJF", Resources.Resources.MY_APPLICATION56216, "99", Resources.Resources.ADMINISTRADOR57294));
+            perm.Add(new ModulesLevel("AJF", Resources.Resources.AGENT_FINDER35112, "20", Resources.Resources.CONSULTA40695));
+            perm.Add(new ModulesLevel("AJF", Resources.Resources.AGENT_FINDER35112, "70", Resources.Resources.DEVELOPER60750));
+            perm.Add(new ModulesLevel("AJF", Resources.Resources.AGENT_FINDER35112, "99", Resources.Resources.ADMINISTRADOR57294));
 	
             return perm;
         }

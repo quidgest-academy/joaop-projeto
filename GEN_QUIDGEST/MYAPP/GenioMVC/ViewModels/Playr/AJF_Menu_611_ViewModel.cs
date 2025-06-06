@@ -101,7 +101,7 @@ namespace GenioMVC.ViewModels.Playr
 			conditions.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
 
 			// Checks for foreign tables in fields and conditions
-			FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldAge, CSGenioAplayr.FldPosic, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldName, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
+			FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldName, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldAge, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldPosic, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
 
 			ListingMVC<CSGenioAplayr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
 			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
@@ -131,7 +131,7 @@ namespace GenioMVC.ViewModels.Playr
 		/// <param name="userContext">The current user request context</param>
 		public AJF_Menu_611_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.AUTHORIZED;
+			this.RoleToShow = CSGenio.framework.Role.ROLE_50;
 		}
 
 		/// <summary>
@@ -149,12 +149,12 @@ namespace GenioMVC.ViewModels.Playr
 		{
 			var columns = new List<Exports.QColumn>()
 			{
-				new Exports.QColumn(CSGenioAplayr.FldAge, FieldType.NUMERIC, Resources.Resources.PLAYER_S_AGE12664, 3, 0, true),
-				new Exports.QColumn(CSGenioAplayr.FldPosic, FieldType.TEXT, Resources.Resources.POSITION54869, 30, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
 				new Exports.QColumn(CSGenioAplayr.FldBirthdat, FieldType.DATE, Resources.Resources.BIRTHDATE22743, 8, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldAge, FieldType.NUMERIC, Resources.Resources.PLAYER_S_AGE12664, 3, 0, true),
 				new Exports.QColumn(CSGenioAplayr.FldGender, FieldType.ARRAY_TEXT, Resources.Resources.GENDER44172, 1, 0, true, "Gender"),
 				new Exports.QColumn(CSGenioAplayr.FldCountry, FieldType.TEXT, Resources.Resources.COUNTRY64133, 30, 0, true),
-				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
+				new Exports.QColumn(CSGenioAplayr.FldPosic, FieldType.TEXT, Resources.Resources.POSITION54869, 30, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
 			};
 
@@ -355,7 +355,7 @@ namespace GenioMVC.ViewModels.Playr
 
 				}
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldAge, CSGenioAplayr.FldPosic, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldName, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
+				FieldRef[] fields = new FieldRef[] { CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldZzstate, CSGenioAplayr.FldName, CSGenioAplayr.FldBirthdat, CSGenioAplayr.FldAge, CSGenioAplayr.FldGender, CSGenioAplayr.FldCountry, CSGenioAplayr.FldPosic, CSGenioAplayr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
 
 
 				// Totalizers
@@ -367,7 +367,7 @@ namespace GenioMVC.ViewModels.Playr
 				{
 					firstVisibleColumn = tableConfig?.getFirstVisibleColumn(TableAlias);
 
-					firstVisibleColumn ??= new FieldRef("playr", "age");
+					firstVisibleColumn ??= new FieldRef("playr", "name");
 				}
 
 
@@ -573,17 +573,17 @@ namespace GenioMVC.ViewModels.Playr
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Playr", "Playr.ValCodplayr", "Playr.ValZzstate", "Playr.ValAge", "Playr.ValPosic", "Playr.ValBirthdat", "Playr.ValGender", "Playr.ValCountry", "Playr.ValName", "Agent", "Agent.ValEmail", "Playr.ValCodagent", "Playr.ValCodcntry"
+			"Playr", "Playr.ValCodplayr", "Playr.ValZzstate", "Playr.ValName", "Playr.ValBirthdat", "Playr.ValAge", "Playr.ValGender", "Playr.ValCountry", "Playr.ValPosic", "Agent", "Agent.ValEmail", "Playr.ValCodagent", "Playr.ValCodcntry"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
-			new TableSearchColumn("ValAge", CSGenioAplayr.FldAge, typeof(decimal?)),
-			new TableSearchColumn("ValPosic", CSGenioAplayr.FldPosic, typeof(string)),
+			new TableSearchColumn("ValName", CSGenioAplayr.FldName, typeof(string), defaultSearch : true),
 			new TableSearchColumn("ValBirthdat", CSGenioAplayr.FldBirthdat, typeof(DateTime?)),
+			new TableSearchColumn("ValAge", CSGenioAplayr.FldAge, typeof(decimal?)),
 			new TableSearchColumn("ValGender", CSGenioAplayr.FldGender, typeof(string), array : "Gender"),
 			new TableSearchColumn("ValCountry", CSGenioAplayr.FldCountry, typeof(string)),
-			new TableSearchColumn("ValName", CSGenioAplayr.FldName, typeof(string), defaultSearch : true),
+			new TableSearchColumn("ValPosic", CSGenioAplayr.FldPosic, typeof(string)),
 			new TableSearchColumn("Agent_ValEmail", CSGenioAagent.FldEmail, typeof(string)),
 		];
 	}

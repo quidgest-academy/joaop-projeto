@@ -3,11 +3,11 @@
 	<Definicoes>
 		<Sistema>AJF</Sistema>
 		<Cliente>QUIDGEST</Cliente>
-		<Versao>2506</Versao>
+		<Versao>2507</Versao>
 	</Definicoes>
 	<Modulos>
 		<Modulo ID="AJF">
-			<PROG>My application</PROG>
+			<PROG>Agent Finder</PROG>
 			<PLATAFOR>VUE</PLATAFOR>
 		</Modulo>
 	</Modulos>

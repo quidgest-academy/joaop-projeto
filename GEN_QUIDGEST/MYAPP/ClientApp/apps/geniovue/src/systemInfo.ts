@@ -4,15 +4,15 @@ import { getLayoutVariables } from '@quidgest/clientapp/utils/genericFunctions'
 import layoutConfigJson from './assets/config/Layoutconfig.json'
 
 export const systemInfo = {
-	applicationName: 'My application',
+	applicationName: 'Agent Finder',
 
 	genio: {
-		buildVersion: 17,
-		dbIdxVersion: 6,
-		dbVersion: '2506',
+		buildVersion: 18,
+		dbIdxVersion: 7,
+		dbVersion: '2507',
 		genioVersion: '369,93',
 		trackChangesVersion: '0',
-		assemblyVersion: '369,93.2506.0.17',
+		assemblyVersion: '369,93.2507.0.18',
 		generationDate: {
 			year: 2025,
 			month: 6,

@@ -730,7 +730,7 @@
 						controlLimits: [
 						],
 					}, this),
-					F_AGENT_AGENTTOTCOMIS: new fieldControlClass.NumberControl({
+					F_AGENT_AGENTTOTCOMIS: new fieldControlClass.CurrencyControl({
 						modelField: 'ValTotcomis',
 						valueChangeEvent: 'fieldChange:agent.totcomis',
 						id: 'F_AGENT_AGENTTOTCOMIS',
@@ -741,8 +741,8 @@
 						labelPosition: computed(() => this.labelAlignment.topleft),
 						container: 'F_AGENT_PSEUDNEWGRP02',
 						isFormulaBlocked: true,
-						maxIntegers: 10,
-						maxDecimals: 0,
+						maxIntegers: 7,
+						maxDecimals: 2,
 						controlLimits: [
 						],
 					}, this),

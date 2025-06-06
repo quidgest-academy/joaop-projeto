@@ -122,11 +122,12 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
-			Qfield = new Field(info.Alias, "totcomis", FieldType.NUMERIC);
+			Qfield = new Field(info.Alias, "totcomis", FieldType.CURRENCY);
 			Qfield.FieldDescription = "Total earn through comission";
 			Qfield.FieldSize =  10;
 			Qfield.MQueue = false;
-			Qfield.IntegerDigits = 10;
+			Qfield.IntegerDigits = 7;
+			Qfield.Decimals = 2;
 			Qfield.CavDesignation = "TOTAL_GANHO_EM_COMIS04690";
 
 			Qfield.Dupmsg = "";
@@ -384,11 +385,11 @@ namespace CSGenio.business
 			set { insertNameValueField(FldPerc_com, value); }
 		}
 
-		/// <summary>Field : "Total earn through comission" Tipo: "N" Formula: SR "[CONTR->COMISEUR]"</summary>
+		/// <summary>Field : "Total earn through comission" Tipo: "$" Formula: SR "[CONTR->COMISEUR]"</summary>
 		public static FieldRef FldTotcomis { get { return m_fldTotcomis; } }
 		private static FieldRef m_fldTotcomis = new FieldRef("agent", "totcomis");
 
-		/// <summary>Field : "Total earn through comission" Tipo: "N" Formula: SR "[CONTR->COMISEUR]"</summary>
+		/// <summary>Field : "Total earn through comission" Tipo: "$" Formula: SR "[CONTR->COMISEUR]"</summary>
 		public decimal ValTotcomis
 		{
 			get { return (decimal)returnValueField(FldTotcomis); }

@@ -37,43 +37,43 @@ public class AJF_Menu_61_RowViewModel : Models.Agent
 			{
 				Order = 1,
 				Area = "AGENT",
-				Field = "NAME",
+				Field = "PHOTO",
 			},
 			new ListColumn()
 			{
 				Order = 2,
 				Area = "AGENT",
-				Field = "TOTCOMIS",
+				Field = "NAME",
 			},
 			new ListColumn()
 			{
 				Order = 3,
 				Area = "AGENT",
-				Field = "PHOTO",
+				Field = "GENDER",
 			},
 			new ListColumn()
 			{
 				Order = 4,
 				Area = "AGENT",
-				Field = "GENDER",
+				Field = "PHONE",
 			},
 			new ListColumn()
 			{
 				Order = 5,
 				Area = "AGENT",
-				Field = "PHONE",
+				Field = "EMAIL",
 			},
 			new ListColumn()
 			{
 				Order = 6,
 				Area = "AGENT",
-				Field = "EMAIL",
+				Field = "PERC_COM",
 			},
 			new ListColumn()
 			{
 				Order = 7,
 				Area = "AGENT",
-				Field = "PERC_COM",
+				Field = "TOTCOMIS",
 			},
 		];
 	}

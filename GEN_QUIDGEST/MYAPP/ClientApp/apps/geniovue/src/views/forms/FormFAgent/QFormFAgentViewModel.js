@@ -123,8 +123,8 @@ export default class ViewModel extends FormViewModelBase
 			originId: 'ValTotcomis',
 			area: 'AGENT',
 			field: 'TOTCOMIS',
-			maxDigits: 10,
-			decimalDigits: 0,
+			maxDigits: 7,
+			decimalDigits: 2,
 			isFixed: true,
 			blockWhen: {
 				// eslint-disable-next-line no-unused-vars

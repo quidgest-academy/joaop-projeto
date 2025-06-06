@@ -99,7 +99,7 @@ export default {
 		this.modules = [];
 		this.modules.push({
 			Codiprog: 'AJF',
-			Prog: 'My application',
+			Prog: 'Agent Finder',
 			Platafor: 'VUE',
 			Vate: '01/01/0001'
 		});

@@ -262,7 +262,7 @@ namespace Administration.Controllers
 
         public static void addModules(ref UsersModel model)
         {
-            model.Modules.Add(new UsersModule("AJF", Resources.Resources.MY_APPLICATION56216));
+            model.Modules.Add(new UsersModule("AJF", Resources.Resources.AGENT_FINDER35112));
         }
 
         [HttpGet]

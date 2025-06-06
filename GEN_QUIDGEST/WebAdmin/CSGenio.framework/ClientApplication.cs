@@ -6,11 +6,11 @@ namespace CSGenio.framework
     public class ClientApplication
     {
         public static readonly ClientApplication MYAPP = 
-            new ClientApplication("MYAPP", "My application") 
+            new ClientApplication("MYAPP", "Agent Finder") 
             {
                 Modules = new Dictionary<string, string>
 				{
-                    { "AJF", "MY_APPLICATION56216" },
+                    { "AJF", "AGENT_FINDER35112" },
                 },
                 Platform = "VUE",
             };

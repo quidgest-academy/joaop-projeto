@@ -39,7 +39,7 @@ namespace GenioServer.security
             new Tuple<string,Role>("AJF", Role.UNAUTHORIZED),
 
 			new Tuple<string,Role>("AJF", Role.ROLE_20),
-			new Tuple<string,Role>("AJF", Role.ROLE_50),
+			new Tuple<string,Role>("AJF", Role.ROLE_70),
 			new Tuple<string,Role>("AJF", Role.ADMINISTRATION)        };
 
         [Obsolete]
@@ -47,7 +47,7 @@ namespace GenioServer.security
             {
                 "AJF.0"
 				, "AJF.20"
-				, "AJF.50"
+				, "AJF.70"
 				, "AJF.99"
             };
 

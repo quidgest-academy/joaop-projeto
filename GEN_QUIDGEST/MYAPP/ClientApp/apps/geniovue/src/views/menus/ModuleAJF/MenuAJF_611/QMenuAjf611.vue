@@ -144,8 +144,26 @@
 							'page-full-height'
 						],
 						columnsOriginal: [
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.TextColumn({
 								order: 1,
+								name: 'ValName',
+								area: 'PLAYR',
+								field: 'NAME',
+								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
+								dataLength: 85,
+								scrollData: 30,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.DateColumn({
+								order: 2,
+								name: 'ValBirthdat',
+								area: 'PLAYR',
+								field: 'BIRTHDAT',
+								label: computed(() => this.Resources.BIRTHDATE22743),
+								scrollData: 8,
+								dateTimeType: 'date',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.NumericColumn({
+								order: 3,
 								name: 'ValAge',
 								area: 'PLAYR',
 								field: 'AGE',
@@ -153,24 +171,6 @@
 								scrollData: 3,
 								maxDigits: 3,
 								decimalPlaces: 0,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.TextColumn({
-								order: 2,
-								name: 'ValPosic',
-								area: 'PLAYR',
-								field: 'POSIC',
-								label: computed(() => this.Resources.POSITION54869),
-								dataLength: 50,
-								scrollData: 30,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.DateColumn({
-								order: 3,
-								name: 'ValBirthdat',
-								area: 'PLAYR',
-								field: 'BIRTHDAT',
-								label: computed(() => this.Resources.BIRTHDATE22743),
-								scrollData: 8,
-								dateTimeType: 'date',
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.ArrayColumn({
 								order: 4,
@@ -195,11 +195,11 @@
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.TextColumn({
 								order: 6,
-								name: 'ValName',
+								name: 'ValPosic',
 								area: 'PLAYR',
-								field: 'NAME',
-								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
-								dataLength: 85,
+								field: 'POSIC',
+								label: computed(() => this.Resources.POSITION54869),
+								dataLength: 50,
 								scrollData: 30,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.TextColumn({

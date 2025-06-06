@@ -153,15 +153,15 @@
 								dataLength: 85,
 								scrollData: 30,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
+							new listColumnTypes.CurrencyColumn({
 								order: 2,
 								name: 'ValTotcomis',
 								area: 'AGENT',
 								field: 'TOTCOMIS',
 								label: computed(() => this.Resources.TOTAL_EARN_THROUGH_C21845),
 								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
+								maxDigits: 7,
+								decimalPlaces: 2,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 							new listColumnTypes.ImageColumn({
 								order: 3,

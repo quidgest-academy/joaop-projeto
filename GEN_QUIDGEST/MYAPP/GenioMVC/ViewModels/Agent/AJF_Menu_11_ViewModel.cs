@@ -126,7 +126,7 @@ namespace GenioMVC.ViewModels.Agent
 		/// <param name="userContext">The current user request context</param>
 		public AJF_Menu_11_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.ROLE_20;
+			this.RoleToShow = CSGenio.framework.Role.ROLE_50;
 		}
 
 		/// <summary>
@@ -145,7 +145,7 @@ namespace GenioMVC.ViewModels.Agent
 			var columns = new List<Exports.QColumn>()
 			{
 				new Exports.QColumn(CSGenioAagent.FldName, FieldType.TEXT, Resources.Resources.AGENT_S_NAME23140, 30, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldTotcomis, FieldType.NUMERIC, Resources.Resources.TOTAL_EARN_THROUGH_C21845, 10, 0, true),
+				new Exports.QColumn(CSGenioAagent.FldTotcomis, FieldType.CURRENCY, Resources.Resources.TOTAL_EARN_THROUGH_C21845, 10, 0, true),
 				!ajaxRequest ? new Exports.QColumn(CSGenioAagent.FldPhoto, FieldType.IMAGE, Resources.Resources.PHOTO_S_AGENT28065, 3, 0, true):null,
 				new Exports.QColumn(CSGenioAagent.FldGender, FieldType.ARRAY_TEXT, Resources.Resources.GENDER44172, 1, 0, true, "Gender"),
 				new Exports.QColumn(CSGenioAagent.FldPhone, FieldType.TEXT, Resources.Resources.AGENT_S_PHONE23147, 14, 0, true),

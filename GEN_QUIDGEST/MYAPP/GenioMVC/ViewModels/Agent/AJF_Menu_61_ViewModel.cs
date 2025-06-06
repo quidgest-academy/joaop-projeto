@@ -99,7 +99,7 @@ namespace GenioMVC.ViewModels.Agent
 			conditions.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
 
 			// Checks for foreign tables in fields and conditions
-			FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldName, CSGenioAagent.FldTotcomis, CSGenioAagent.FldPhoto, CSGenioAagent.FldGender, CSGenioAagent.FldPhone, CSGenioAagent.FldEmail, CSGenioAagent.FldPerc_com };
+			FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldPhoto, CSGenioAagent.FldName, CSGenioAagent.FldGender, CSGenioAagent.FldPhone, CSGenioAagent.FldEmail, CSGenioAagent.FldPerc_com, CSGenioAagent.FldTotcomis };
 
 			ListingMVC<CSGenioAagent> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
 			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
@@ -126,7 +126,7 @@ namespace GenioMVC.ViewModels.Agent
 		/// <param name="userContext">The current user request context</param>
 		public AJF_Menu_61_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.AUTHORIZED;
+			this.RoleToShow = CSGenio.framework.Role.ROLE_50;
 		}
 
 		/// <summary>
@@ -144,13 +144,13 @@ namespace GenioMVC.ViewModels.Agent
 		{
 			var columns = new List<Exports.QColumn>()
 			{
-				new Exports.QColumn(CSGenioAagent.FldName, FieldType.TEXT, Resources.Resources.AGENT_S_NAME23140, 30, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldTotcomis, FieldType.NUMERIC, Resources.Resources.TOTAL_EARN_THROUGH_C21845, 10, 0, true),
 				!ajaxRequest ? new Exports.QColumn(CSGenioAagent.FldPhoto, FieldType.IMAGE, Resources.Resources.PHOTO_S_AGENT28065, 3, 0, true):null,
+				new Exports.QColumn(CSGenioAagent.FldName, FieldType.TEXT, Resources.Resources.AGENT_S_NAME23140, 30, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldGender, FieldType.ARRAY_TEXT, Resources.Resources.GENDER44172, 1, 0, true, "Gender"),
 				new Exports.QColumn(CSGenioAagent.FldPhone, FieldType.TEXT, Resources.Resources.AGENT_S_PHONE23147, 14, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldPerc_com, FieldType.NUMERIC, Resources.Resources.PERCENTAGE_OF_THE_CO01872, 4, 2, true),
+				new Exports.QColumn(CSGenioAagent.FldTotcomis, FieldType.CURRENCY, Resources.Resources.TOTAL_EARN_THROUGH_C21845, 10, 0, true),
 			};
 
 			columns.RemoveAll(item => item == null);
@@ -347,7 +347,7 @@ namespace GenioMVC.ViewModels.Agent
 
 				}
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldName, CSGenioAagent.FldTotcomis, CSGenioAagent.FldPhoto, CSGenioAagent.FldGender, CSGenioAagent.FldPhone, CSGenioAagent.FldEmail, CSGenioAagent.FldPerc_com };
+				FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldPhoto, CSGenioAagent.FldName, CSGenioAagent.FldGender, CSGenioAagent.FldPhone, CSGenioAagent.FldEmail, CSGenioAagent.FldPerc_com, CSGenioAagent.FldTotcomis };
 
 
 				// Totalizers
@@ -359,7 +359,7 @@ namespace GenioMVC.ViewModels.Agent
 				{
 					firstVisibleColumn = tableConfig?.getFirstVisibleColumn(TableAlias);
 
-					firstVisibleColumn ??= new FieldRef("agent", "name");
+					firstVisibleColumn ??= new FieldRef("agent", "photo");
 				}
 
 
@@ -545,17 +545,17 @@ namespace GenioMVC.ViewModels.Agent
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Agent", "Agent.ValCodagent", "Agent.ValZzstate", "Agent.ValName", "Agent.ValTotcomis", "Agent.ValPhoto", "Agent.ValGender", "Agent.ValPhone", "Agent.ValEmail", "Agent.ValPerc_com"
+			"Agent", "Agent.ValCodagent", "Agent.ValZzstate", "Agent.ValPhoto", "Agent.ValName", "Agent.ValGender", "Agent.ValPhone", "Agent.ValEmail", "Agent.ValPerc_com", "Agent.ValTotcomis"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
 			new TableSearchColumn("ValName", CSGenioAagent.FldName, typeof(string)),
-			new TableSearchColumn("ValTotcomis", CSGenioAagent.FldTotcomis, typeof(decimal?)),
 			new TableSearchColumn("ValGender", CSGenioAagent.FldGender, typeof(string), array : "Gender"),
 			new TableSearchColumn("ValPhone", CSGenioAagent.FldPhone, typeof(string)),
 			new TableSearchColumn("ValEmail", CSGenioAagent.FldEmail, typeof(string), defaultSearch : true),
 			new TableSearchColumn("ValPerc_com", CSGenioAagent.FldPerc_com, typeof(decimal?)),
+			new TableSearchColumn("ValTotcomis", CSGenioAagent.FldTotcomis, typeof(decimal?)),
 		];
 		protected void SetTicketToImageFields(Models.Agent row)
 		{

@@ -37,19 +37,19 @@ public class AJF_Menu_611_RowViewModel : Models.Playr
 			{
 				Order = 1,
 				Area = "PLAYR",
-				Field = "AGE",
+				Field = "NAME",
 			},
 			new ListColumn()
 			{
 				Order = 2,
 				Area = "PLAYR",
-				Field = "POSIC",
+				Field = "BIRTHDAT",
 			},
 			new ListColumn()
 			{
 				Order = 3,
 				Area = "PLAYR",
-				Field = "BIRTHDAT",
+				Field = "AGE",
 			},
 			new ListColumn()
 			{
@@ -67,7 +67,7 @@ public class AJF_Menu_611_RowViewModel : Models.Playr
 			{
 				Order = 6,
 				Area = "PLAYR",
-				Field = "NAME",
+				Field = "POSIC",
 			},
 			new ListColumn()
 			{

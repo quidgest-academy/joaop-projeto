@@ -207,6 +207,9 @@
 	<data name="ASYNC_PROCESS_ATTACH04785" xml:space="preserve">
 		<value>Async process attachments</value>
 	</data>
+	<data name="AGENT00994" xml:space="preserve">
+		<value>Agent</value>
+	</data>
 	<data name="SALT05277" xml:space="preserve">
 		<value>Salt</value>
 	</data>
@@ -326,6 +329,9 @@
 	</data>
 	<data name="PLAYER_DETAILS02042" xml:space="preserve">
 		<value>Player Details</value>
+	</data>
+	<data name="AGENT_FINDER35112" xml:space="preserve">
+		<value>Agent Finder</value>
 	</data>
 	<data name="TEXT_AFTER_SIGNATURE11837" xml:space="preserve">
 		<value>Text after signature</value>
@@ -586,7 +592,7 @@
 		<value>Photo&apos;s Agent</value>
 	</data>
 	<data name="MY_APPLICATION56216" xml:space="preserve">
-		<value>My application</value>
+		<value>Agent Finder</value>
 	</data>
 	<data name="GRAVAR45301" xml:space="preserve">
 		<value>Gravar</value>

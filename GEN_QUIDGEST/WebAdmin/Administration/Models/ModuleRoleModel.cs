@@ -34,7 +34,7 @@ namespace Administration.Models
                 Module = "AJF"
             },
             new ModuleRoleModel() {
-                Role = "50",
+                Role = "70",
                 Designation = "DEVELOPER60750",
                 Description = "",              
                 Module = "AJF"

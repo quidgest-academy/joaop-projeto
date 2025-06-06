@@ -63,7 +63,7 @@ namespace GenioMVC.ViewModels.Agent
 		/// </summary>
 		public decimal? ValPerc_com { get; set; }
 		/// <summary>
-		/// Title: "Total earn through comission" | Type: "N"
+		/// Title: "Total earn through comission" | Type: "$"
 		/// </summary>
 		[ValidateSetAccess]
 		public decimal? ValTotcomis { get; set; }

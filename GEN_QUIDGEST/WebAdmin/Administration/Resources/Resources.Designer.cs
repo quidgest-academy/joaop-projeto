@@ -331,6 +331,15 @@ namespace Administration.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to "Agent"
+        /// </summary>
+        public static string AGENT00994 {
+            get {
+                return ResourceManager.GetString("AGENT00994", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to "Salt"
         /// </summary>
         public static string SALT05277 {
@@ -687,6 +696,15 @@ namespace Administration.Resources {
         public static string PLAYER_DETAILS02042 {
             get {
                 return ResourceManager.GetString("PLAYER_DETAILS02042", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to "Agent Finder"
+        /// </summary>
+        public static string AGENT_FINDER35112 {
+            get {
+                return ResourceManager.GetString("AGENT_FINDER35112", resourceCulture);
             }
         }
 

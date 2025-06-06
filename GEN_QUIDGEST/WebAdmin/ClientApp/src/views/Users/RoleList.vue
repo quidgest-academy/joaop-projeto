@@ -65,7 +65,7 @@
 			var vm = this;
 			return {
 				Modules: {
-					AJF : { active: true, Cod: "AJF", Description: 'MY_APPLICATION56216'},
+					AJF : { active: true, Cod: "AJF", Description: 'AGENT_FINDER35112'},
 				},
 				modules: [{
 					Module: String,

@@ -149,7 +149,7 @@ namespace Administration.Controllers
         private void addModules(ref ManageUsersModel model)
         {
             model.Modules = new List<Module>();
-            model.Modules.Add(new Module("AJF", Resources.Resources.MY_APPLICATION56216));
+            model.Modules.Add(new Module("AJF", Resources.Resources.AGENT_FINDER35112));
 
             //Check if the module only has levels.
             foreach(var module in model.Modules)
