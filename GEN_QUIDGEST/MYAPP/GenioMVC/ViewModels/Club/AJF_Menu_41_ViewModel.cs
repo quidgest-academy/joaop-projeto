@@ -126,7 +126,7 @@ namespace GenioMVC.ViewModels.Club
 		/// <param name="userContext">The current user request context</param>
 		public AJF_Menu_41_ViewModel(UserContext userContext) : base(userContext)
 		{
-			this.RoleToShow = CSGenio.framework.Role.ROLE_20;
+			this.RoleToShow = CSGenio.framework.Role.ROLE_70;
 		}
 
 		/// <summary>

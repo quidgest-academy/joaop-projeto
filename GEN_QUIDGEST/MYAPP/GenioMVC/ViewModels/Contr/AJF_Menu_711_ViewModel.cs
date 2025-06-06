@@ -104,7 +104,7 @@ namespace GenioMVC.ViewModels.Contr
 			conditions.SubSets.Add(GetCustomizedStaticLimits(StaticLimits));
 
 			// Checks for foreign tables in fields and conditions
-			FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldCtrdurat, CSGenioAcontr.FldTransval, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
+			FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldTransval };
 
 			ListingMVC<CSGenioAcontr> listing = new(fields, null, 1, 1, false, user, true, string.Empty, false);
 			SelectQuery qs = sp.getSelectQueryFromListingMVC(conditions, listing);
@@ -151,10 +151,8 @@ namespace GenioMVC.ViewModels.Contr
 			var columns = new List<Exports.QColumn>()
 			{
 				new Exports.QColumn(CSGenioAplayr.FldName, FieldType.TEXT, Resources.Resources.NAME_OF_THE_PLAYER61428, 30, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldCtrdurat, FieldType.NUMERIC, Resources.Resources.CONTRACT_DURATION31225, 2, 0, true),
-				new Exports.QColumn(CSGenioAcontr.FldTransval, FieldType.CURRENCY, Resources.Resources.TRANSFER_VALUE12168, 10, 0, true),
 				new Exports.QColumn(CSGenioAclub.FldName, FieldType.TEXT, Resources.Resources.CLUB_S_NAME65517, 30, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 30, 0, true),
+				new Exports.QColumn(CSGenioAcontr.FldTransval, FieldType.CURRENCY, Resources.Resources.TRANSFER_VALUE12168, 10, 0, true),
 			};
 
 			columns.RemoveAll(item => item == null);
@@ -344,7 +342,7 @@ namespace GenioMVC.ViewModels.Contr
 				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "contr", allSortOrders);
 
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldCtrdurat, CSGenioAcontr.FldTransval, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldCodagent, CSGenioAagent.FldCodagent, CSGenioAagent.FldEmail };
+				FieldRef[] fields = new FieldRef[] { CSGenioAcontr.FldCodcontr, CSGenioAcontr.FldZzstate, CSGenioAcontr.FldCodplayr, CSGenioAplayr.FldCodplayr, CSGenioAplayr.FldName, CSGenioAcontr.FldCodclub, CSGenioAclub.FldCodclub, CSGenioAclub.FldName, CSGenioAcontr.FldTransval };
 
 
 				// Totalizers
@@ -513,8 +511,6 @@ namespace GenioMVC.ViewModels.Contr
 						model.Playr.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
 					case "club":
 						model.Club.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
-					case "agent":
-						model.Agent.klass.insertNameValueField(Qfield.FullName, Qfield.Value); break;
 					default:
 						break;
 				}
@@ -566,16 +562,14 @@ namespace GenioMVC.ViewModels.Contr
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Contr", "Contr.ValCodcontr", "Contr.ValZzstate", "Playr", "Playr.ValName", "Contr.ValCtrdurat", "Contr.ValTransval", "Club", "Club.ValName", "Agent", "Agent.ValEmail", "Contr.ValCodagent", "Contr.ValCodclub", "Contr.ValCodplayr"
+			"Contr", "Contr.ValCodcontr", "Contr.ValZzstate", "Playr", "Playr.ValName", "Club", "Club.ValName", "Contr.ValTransval", "Contr.ValCodagent", "Contr.ValCodclub", "Contr.ValCodplayr"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
 			new TableSearchColumn("Playr_ValName", CSGenioAplayr.FldName, typeof(string)),
-			new TableSearchColumn("ValCtrdurat", CSGenioAcontr.FldCtrdurat, typeof(decimal?)),
-			new TableSearchColumn("ValTransval", CSGenioAcontr.FldTransval, typeof(decimal?)),
 			new TableSearchColumn("Club_ValName", CSGenioAclub.FldName, typeof(string)),
-			new TableSearchColumn("Agent_ValEmail", CSGenioAagent.FldEmail, typeof(string)),
+			new TableSearchColumn("ValTransval", CSGenioAcontr.FldTransval, typeof(decimal?)),
 		];
 	}
 }

@@ -7,12 +7,12 @@ export const systemInfo = {
 	applicationName: 'Agent Finder',
 
 	genio: {
-		buildVersion: 19,
+		buildVersion: 20,
 		dbIdxVersion: 7,
 		dbVersion: '2507',
 		genioVersion: '369,93',
 		trackChangesVersion: '0',
-		assemblyVersion: '369,93.2507.0.19',
+		assemblyVersion: '369,93.2507.0.20',
 		generationDate: {
 			year: 2025,
 			month: 6,

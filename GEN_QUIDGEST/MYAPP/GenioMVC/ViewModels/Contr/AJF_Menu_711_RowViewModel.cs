@@ -42,26 +42,14 @@ public class AJF_Menu_711_RowViewModel : Models.Contr
 			new ListColumn()
 			{
 				Order = 2,
-				Area = "CONTR",
-				Field = "CTRDURAT",
+				Area = "CLUB",
+				Field = "NAME",
 			},
 			new ListColumn()
 			{
 				Order = 3,
 				Area = "CONTR",
 				Field = "TRANSVAL",
-			},
-			new ListColumn()
-			{
-				Order = 4,
-				Area = "CLUB",
-				Field = "NAME",
-			},
-			new ListColumn()
-			{
-				Order = 5,
-				Area = "AGENT",
-				Field = "EMAIL",
 			},
 		];
 	}
