@@ -373,7 +373,7 @@
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-CONTR', 'changed-PLAYR', 'changed-CLUB', 'changed-AGENT'],
+						globalEvents: ['changed-CONTR', 'changed-AGENT', 'changed-PLAYR', 'changed-CLUB'],
 						uuid: 'c6ed0761-ca1b-4db8-848f-1a356d36e32f',
 						allSelectedRows: 'false',
 						headerLevel: 1,

@@ -6,16 +6,16 @@ using GenioMVC.Models.Navigation;
 
 namespace GenioMVC.ViewModels.Playr;
 
-public class F_player_ValAgtinfo_RowViewModel : Models.Agent
+public class F_player_AgentValName_RowViewModel : Models.Agent
 {
 	#region Constructors
 
-	public F_player_ValAgtinfo_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
+	public F_player_AgentValName_RowViewModel(UserContext userContext, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
 
-	public F_player_ValAgtinfo_RowViewModel(UserContext userContext, CSGenioAagent val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
+	public F_player_AgentValName_RowViewModel(UserContext userContext, CSGenioAagent val, bool isEmpty = false, string[]? fieldsToSerialize = null) : base(userContext, val, isEmpty, fieldsToSerialize)
 	{
 		InitRowProperties();
 	}
@@ -37,31 +37,13 @@ public class F_player_ValAgtinfo_RowViewModel : Models.Agent
 			{
 				Order = 1,
 				Area = "AGENT",
-				Field = "NAME",
+				Field = "EMAIL",
 			},
 			new ListColumn()
 			{
 				Order = 2,
 				Area = "AGENT",
 				Field = "PHONE",
-			},
-			new ListColumn()
-			{
-				Order = 3,
-				Area = "AGENT",
-				Field = "EMAIL",
-			},
-			new ListColumn()
-			{
-				Order = 4,
-				Area = "AGENT",
-				Field = "PERC_COM",
-			},
-			new ListColumn()
-			{
-				Order = 5,
-				Area = "AGENT",
-				Field = "TOTCOMIS",
 			},
 		];
 	}
@@ -76,12 +58,6 @@ public class F_player_ValAgtinfo_RowViewModel : Models.Agent
 		bool canDelete = true;
 		bool canDuplicate = true;
 		bool canInsert = true;
-
-		using (new CSGenio.persistence.ScopedPersistentSupport(m_userContext.PersistentSupport))
-		{
-
-			// Table AGENT CRUD conditions.
-		}
 
 		BtnPermission = new TableRowCrudButtonPermissions()
 		{

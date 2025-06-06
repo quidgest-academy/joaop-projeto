@@ -110,10 +110,10 @@ namespace CSGenio.business
 
 			//- - - - - - - - - - - - - - - - - - -
 			Qfield = new Field(info.Alias, "codagent", FieldType.KEY_INT);
-			Qfield.FieldDescription = "FK_Agent";
+			Qfield.FieldDescription = "fk_agente";
 			Qfield.FieldSize =  8;
 			Qfield.MQueue = false;
-			Qfield.CavDesignation = "FK_AGENT38232";
+			Qfield.CavDesignation = "FK_AGENTE28643";
 
 			Qfield.Dupmsg = "";
 			info.RegisterFieldDB(Qfield);
@@ -224,9 +224,9 @@ namespace CSGenio.business
 			//------------------------------
 			info.Pathways = new Dictionary<string, string>(4);
 			info.Pathways.Add("agent","agent");
-			info.Pathways.Add("club","club");
 			info.Pathways.Add("playr","playr");
-			info.Pathways.Add("cntry","club");
+			info.Pathways.Add("club","club");
+			info.Pathways.Add("cntry","playr");
 		}
 
 		/// <summary>
@@ -419,11 +419,11 @@ namespace CSGenio.business
 			set { insertNameValueField(FldCodclub, value); }
 		}
 
-		/// <summary>Field : "FK_Agent" Tipo: "CE" Formula:  ""</summary>
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
 		public static FieldRef FldCodagent { get { return m_fldCodagent; } }
 		private static FieldRef m_fldCodagent = new FieldRef("contr", "codagent");
 
-		/// <summary>Field : "FK_Agent" Tipo: "CE" Formula:  ""</summary>
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
 		public string ValCodagent
 		{
 			get { return (string)returnValueField(FldCodagent); }

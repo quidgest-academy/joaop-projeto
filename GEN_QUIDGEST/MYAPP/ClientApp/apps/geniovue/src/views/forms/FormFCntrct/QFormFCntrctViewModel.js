@@ -60,7 +60,7 @@ export default class ViewModel extends FormViewModelBase
 			field: 'CODAGENT',
 			relatedArea: 'AGENT',
 			isFixed: true,
-			description: computed(() => this.Resources.FK_AGENT38232),
+			description: computed(() => this.Resources.FK_AGENTE28643),
 		}).cloneFrom(values?.ValCodagent))
 		watch(() => this.ValCodagent.value, (newValue, oldValue) => this.onUpdate('contr.codagent', this.ValCodagent, newValue, oldValue))
 
@@ -109,6 +109,17 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.TablePlayrName))
 		watch(() => this.TablePlayrName.value, (newValue, oldValue) => this.onUpdate('playr.name', this.TablePlayrName, newValue, oldValue))
 
+		this.AgentValName = reactive(new modelFieldType.String({
+			id: 'AgentValName',
+			originId: 'ValName',
+			area: 'AGENT',
+			field: 'NAME',
+			maxLength: 85,
+			isFixed: true,
+			description: computed(() => this.Resources.AGENT_S_NAME23140),
+		}).cloneFrom(values?.AgentValName))
+		watch(() => this.AgentValName.value, (newValue, oldValue) => this.onUpdate('agent.name', this.AgentValName, newValue, oldValue))
+
 		this.TableClubName = reactive(new modelFieldType.String({
 			type: 'Lookup',
 			id: 'TableClubName',
@@ -119,18 +130,6 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.CLUB_S_NAME65517),
 		}).cloneFrom(values?.TableClubName))
 		watch(() => this.TableClubName.value, (newValue, oldValue) => this.onUpdate('club.name', this.TableClubName, newValue, oldValue))
-
-		this.AgentValEmail = reactive(new modelFieldType.String({
-			id: 'AgentValEmail',
-			originId: 'ValEmail',
-			area: 'AGENT',
-			field: 'EMAIL',
-			maxLength: 50,
-			maskType: 'EM',
-			isFixed: true,
-			description: computed(() => this.Resources.AGENT_S_EMAIL56414),
-		}).cloneFrom(values?.AgentValEmail))
-		watch(() => this.AgentValEmail.value, (newValue, oldValue) => this.onUpdate('agent.email', this.AgentValEmail, newValue, oldValue))
 
 		this.ValStartdat = reactive(new modelFieldType.Date({
 			id: 'ValStartdat',

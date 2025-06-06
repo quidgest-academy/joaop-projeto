@@ -295,6 +295,15 @@ namespace Administration.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to "fk_agente"
+        /// </summary>
+        public static string FK_AGENTE28643 {
+            get {
+                return ResourceManager.GetString("FK_AGENTE28643", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to "Country"
         /// </summary>
         public static string COUNTRY64133 {
@@ -1254,6 +1263,15 @@ namespace Administration.Resources {
         public static string NO57340 {
             get {
                 return ResourceManager.GetString("NO57340", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to "Players under Contract"
+        /// </summary>
+        public static string PLAYERS_UNDER_CONTRA38805 {
+            get {
+                return ResourceManager.GetString("PLAYERS_UNDER_CONTRA38805", resourceCulture);
             }
         }
 

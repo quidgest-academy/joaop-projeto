@@ -31,9 +31,8 @@ namespace GenioMVC.ViewModels.Playr
 
 		#region Foreign keys
 		/// <summary>
-		/// Title: "" | Type: "CE"
+		/// Title: "Agent´s Name" | Type: "CE"
 		/// </summary>
-		[ValidateSetAccess]
 		public string ValCodagent { get; set; }
 		/// <summary>
 		/// Title: "Country" | Type: "CE"
@@ -81,6 +80,11 @@ namespace GenioMVC.ViewModels.Playr
 		/// Title: "Position" | Type: "C"
 		/// </summary>
 		public string ValPosic { get; set; }
+		/// <summary>
+		/// Title: "Agent´s Name" | Type: "C"
+		/// </summary>
+		[ValidateSetAccess]
+		public TableDBEdit<GenioMVC.Models.Agent> TableAgentName { get; set; }
 
 		#region Navigations
 		#endregion
@@ -246,6 +250,7 @@ namespace GenioMVC.ViewModels.Playr
 
 			try
 			{
+				m.ValCodagent = ViewModelConversion.ToString(ValCodagent);
 				m.ValCodcntry = ViewModelConversion.ToString(ValCodcntry);
 				m.ValUndctc = ViewModelConversion.ToInteger(ValUndctc);
 				m.ValGender = ViewModelConversion.ToString(ValGender);
@@ -261,7 +266,6 @@ namespace GenioMVC.ViewModels.Playr
 				if (!HasDisabledUserValuesSecurity)
 					return;
 
-				m.ValCodagent = ViewModelConversion.ToString(ValCodagent);
 				m.ValAge = ViewModelConversion.ToNumeric(ValAge);
 			}
 			catch (Exception)
@@ -287,6 +291,9 @@ namespace GenioMVC.ViewModels.Playr
 
 				switch (fullFieldName)
 				{
+					case "playr.codagent":
+						this.ValCodagent = ViewModelConversion.ToString(_value);
+						break;
 					case "playr.codcntry":
 						this.ValCodcntry = ViewModelConversion.ToString(_value);
 						break;
@@ -405,6 +412,7 @@ namespace GenioMVC.ViewModels.Playr
 			Characs = new List<string>();
 
 			Load_F_playercntrycountry_(qs, lazyLoad);
+			Load_F_playeragentname____(qs, lazyLoad);
 // USE /[MANUAL AJF VIEWMODEL_LOADPARTIAL F_PLAYER]/
 		}
 
@@ -648,6 +656,195 @@ namespace GenioMVC.ViewModels.Playr
 
 		private readonly string[] _fieldsToSerialize_F_PLAYERCNTRYCOUNTRY_ = ["Cntry", "Cntry.ValCodcntry", "Cntry.ValZzstate", "Cntry.ValCountry"];
 
+		/// <summary>
+		/// TableAgentName -> (DB)
+		/// </summary>
+		/// <param name="qs"></param>
+		/// <param name="lazyLoad">Lazy loading of dropdown items</param>
+		public void Load_F_playeragentname____(NameValueCollection qs, bool lazyLoad = false)
+		{
+			bool f_playeragentname____DoLoad = true;
+			CriteriaSet f_playeragentname____Conds = CriteriaSet.And();
+			{
+				object hValue = Navigation.GetValue("agent", true);
+				if (hValue != null && !(hValue is Array) && !string.IsNullOrEmpty(Convert.ToString(hValue)))
+				{
+					f_playeragentname____Conds.Equal(CSGenioAagent.FldCodagent, hValue);
+					this.ValCodagent = DBConversion.ToString(hValue);
+				}
+			}
+
+			TableAgentName = new TableDBEdit<Models.Agent>
+			{
+				IsLazyLoad = lazyLoad
+			};
+
+			if (lazyLoad)
+			{
+				if (Navigation.CurrentLevel.GetEntry("RETURN_agent") != null)
+				{
+					this.ValCodagent = Navigation.GetStrValue("RETURN_agent");
+					Navigation.CurrentLevel.SetEntry("RETURN_agent", null);
+				}
+				FillDependant_F_playerTableAgentName(lazyLoad);
+				return;
+			}
+
+			if (f_playeragentname____DoLoad)
+			{
+				List<ColumnSort> sorts = new List<ColumnSort>();
+				ColumnSort requestedSort = GetRequestSort(TableAgentName, "sTableAgentName", "dTableAgentName", qs, "agent");
+				if (requestedSort != null)
+					sorts.Add(requestedSort);
+
+				string query = "";
+				if (!string.IsNullOrEmpty(qs["TableAgentName_tableFilters"]))
+					TableAgentName.TableFilters = bool.Parse(qs["TableAgentName_tableFilters"]);
+				else
+					TableAgentName.TableFilters = false;
+
+				query = qs["qTableAgentName"];
+
+				//RS 26.07.2016 O preenchimento da lista de ajuda dos Dbedits passa a basear-se apenas no campo do próprio DbEdit
+				// O interface de pesquisa rápida não fica coerente quando se visualiza apenas uma coluna mas a pesquisa faz matching com 5 ou 6 colunas diferentes
+				//  tornando confuso to o user porque determinada row foi devolvida quando o Qresult não mostra como o matching foi feito
+				CriteriaSet search_filters = CriteriaSet.And();
+				if (!string.IsNullOrEmpty(query))
+				{
+					search_filters.Like(CSGenioAagent.FldName, query + "%");
+				}
+				f_playeragentname____Conds.SubSet(search_filters);
+
+				string tryParsePage = qs["pTableAgentName"] != null ? qs["pTableAgentName"].ToString() : "1";
+				int page = !string.IsNullOrEmpty(tryParsePage) ? int.Parse(tryParsePage) : 1;
+				int numberItems = CSGenio.framework.Configuration.NrRegDBedit;
+				int offset = (page - 1) * numberItems;
+
+				FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldName, CSGenioAagent.FldEmail, CSGenioAagent.FldPhone, CSGenioAagent.FldZzstate };
+
+// USE /[MANUAL AJF OVERRQ F_PLAYER_AGENTNAME]/
+
+				// Limitation by Zzstate
+				/*
+					Records that are currently being inserted or duplicated will also be included.
+					Client-side persistence will try to fill the "text" value of that option.
+				*/
+				if (Navigation.checkFormMode("agent", FormMode.New) || Navigation.checkFormMode("agent", FormMode.Duplicate))
+					f_playeragentname____Conds.SubSet(CriteriaSet.Or()
+						.Equal(CSGenioAagent.FldZzstate, 0)
+						.Equal(CSGenioAagent.FldCodagent, Navigation.GetStrValue("agent")));
+				else
+					f_playeragentname____Conds.Criterias.Add(new Criteria(new ColumnReference(CSGenioAagent.FldZzstate), CriteriaOperator.Equal, 0));
+
+				FieldRef firstVisibleColumn = new FieldRef("agent", "email");
+				ListingMVC<CSGenioAagent> listing = Models.ModelBase.Where<CSGenioAagent>(m_userContext, false, f_playeragentname____Conds, fields, offset, numberItems, sorts, "LED_F_PLAYERAGENTNAME____", true, false, firstVisibleColumn: firstVisibleColumn);
+
+				TableAgentName.SetPagination(page, numberItems, listing.HasMore, listing.GetTotal, listing.TotalRecords);
+				TableAgentName.Query = query;
+				TableAgentName.Elements = listing.RowsForViewModel<GenioMVC.Models.Agent>((r) => new GenioMVC.Models.Agent(m_userContext, r, true, _fieldsToSerialize_F_PLAYERAGENTNAME____));
+
+				//created by [ MH ] at [ 14.04.2016 ] - Foi alterada a forma de retornar a key do novo registo inserido / editado no form de apoio do DBEdit.
+				//last update by [ MH ] at [ 10.05.2016 ] - Validação se key encontra-se no level atual, as chaves dos niveis anteriores devem ser ignorados.
+				if (Navigation.CurrentLevel.GetEntry("RETURN_agent") != null)
+				{
+					this.ValCodagent = Navigation.GetStrValue("RETURN_agent");
+					Navigation.CurrentLevel.SetEntry("RETURN_agent", null);
+				}
+
+				TableAgentName.List = new SelectList(TableAgentName.Elements.ToSelectList(x => x.ValName, x => x.ValCodagent,  x => x.ValCodagent == this.ValCodagent), "Value", "Text", this.ValCodagent);
+				FillDependant_F_playerTableAgentName();
+			}
+		}
+
+		/// <summary>
+		/// Get Dependant fields values -> TableAgentName (DB)
+		/// </summary>
+		/// <param name="PKey">Primary Key of Agent</param>
+		public ConcurrentDictionary<string, object> GetDependant_F_playerTableAgentName(string PKey)
+		{
+			FieldRef[] refDependantFields = [CSGenioAagent.FldCodagent, CSGenioAagent.FldName];
+
+			var returnEmptyDependants = false;
+			CriteriaSet wherecodition = CriteriaSet.And();
+
+			// Return default values
+			if (GenFunctions.emptyG(PKey) == 1)
+				returnEmptyDependants = true;
+
+			// Check if the limit(s) is filled if exists
+			// - - - - - - - - - - - - - - - - - - - - -
+
+			if (returnEmptyDependants)
+				return GetViewModelFieldValues(refDependantFields);
+
+			PersistentSupport sp = m_userContext.PersistentSupport;
+			User u = m_userContext.User;
+
+			CSGenioAagent tempArea = new(u);
+
+			// Fields to select
+			SelectQuery querySelect = new();
+			querySelect.PageSize(1);
+			foreach (FieldRef field in refDependantFields)
+				querySelect.Select(field);
+
+			querySelect.From(tempArea.QSystem, tempArea.TableName, tempArea.Alias)
+				.Where(wherecodition.Equal(CSGenioAagent.FldCodagent, PKey));
+
+			string[] dependantFields = refDependantFields.Select(f => f.FullName).ToArray();
+			QueryUtils.SetInnerJoins(dependantFields, null, tempArea, querySelect);
+
+			ArrayList values = sp.executeReaderOneRow(querySelect);
+			bool useDefaults = values.Count == 0;
+
+			if (useDefaults)
+				return GetViewModelFieldValues(refDependantFields);
+			return GetViewModelFieldValues(refDependantFields, values);
+		}
+
+		/// <summary>
+		/// Fill Dependant fields values -> TableAgentName (DB)
+		/// </summary>
+		/// <param name="lazyLoad">Lazy loading of dropdown items</param>
+		public void FillDependant_F_playerTableAgentName(bool lazyLoad = false)
+		{
+			var row = GetDependant_F_playerTableAgentName(this.ValCodagent);
+			try
+			{
+
+				// Fill List fields
+				this.ValCodagent = ViewModelConversion.ToString(row["agent.codagent"]);
+				TableAgentName.Value = (string)row["agent.name"];
+				if (GenFunctions.emptyG(this.ValCodagent) == 1)
+				{
+					this.ValCodagent = "";
+					TableAgentName.Value = "";
+					Navigation.ClearValue("agent");
+				}
+				else if (lazyLoad)
+				{
+					TableAgentName.SetPagination(1, 0, false, false, 1);
+					TableAgentName.List = new SelectList(new List<SelectListItem>()
+					{
+						new SelectListItem
+						{
+							Value = Convert.ToString(this.ValCodagent),
+							Text = Convert.ToString(TableAgentName.Value),
+							Selected = true
+						}
+					}, "Value", "Text", this.ValCodagent);
+				}
+
+				TableAgentName.Selected = this.ValCodagent;
+			}
+			catch (Exception ex)
+			{
+				CSGenio.framework.Log.Error(string.Format("FillDependant_Error (TableAgentName): {0}; {1}", ex.Message, ex.InnerException != null ? ex.InnerException.Message : ""));
+			}
+		}
+
+		private readonly string[] _fieldsToSerialize_F_PLAYERAGENTNAME____ = ["Agent", "Agent.ValCodagent", "Agent.ValZzstate", "Agent.ValEmail", "Agent.ValPhone"];
+
 		protected override object GetViewModelValue(string identifier, object modelValue)
 		{
 			return identifier switch
@@ -663,6 +860,8 @@ namespace GenioMVC.ViewModels.Playr
 				"playr.codplayr" => ViewModelConversion.ToString(modelValue),
 				"cntry.codcntry" => ViewModelConversion.ToString(modelValue),
 				"cntry.country" => ViewModelConversion.ToString(modelValue),
+				"agent.codagent" => ViewModelConversion.ToString(modelValue),
+				"agent.name" => ViewModelConversion.ToString(modelValue),
 				_ => modelValue
 			};
 		}

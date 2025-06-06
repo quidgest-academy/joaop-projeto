@@ -78,6 +78,9 @@
   <msg id="End time" code="END_TIME53495">
     <ENUS>End time</ENUS>
   </msg>
+  <msg id="fk_agente" code="FK_AGENTE28643">
+    <ENUS>fk_agente</ENUS>
+  </msg>
   <msg id="Country" code="COUNTRY64133">
     <ENUS>Country</ENUS>
   </msg>
@@ -398,6 +401,9 @@
   </msg>
   <msg id="No" code="NO57340">
     <ENUS>No</ENUS>
+  </msg>
+  <msg id="Players under Contract" code="PLAYERS_UNDER_CONTRA38805">
+    <ENUS>Players under Contract</ENUS>
   </msg>
   <msg id="Unidade orgânica" code="UNIDADE_ORGANICA38383">
     <ENUS>Unidade orgânica</ENUS>

@@ -49,9 +49,10 @@ public class F_playerForm : Form
 	public BaseInputControl PlayrPosic => new BaseInputControl(driver, ContainerLocator, "container-F_PLAYERPLAYRPOSIC___", "#F_PLAYERPLAYRPOSIC___");
 
 	/// <summary>
-	/// Agent info
+	/// Agent´s Name
 	/// </summary>
-	public ListControl PseudAgtinfo => new ListControl(driver, ContainerLocator, "#F_PLAYERPSEUDAGTINFO_");
+	public LookupControl AgentName => new LookupControl(driver, ContainerLocator, "container-F_PLAYERAGENTNAME____");
+	public SeeMorePage AgentNameSeeMorePage => new SeeMorePage(driver, "F_PLAYER", "F_PLAYERAGENTNAME____");
 
 	public F_playerForm(IWebDriver driver, FORM_MODE mode, By? containerLocator = null)
 		: base(driver, mode, "F_PLAYER", containerLocator: containerLocator) { }

@@ -49,26 +49,6 @@ namespace GenioMVC.Models
 		[ShouldSerialize("Playr.ValPosic")]
 		public string ValPosic { get { return klass.ValPosic; } set { klass.ValPosic = value; } }
 
-		[DisplayName("FK_Agente")]
-		/// <summary>Field : "FK_Agente" Tipo: "CE" Formula:  ""</summary>
-		[ShouldSerialize("Playr.ValCodagent")]
-		public string ValCodagent { get { return klass.ValCodagent; } set { klass.ValCodagent = value; } }
-
-		private Agent _agent;
-		[DisplayName("Agent")]
-		[ShouldSerialize("Agent")]
-		public virtual Agent Agent
-		{
-			get
-			{
-				if (!isEmptyModel && (_agent == null || (!string.IsNullOrEmpty(ValCodagent) && (_agent.isEmptyModel || _agent.klass.QPrimaryKey != ValCodagent))))
-					_agent = Models.Agent.Find(ValCodagent, m_userContext, Identifier, _fieldsToSerialize);
-				_agent ??= new Models.Agent(m_userContext, true, _fieldsToSerialize);
-				return _agent;
-			}
-			set { _agent = value; }
-		}
-
 		[DisplayName("Player's Age")]
 		/// <summary>Field : "Player's Age" Tipo: "N" Formula: + "Year([Today])- Year([PLAYR->BIRTHDAT])"</summary>
 		[ShouldSerialize("Playr.ValAge")]
@@ -111,6 +91,26 @@ namespace GenioMVC.Models
 			set { _cntry = value; }
 		}
 
+		[DisplayName("fk_agente")]
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
+		[ShouldSerialize("Playr.ValCodagent")]
+		public string ValCodagent { get { return klass.ValCodagent; } set { klass.ValCodagent = value; } }
+
+		private Agent _agent;
+		[DisplayName("Agent")]
+		[ShouldSerialize("Agent")]
+		public virtual Agent Agent
+		{
+			get
+			{
+				if (!isEmptyModel && (_agent == null || (!string.IsNullOrEmpty(ValCodagent) && (_agent.isEmptyModel || _agent.klass.QPrimaryKey != ValCodagent))))
+					_agent = Models.Agent.Find(ValCodagent, m_userContext, Identifier, _fieldsToSerialize);
+				_agent ??= new Models.Agent(m_userContext, true, _fieldsToSerialize);
+				return _agent;
+			}
+			set { _agent = value; }
+		}
+
 		[DisplayName("ZZSTATE")]
 		[ShouldSerialize("Playr.ValZzstate")]
 		/// <summary>Field: "ZZSTATE", Type: "INT", Formula: ""</summary>
@@ -142,13 +142,13 @@ namespace GenioMVC.Models
 			{
 				switch (Qfield.Area)
 				{
-					case "agent":
-						_agent ??= new Agent(m_userContext, true, _fieldsToSerialize);
-						_agent.klass.insertNameValueField(Qfield.FullName, Qfield.Value);
-						break;
 					case "cntry":
 						_cntry ??= new Cntry(m_userContext, true, _fieldsToSerialize);
 						_cntry.klass.insertNameValueField(Qfield.FullName, Qfield.Value);
+						break;
+					case "agent":
+						_agent ??= new Agent(m_userContext, true, _fieldsToSerialize);
+						_agent.klass.insertNameValueField(Qfield.FullName, Qfield.Value);
 						break;
 					default:
 						break;

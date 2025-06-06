@@ -87,8 +87,8 @@ namespace GenioMVC.Models
 			set { _club = value; }
 		}
 
-		[DisplayName("FK_Agent")]
-		/// <summary>Field : "FK_Agent" Tipo: "CE" Formula:  ""</summary>
+		[DisplayName("fk_agente")]
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
 		[ShouldSerialize("Contr.ValCodagent")]
 		public string ValCodagent { get { return klass.ValCodagent; } set { klass.ValCodagent = value; } }
 

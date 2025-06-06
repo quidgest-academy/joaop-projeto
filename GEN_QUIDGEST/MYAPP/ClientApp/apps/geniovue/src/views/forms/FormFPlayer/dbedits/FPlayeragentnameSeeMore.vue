@@ -1,7 +1,7 @@
 ﻿<template>
 	<teleport
 		v-if="isReady"
-		to="#q-modal-see-more-f-cntrctplayrname-body">
+		to="#q-modal-see-more-f-playeragentname-body">
 		<q-row-container>
 			<q-table
 				v-bind="listCtrl"
@@ -39,10 +39,10 @@
 
 	import ViewModelBase from '@/mixins/viewModelBase.js'
 
-	const requiredTextResources = ['F_CNTRCTPLAYRNAME_____SeeMore', 'hardcoded', 'messages']
+	const requiredTextResources = ['F_PLAYERAGENTNAME_____SeeMore', 'hardcoded', 'messages']
 
 	export default {
-		name: 'FCntrctplayrnameSeeMore',
+		name: 'FPlayeragentnameSeeMore',
 
 		inheritAttrs: false,
 
@@ -87,18 +87,18 @@
 			return {
 				isReady: false,
 
-				componentOnLoadProc: asyncProcM.getProcListMonitor('F_CNTRCTPLAYRNAME_____SeeMore', false),
+				componentOnLoadProc: asyncProcM.getProcListMonitor('F_PLAYERAGENTNAME_____SeeMore', false),
 
 				interfaceMetadata: {
-					id: 'F_CNTRCTPLAYRNAME_____SeeMore', // Used for resources
+					id: 'F_PLAYERAGENTNAME_____SeeMore', // Used for resources
 					requiredTextResources
 				},
 
 				menuInfo: {
-					acronym: 'F_CNTRCTPLAYRNAME_____SeeMore',
-					name: 'F_CNTRCTPLAYRNAME_____SeeMore',
-					controller: 'CONTR',
-					action: 'F_CNTRCT_PlayrValName'
+					acronym: 'F_PLAYERAGENTNAME_____SeeMore',
+					name: 'F_PLAYERAGENTNAME_____SeeMore',
+					controller: 'PLAYR',
+					action: 'F_PLAYER_AgentValName'
 				},
 
 				listCtrl: new TableListControl(this.getListConfig(), this),
@@ -127,14 +127,14 @@
 			this.$eventHub.onMany(this.listCtrl.globalEvents, this.onTableDBDataChanged)
 
 			const modalProps = {
-				id: 'see-more-f-cntrctplayrname',
-				headerTitle: computed(() => this.Resources.PLAYERS11892),
+				id: 'see-more-f-playeragentname',
+				headerTitle: computed(() => this.Resources.AGENTES60642),
 				closeButtonEnable: true,
 				hideFooter: true,
 				dismissWithEsc: true,
 				dismissAction: this.close,
 				isActive: true,
-				returnElement: 'F_CNTRCTPLAYRNAME_____see-more_button'
+				returnElement: 'F_PLAYERAGENTNAME_____see-more_button'
 			}
 			this.setModal(modalProps)
 		},
@@ -146,7 +146,7 @@
 			this.listCtrl.destroy()
 			this.componentOnLoadProc.destroy()
 
-			removeModal('see-more-f-cntrctplayrname')
+			removeModal('see-more-f-playeragentname')
 		},
 
 		methods: {
@@ -194,36 +194,36 @@
 				const vm = this
 				const listProps = {
 					configuration: {
-						controller: 'CONTR',
-						action: 'F_cntrct_PlayrValName',
+						controller: 'PLAYR',
+						action: 'F_player_AgentValName',
 						hasDependencies: false,
-						isInCollapsible: true,
+						isInCollapsible: false,
 						columnsOriginal: [
 							new listColumnTypes.TextColumn({
 								order: 1,
-								name: 'ValName',
-								area: 'PLAYR',
-								field: 'NAME',
-								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
-								dataLength: 85,
-								scrollData: 85,
+								name: 'ValEmail',
+								area: 'AGENT',
+								field: 'EMAIL',
+								label: computed(() => this.Resources.AGENT_S_EMAIL56414),
+								dataLength: 50,
+								scrollData: 50,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.DateColumn({
+							new listColumnTypes.TextColumn({
 								order: 2,
-								name: 'ValBirthdat',
-								area: 'PLAYR',
-								field: 'BIRTHDAT',
-								label: computed(() => this.Resources.BIRTHDATE22743),
-								scrollData: 8,
-								dateTimeType: 'date',
+								name: 'ValPhone',
+								area: 'AGENT',
+								field: 'PHONE',
+								label: computed(() => this.Resources.AGENT_S_PHONE23147),
+								dataLength: 14,
+								scrollData: 14,
 							}, computed(() => vm.model), computed(() => vm.internalEvents)),
 						],
 						config: {
-							name: 'F_cntrct_PlayrValName',
+							name: 'F_player_AgentValName',
 							serverMode: true,
-							pkColumn: 'ValCodplayr',
-							tableAlias: 'PLAYR',
-							tableNamePlural: computed(() => this.Resources.PLAYERS11892),
+							pkColumn: 'ValCodagent',
+							tableAlias: 'AGENT',
+							tableNamePlural: computed(() => this.Resources.AGENTES60642),
 							viewManagement: '',
 							showLimitsInfo: true,
 							tableTitle: '',
@@ -251,15 +251,15 @@
 							},
 							formsDefinition: {
 							},
-							defaultSearchColumnName: 'ValName',
-							defaultSearchColumnNameOriginal: 'ValName',
+							defaultSearchColumnName: 'ValEmail',
+							defaultSearchColumnNameOriginal: 'ValEmail',
 							defaultColumnSorting: {
-								columnName: 'ValName',
+								columnName: '',
 								sortOrder: 'asc'
 							}
 						},
-						globalEvents: ['changed-AGENT', 'changed-PLAYR', 'changed-CNTRY'],
-						uuid: 'F_cntrct_F_cntrct_PlayrValName',
+						globalEvents: ['changed-AGENT'],
+						uuid: 'F_player_F_player_AgentValName',
 						allSelectedRows: 'false',
 						handlers: {
 							rowAction: vm.handleRowAction

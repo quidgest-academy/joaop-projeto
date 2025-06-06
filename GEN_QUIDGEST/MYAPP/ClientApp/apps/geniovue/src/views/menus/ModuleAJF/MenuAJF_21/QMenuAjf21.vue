@@ -383,7 +383,7 @@
 								defaultValue: ''
 							},
 						],
-						globalEvents: ['changed-PLAYR', 'changed-CNTRY', 'changed-AGENT'],
+						globalEvents: ['changed-AGENT', 'changed-PLAYR', 'changed-CNTRY'],
 						uuid: '2d3723f4-da2d-4f44-8217-12f42ba20e02',
 						allSelectedRows: 'false',
 						headerLevel: 1,

@@ -18,6 +18,11 @@ public class F_clubForm : Form
 	public LookupControl CntryCountry => new LookupControl(driver, ContainerLocator, "container-F_CLUB__CNTRYCOUNTRY_");
 	public SeeMorePage CntryCountrySeeMorePage => new SeeMorePage(driver, "F_CLUB", "F_CLUB__CNTRYCOUNTRY_");
 
+	/// <summary>
+	/// Players under Contract
+	/// </summary>
+	public ListControl PseudField001 => new ListControl(driver, ContainerLocator, "#F_CLUB__PSEUDFIELD001");
+
 	public F_clubForm(IWebDriver driver, FORM_MODE mode, By? containerLocator = null)
 		: base(driver, mode, "F_CLUB", containerLocator: containerLocator) { }
 }

@@ -462,16 +462,16 @@ namespace GenioMVC.Controllers
 			return JsonOK(model);
 		}
 
-		public class F_player_ValAgtinfoModel : RequestLookupModel
+		public class F_player_AgentValNameModel : RequestLookupModel
 		{
 			public F_player_ViewModel Model { get; set; }
 		}
 
 		//
-		// GET: /Playr/F_player_ValAgtinfo
-		// POST: /Playr/F_player_ValAgtinfo
-		[ActionName("F_player_ValAgtinfo")]
-		public ActionResult F_player_ValAgtinfo([FromBody] F_player_ValAgtinfoModel requestModel)
+		// GET: /Playr/F_player_AgentValName
+		// POST: /Playr/F_player_AgentValName
+		[ActionName("F_player_AgentValName")]
+		public ActionResult F_player_AgentValName([FromBody] F_player_AgentValNameModel requestModel)
 		{
 			var queryParams = requestModel.QueryParams;
 
@@ -495,10 +495,12 @@ namespace GenioMVC.Controllers
 					requestValues.Add(kv.Key, kv.Value);
 			}
 
+			IsStateReadonly = true;
+
 			Models.Playr parentCtx = requestModel.Model == null ? null : new(UserContext.Current);
 			requestModel.Model?.Init(UserContext.Current);
 			requestModel.Model?.MapToModel(parentCtx);
-			F_player_ValAgtinfo_ViewModel model = new(UserContext.Current, parentCtx);
+			F_player_AgentValName_ViewModel model = new(UserContext.Current, parentCtx);
 
 			// Table configuration load options
 			CSGenio.framework.TableConfiguration.TableConfigurationLoadOptions tableConfigOptions = new CSGenio.framework.TableConfiguration.TableConfigurationLoadOptions();
@@ -526,23 +528,6 @@ namespace GenioMVC.Controllers
 			tableConfig.SelectedRows = requestModel.SelectedRows;
 
 			model.setModes(Request.Query["m"].ToString());
-			// Verificar se o user clicou to exportar os dados da Qlisting
-			if (requestValues["ExportList"] != null && Convert.ToBoolean(requestValues["ExportList"]) && requestValues["ExportType"] != null)
-			{
-				string file = "F_player_ValAgtinfo_" + DateTime.Now.ToString("ddMMyyyyhhmmss") + "." + requestValues["ExportType"];
-				ListingMVC<CSGenioAagent> listing = null;
-				CriteriaSet conditions = null;
-				List<CSGenio.framework.Exports.QColumn> columns = null;
-				model.LoadToExport(out listing, out conditions, out columns, tableConfig, requestValues, Request.IsAjaxRequest());
-				byte[] fileBytes = null;
-
-// USE /[MANUAL AJF OVERRQEXPORT F_PLAYER_PSEUDAGTINFO]/
-				fileBytes = new CSGenio.framework.Exports(UserContext.Current.User).ExportList(listing, conditions, columns, requestValues["ExportType"], Resources.Resources.AGENT_INFO01863);
-
-				QCache.Instance.ExportFiles.Put(file, fileBytes);
-				return Json(GetJsonForDownloadExportFile(file, requestValues["ExportType"]));
-			}
-
 			model.Load(tableConfig, requestValues, Request.IsAjaxRequest());
 
 			return JsonOK(model);

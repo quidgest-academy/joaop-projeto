@@ -88,6 +88,14 @@ namespace GenioMVC.Controllers
 							result = model.TableCntryCountry;
 						}
 						break;
+					case "F_PLAYERAGENTNAME____":	// Field (DB)
+						{
+							var model = new F_player_ViewModel(UserContext.Current) { editable = false };
+							model.MapFromModel(row);
+							model.Load_F_playeragentname____(qs);
+							result = model.TableAgentName;
+						}
+						break;
 					default:
 						break;
 				}
@@ -123,6 +131,9 @@ namespace GenioMVC.Controllers
 				{
 					case "F_PLAYERCNTRYCOUNTRY_":	// Field (DB)
 						values = new F_player_ViewModel(UserContext.Current).GetDependant_F_playerTableCntryCountry(Selected);
+						break;
+					case "F_PLAYERAGENTNAME____":	// Field (DB)
+						values = new F_player_ViewModel(UserContext.Current).GetDependant_F_playerTableAgentName(Selected);
 						break;
 					default: break;
 				}

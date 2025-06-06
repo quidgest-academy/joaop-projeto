@@ -17,20 +17,20 @@ using Quidgest.Persistence.GenericQuery;
 
 namespace GenioMVC.ViewModels.Playr
 {
-	public class F_player_ValAgtinfo_ViewModel : MenuListViewModel<Models.Agent>
+	public class F_player_AgentValName_ViewModel : MenuListViewModel<Models.Agent>
 	{
 		/// <summary>
 		/// Gets or sets the object that represents the table and its elements.
 		/// </summary>
 		[JsonPropertyName("Table")]
-		public TablePartial<F_player_ValAgtinfo_RowViewModel> Menu { get; set; }
+		public TablePartial<F_player_AgentValName_RowViewModel> Menu { get; set; }
 
 		/// <inheritdoc/>
 		[JsonIgnore]
 		public override string TableAlias => "agent";
 
 		/// <inheritdoc/>
-		public override string Uuid => "F_player_ValAgtinfo";
+		public override string Uuid => "F_player_AgentValName";
 
 		/// <inheritdoc/>
 		protected override string[] FieldsToSerialize => _fieldsToSerialize;
@@ -87,7 +87,7 @@ namespace GenioMVC.ViewModels.Playr
 
 		public override CriteriaSet GetCustomizedStaticLimits(CriteriaSet crs)
 		{
-// USE /[MANUAL AJF LIST_LIMITS F_PLAYER_PSEUDAGTINFO]/
+// USE /[MANUAL AJF LIST_LIMITS F_PLAYER_AGENTNAME]/
 
 			return crs;
 		}
@@ -101,23 +101,23 @@ namespace GenioMVC.ViewModels.Playr
 		/// FOR DESERIALIZATION ONLY
 		/// </summary>
 		[Obsolete("For deserialization only")]
-		public F_player_ValAgtinfo_ViewModel() : base(null!) { }
+		public F_player_AgentValName_ViewModel() : base(null!) { }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="F_player_ValAgtinfo_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="F_player_AgentValName_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
-		public F_player_ValAgtinfo_ViewModel(UserContext userContext) : base(userContext)
+		public F_player_AgentValName_ViewModel(UserContext userContext) : base(userContext)
 		{
 			ValCodplayr = userContext.CurrentNavigation.CurrentLevel.GetEntry("playr")?.ToString();
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="F_player_ValAgtinfo_ViewModel" /> class.
+		/// Initializes a new instance of the <see cref="F_player_AgentValName_ViewModel" /> class.
 		/// </summary>
 		/// <param name="userContext">The current user request context</param>
 		/// <param name="parentCtx">The context of the parent</param>
-		public F_player_ValAgtinfo_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
+		public F_player_AgentValName_ViewModel(UserContext userContext, Models.ModelBase parentCtx) : this(userContext)
 		{
 			ParentCtx = parentCtx;
 		}
@@ -127,11 +127,8 @@ namespace GenioMVC.ViewModels.Playr
 		{
 			var columns = new List<Exports.QColumn>()
 			{
-				new Exports.QColumn(CSGenioAagent.FldName, FieldType.TEXT, Resources.Resources.AGENT_S_NAME23140, 85, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldPhone, FieldType.TEXT, Resources.Resources.AGENT_S_PHONE23147, 14, 0, true),
 				new Exports.QColumn(CSGenioAagent.FldEmail, FieldType.TEXT, Resources.Resources.AGENT_S_EMAIL56414, 50, 0, true),
-				new Exports.QColumn(CSGenioAagent.FldPerc_com, FieldType.NUMERIC, Resources.Resources.PERCENTAGE_OF_THE_CO01872, 4, 2, true),
-				new Exports.QColumn(CSGenioAagent.FldTotcomis, FieldType.NUMERIC, Resources.Resources.TOTAL_EARN_THROUGH_C21845, 10, 0, true),
+				new Exports.QColumn(CSGenioAagent.FldPhone, FieldType.TEXT, Resources.Resources.AGENT_S_PHONE23147, 14, 0, true),
 			};
 
 			columns.RemoveAll(item => item == null);
@@ -180,7 +177,7 @@ namespace GenioMVC.ViewModels.Playr
 
 
 			if (Menu == null)
-				Menu = new TablePartial<F_player_ValAgtinfo_RowViewModel>();
+				Menu = new TablePartial<F_player_AgentValName_RowViewModel>();
 			// Set table name (used in getting searchable column names)
 			Menu.TableName = TableAlias;
 
@@ -202,7 +199,7 @@ namespace GenioMVC.ViewModels.Playr
 			if (isToExport)
 			{
 				// EPH
-				crs = Models.Agent.AddEPH<CSGenioAagent>(ref u, crs, "IBL_F_PLAYERPSEUDAGTINFO_");
+				crs = Models.Agent.AddEPH<CSGenioAagent>(ref u, crs, "IBL_F_PLAYERAGENTNAME____");
 
 				// Export only records with ZZState == 0
 				crs.Equal(CSGenioAagent.FldZzstate, 0);
@@ -211,16 +208,14 @@ namespace GenioMVC.ViewModels.Playr
 			}
 
 			// Limitation by Zzstate
-			if (!Navigation.checkFormMode("AGENT", FormMode.New)) // TODO: Check in Duplicate mode
-				crs = extendWithZzstateCondition(crs, CSGenioAagent.FldZzstate, null);
+			crs.Criterias.Add(new Criteria(new ColumnReference(CSGenioAagent.FldZzstate), CriteriaOperator.Equal, 0));
 
 
 			if (tableReload)
 			{
-				string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_agent");
-				Navigation.DestroyEntry("QMVC_POS_RECORD_agent");
+				string QMVC_POS_RECORD = requestValues["Q_POS_RECORD_agent"];
 				if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
-					crs.Equals(Models.Agent.AddEPH<CSGenioAagent>(ref u, null, "IBL_F_PLAYERPSEUDAGTINFO_"));
+					crs.Equals(Models.Agent.AddEPH<CSGenioAagent>(ref u, null, "IBL_F_PLAYERAGENTNAME____"));
 			}
 
 			return crs;
@@ -300,9 +295,9 @@ namespace GenioMVC.ViewModels.Playr
 			}, "ms", "Time to load the form."))
 			{
 				User u = m_userContext.User;
-				Menu = new TablePartial<F_player_ValAgtinfo_RowViewModel>();
+				Menu = new TablePartial<F_player_AgentValName_RowViewModel>();
 
-				CriteriaSet f_playerpseudagtinfo_Conds = CriteriaSet.And();
+				CriteriaSet f_playeragentname____Conds = CriteriaSet.And();
 				bool tableReload = true;
 
 				//FOR: MENU LIST SORTING
@@ -320,7 +315,7 @@ namespace GenioMVC.ViewModels.Playr
 				List<ColumnSort> sorts = GetRequestSorts(this.Menu, tableConfig.ColumnOrderBy, "agent", allSortOrders);
 
 
-				FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldName, CSGenioAagent.FldPhone, CSGenioAagent.FldEmail, CSGenioAagent.FldPerc_com, CSGenioAagent.FldTotcomis };
+				FieldRef[] fields = new FieldRef[] { CSGenioAagent.FldCodagent, CSGenioAagent.FldZzstate, CSGenioAagent.FldEmail, CSGenioAagent.FldPhone };
 
 
 				// Totalizers
@@ -332,7 +327,7 @@ namespace GenioMVC.ViewModels.Playr
 				{
 					firstVisibleColumn = tableConfig?.getFirstVisibleColumn(TableAlias);
 
-					firstVisibleColumn ??= new FieldRef("agent", "name");
+					firstVisibleColumn ??= new FieldRef("agent", "email");
 				}
 
 
@@ -346,7 +341,7 @@ namespace GenioMVC.ViewModels.Playr
 					Limit limit = new Limit();
 					limit.TipoLimite = LimitType.EPH;
 					CSGenioAagent model_limit_area = new CSGenioAagent(m_userContext.User);
-					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "IBL_F_PLAYERPSEUDAGTINFO_");
+					List<Limit> area_EPH_limits = EPH_Limit_Filler(ref limit, model_limit_area, "IBL_F_PLAYERAGENTNAME____");
 					if (area_EPH_limits.Count > 0)
 						this.tableLimits.AddRange(area_EPH_limits);
 				}
@@ -355,11 +350,11 @@ namespace GenioMVC.ViewModels.Playr
 				if (conditions == null)
 					conditions = CriteriaSet.And();
 
-				conditions.SubSets.Add(f_playerpseudagtinfo_Conds);
-				f_playerpseudagtinfo_Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
+				conditions.SubSets.Add(f_playeragentname____Conds);
+				f_playeragentname____Conds = BuildCriteriaSet(tableConfig, requestValues, out bool hasAllRequiredLimits, conditions, isToExport);
 				tableReload &= hasAllRequiredLimits;
 
-// USE /[MANUAL AJF OVERRQ F_PLAYER_PSEUDAGTINFO]/
+// USE /[MANUAL AJF OVERRQ F_PLAYER_AGENTNAME]/
 
 				bool distinct = false;
 
@@ -368,29 +363,28 @@ namespace GenioMVC.ViewModels.Playr
 					if (!tableReload)
 						return;
 
-					Qlisting = Models.ModelBase.Where<CSGenioAagent>(m_userContext, false, f_playerpseudagtinfo_Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_PLAYERPSEUDAGTINFO_", true, firstVisibleColumn: firstVisibleColumn);
+					Qlisting = Models.ModelBase.Where<CSGenioAagent>(m_userContext, false, f_playeragentname____Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_PLAYERAGENTNAME____", true, firstVisibleColumn: firstVisibleColumn);
 
-// USE /[MANUAL AJF OVERRQLSTEXP F_PLAYER_PSEUDAGTINFO]/
+// USE /[MANUAL AJF OVERRQLSTEXP F_PLAYER_AGENTNAME]/
 
 					return;
 				}
 
 				if (tableReload)
 				{
-// USE /[MANUAL AJF OVERRQLIST F_PLAYER_PSEUDAGTINFO]/
+// USE /[MANUAL AJF OVERRQLIST F_PLAYER_AGENTNAME]/
 
-					string QMVC_POS_RECORD = Navigation.GetStrValue("QMVC_POS_RECORD_agent");
-					Navigation.DestroyEntry("QMVC_POS_RECORD_agent");
+					string QMVC_POS_RECORD = requestValues["Q_POS_RECORD_agent"];
 					CriteriaSet m_PagingPosEPHs = null;
 
 					if (!string.IsNullOrEmpty(QMVC_POS_RECORD))
 					{
-						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAagent.GetInformation(), QMVC_POS_RECORD, sorts, f_playerpseudagtinfo_Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
+						var m_iCurPag = m_userContext.PersistentSupport.getPagingPos(CSGenioAagent.GetInformation(), QMVC_POS_RECORD, sorts, f_playeragentname____Conds, m_PagingPosEPHs, firstVisibleColumn: firstVisibleColumn);
 						if (m_iCurPag != -1)
 							pageNumber = ((m_iCurPag - 1) / numberListItems) + 1;
 					}
 
-					ListingMVC<CSGenioAagent> listing = Models.ModelBase.Where<CSGenioAagent>(m_userContext, distinct, f_playerpseudagtinfo_Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_PLAYERPSEUDAGTINFO_", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
+					ListingMVC<CSGenioAagent> listing = Models.ModelBase.Where<CSGenioAagent>(m_userContext, distinct, f_playeragentname____Conds, fields, (pageNumber - 1) * numberListItems, numberListItems, sorts, "IBL_F_PLAYERAGENTNAME____", true, false, QMVC_POS_RECORD, m_PagingPosEPHs, firstVisibleColumn, fieldsWithTotalizers, tableConfig.SelectedRows);
 
 					if (listing.CurrentPage > 0)
 						pageNumber = listing.CurrentPage;
@@ -402,14 +396,14 @@ namespace GenioMVC.ViewModels.Playr
 					//Set document field values to objects
 					SetDocumentFields(listing);
 
-					Menu.Elements = MapF_player_ValAgtinfo(listing);
+					Menu.Elements = MapF_player_AgentValName(listing);
 
-					Menu.Identifier = "IBL_F_PLAYERPSEUDAGTINFO_";
+					Menu.Identifier = "IBL_F_PLAYERAGENTNAME____";
 
 					// Last updated by [CJP] at [2015.02.03]
 					// Adds the identifier to each element
 					foreach (var element in Menu.Elements)
-						element.Identifier = "IBL_F_PLAYERPSEUDAGTINFO_";
+						element.Identifier = "IBL_F_PLAYERAGENTNAME____";
 
 					Menu.SetPagination(pageNumber, listing.NumRegs, listing.HasMore, listing.GetTotal, listing.TotalRecords);
 
@@ -429,9 +423,9 @@ namespace GenioMVC.ViewModels.Playr
 			}
 		}
 
-		private List<F_player_ValAgtinfo_RowViewModel> MapF_player_ValAgtinfo(ListingMVC<CSGenioAagent> Qlisting)
+		private List<F_player_AgentValName_RowViewModel> MapF_player_AgentValName(ListingMVC<CSGenioAagent> Qlisting)
 		{
-			List<F_player_ValAgtinfo_RowViewModel> Elements = [];
+			List<F_player_AgentValName_RowViewModel> Elements = [];
 			int i = 0;
 
 			if (Qlisting.Rows != null)
@@ -440,7 +434,7 @@ namespace GenioMVC.ViewModels.Playr
 				{
 					if (Qlisting.NumRegs > 0 && i >= Qlisting.NumRegs) // Copiado da versão antiga do RowsToViewModels
 						break;
-					Elements.Add(MapF_player_ValAgtinfo(row));
+					Elements.Add(MapF_player_AgentValName(row));
 					i++;
 				}
 			}
@@ -450,12 +444,12 @@ namespace GenioMVC.ViewModels.Playr
 
 		/// <summary>
 		/// Maps a single CSGenioAagent row
-		/// to a F_player_ValAgtinfo_RowViewModel object.
+		/// to a F_player_AgentValName_RowViewModel object.
 		/// </summary>
 		/// <param name="row">The row.</param>
-		private F_player_ValAgtinfo_RowViewModel MapF_player_ValAgtinfo(CSGenioAagent row)
+		private F_player_AgentValName_RowViewModel MapF_player_AgentValName(CSGenioAagent row)
 		{
-			var model = new F_player_ValAgtinfo_RowViewModel(m_userContext, true, _fieldsToSerialize);
+			var model = new F_player_AgentValName_RowViewModel(m_userContext, true, _fieldsToSerialize);
 			if (row == null)
 				return model;
 
@@ -510,22 +504,19 @@ namespace GenioMVC.ViewModels.Playr
 
 		#region Custom code
 
-// USE /[MANUAL AJF VIEWMODEL_CUSTOM F_PLAYER_VALAGTINFO]/
+// USE /[MANUAL AJF VIEWMODEL_CUSTOM F_PLAYER_AGENTVALNAME]/
 
 		#endregion
 
 		private static readonly string[] _fieldsToSerialize =
 		[
-			"Agent", "Agent.ValCodagent", "Agent.ValZzstate", "Agent.ValName", "Agent.ValPhone", "Agent.ValEmail", "Agent.ValPerc_com", "Agent.ValTotcomis"
+			"Agent", "Agent.ValCodagent", "Agent.ValZzstate", "Agent.ValEmail", "Agent.ValPhone"
 		];
 
 		private static readonly List<TableSearchColumn> _searchableColumns =
 		[
-			new TableSearchColumn("ValName", CSGenioAagent.FldName, typeof(string)),
-			new TableSearchColumn("ValPhone", CSGenioAagent.FldPhone, typeof(string)),
 			new TableSearchColumn("ValEmail", CSGenioAagent.FldEmail, typeof(string), defaultSearch : true),
-			new TableSearchColumn("ValPerc_com", CSGenioAagent.FldPerc_com, typeof(decimal?)),
-			new TableSearchColumn("ValTotcomis", CSGenioAagent.FldTotcomis, typeof(decimal?)),
+			new TableSearchColumn("ValPhone", CSGenioAagent.FldPhone, typeof(string)),
 		];
 	}
 }

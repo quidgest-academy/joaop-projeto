@@ -129,6 +129,21 @@
 						</base-input-structure>
 					</q-control-wrapper>
 				</q-row-container>
+				<q-row-container
+					v-show="controls.F_CLUB__PSEUDFIELD001.isVisible"
+					is-large>
+					<q-control-wrapper
+						v-show="controls.F_CLUB__PSEUDFIELD001.isVisible"
+						class="row-line-group">
+						<q-table
+							v-show="controls.F_CLUB__PSEUDFIELD001.isVisible"
+							v-bind="controls.F_CLUB__PSEUDFIELD001"
+							v-on="controls.F_CLUB__PSEUDFIELD001.handlers" />
+						<q-table-extra-extension
+							:list-ctrl="controls.F_CLUB__PSEUDFIELD001"
+							v-on="controls.F_CLUB__PSEUDFIELD001.handlers" />
+					</q-control-wrapper>
+				</q-row-container>
 			</template>
 		</div>
 	</teleport>
@@ -512,6 +527,205 @@
 						controlLimits: [
 						],
 					}, this),
+					F_CLUB__PSEUDFIELD001: new fieldControlClass.TableListControl({
+						id: 'F_CLUB__PSEUDFIELD001',
+						name: 'FIELD001',
+						size: 'block',
+						label: computed(() => this.Resources.PLAYERS_UNDER_CONTRA38805),
+						placeholder: '',
+						labelPosition: computed(() => this.labelAlignment.topleft),
+						controller: 'CLUB',
+						action: 'F_club_ValField001',
+						hasDependencies: false,
+						isInCollapsible: false,
+						columnsOriginal: [
+							new listColumnTypes.DateColumn({
+								order: 1,
+								name: 'ValStartdat',
+								area: 'CONTR',
+								field: 'STARTDAT',
+								label: computed(() => this.Resources.STARTING_DATE47975),
+								scrollData: 8,
+								dateTimeType: 'date',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.TextColumn({
+								order: 2,
+								name: 'Playr.ValName',
+								area: 'PLAYR',
+								field: 'NAME',
+								label: computed(() => this.Resources.NAME_OF_THE_PLAYER61428),
+								dataLength: 85,
+								scrollData: 30,
+								pkColumn: 'ValCodplayr',
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+							new listColumnTypes.CurrencyColumn({
+								order: 3,
+								name: 'ValSalary',
+								area: 'CONTR',
+								field: 'SALARY',
+								label: computed(() => this.Resources.SALARY_OF_THE_PLAYER18198),
+								scrollData: 8,
+								maxDigits: 5,
+								decimalPlaces: 2,
+							}, computed(() => vm.model), computed(() => vm.internalEvents)),
+						],
+						config: {
+							name: 'ValField001',
+							serverMode: true,
+							pkColumn: 'ValCodcontr',
+							tableAlias: 'CONTR',
+							tableNamePlural: computed(() => this.Resources.CONTRACTS23801),
+							viewManagement: '',
+							showLimitsInfo: true,
+							tableTitle: computed(() => this.Resources.PLAYERS_UNDER_CONTRA38805),
+							showAlternatePagination: true,
+							permissions: {
+							},
+							searchBarConfig: {
+								visibility: false,
+								searchOnPressEnter: true
+							},
+							filtersVisible: false,
+							allowColumnFilters: false,
+							allowColumnSort: true,
+							crudActions: [
+								{
+									id: 'show',
+									name: 'show',
+									title: computed(() => this.Resources.CONSULTAR57388),
+									icon: {
+										icon: 'view'
+									},
+									isInReadOnly: true,
+									params: {
+										canExecuteAction: vm.applyChanges,
+										action: vm.openFormAction,
+										type: 'form',
+										formName: 'F_CNTRCT',
+										mode: 'SHOW',
+										isControlled: true
+									}
+								},
+								{
+									id: 'edit',
+									name: 'edit',
+									title: computed(() => this.Resources.EDITAR11616),
+									icon: {
+										icon: 'pencil'
+									},
+									isInReadOnly: false,
+									params: {
+										canExecuteAction: vm.applyChanges,
+										action: vm.openFormAction,
+										type: 'form',
+										formName: 'F_CNTRCT',
+										mode: 'EDIT',
+										isControlled: true
+									}
+								},
+								{
+									id: 'duplicate',
+									name: 'duplicate',
+									title: computed(() => this.Resources.DUPLICAR09748),
+									icon: {
+										icon: 'duplicate'
+									},
+									isInReadOnly: false,
+									params: {
+										canExecuteAction: vm.applyChanges,
+										action: vm.openFormAction,
+										type: 'form',
+										formName: 'F_CNTRCT',
+										mode: 'DUPLICATE',
+										isControlled: true
+									}
+								},
+								{
+									id: 'delete',
+									name: 'delete',
+									title: computed(() => this.Resources.ELIMINAR21155),
+									icon: {
+										icon: 'delete'
+									},
+									isInReadOnly: false,
+									params: {
+										canExecuteAction: vm.applyChanges,
+										action: vm.openFormAction,
+										type: 'form',
+										formName: 'F_CNTRCT',
+										mode: 'DELETE',
+										isControlled: true
+									}
+								}
+							],
+							generalActions: [
+								{
+									id: 'insert',
+									name: 'insert',
+									title: computed(() => this.Resources.INSERIR43365),
+									icon: {
+										icon: 'add'
+									},
+									isInReadOnly: false,
+									params: {
+										canExecuteAction: vm.applyChanges,
+										action: vm.openFormAction,
+										type: 'form',
+										formName: 'F_CNTRCT',
+										mode: 'NEW',
+										repeatInsertion: false,
+										isControlled: true
+									}
+								},
+							],
+							generalCustomActions: [
+							],
+							groupActions: [
+							],
+							customActions: [
+							],
+							MCActions: [
+							],
+							rowClickAction: {
+								id: 'RCA__F_CNTRCT',
+								name: '_F_CNTRCT',
+								title: '',
+								isInReadOnly: true,
+								params: {
+									isRoute: true,
+									canExecuteAction: vm.applyChanges,
+									action: vm.openFormAction,
+									type: 'form',
+									formName: 'F_CNTRCT',
+									mode: 'SHOW',
+									isControlled: true
+								}
+							},
+							formsDefinition: {
+								'F_CNTRCT': {
+									fnKeySelector: (row) => row.Fields.ValCodcontr,
+									isPopup: false
+								},
+							},
+							defaultSearchColumnName: 'Playr.ValName',
+							defaultSearchColumnNameOriginal: 'Playr.ValName',
+							defaultColumnSorting: {
+								columnName: '',
+								sortOrder: 'asc'
+							}
+						},
+						globalEvents: ['changed-CONTR', 'changed-AGENT', 'changed-PLAYR', 'changed-CLUB'],
+						uuid: 'F_club_ValField001',
+						allSelectedRows: 'false',
+						controlLimits: [
+							{
+								identifier: ['id', 'club'],
+								dependencyEvents: ['fieldChange:club.codclub'],
+								dependencyField: 'CLUB.CODCLUB',
+								fnValueSelector: (model) => model.ValCodclub.value
+							},
+						],
+					}, this),
 				},
 
 				model: new FormViewModel(this, {
@@ -525,6 +739,7 @@
 				]),
 
 				tableFields: readonly([
+					'F_CLUB__PSEUDFIELD001',
 				]),
 
 				timelineFields: readonly([

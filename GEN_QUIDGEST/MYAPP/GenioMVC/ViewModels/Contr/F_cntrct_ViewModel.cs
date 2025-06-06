@@ -68,27 +68,27 @@ namespace GenioMVC.ViewModels.Contr
 		[ValidateSetAccess]
 		public TableDBEdit<GenioMVC.Models.Playr> TablePlayrName { get; set; }
 		/// <summary>
+		/// Title: "Agent´s Name" | Type: "C"
+		/// </summary>
+		[ValidateSetAccess]
+		public string AgentValName 
+		{
+			get
+			{
+				return funcAgentValName != null ? funcAgentValName() : _auxAgentValName;
+			}
+			set { funcAgentValName = () => value; }
+		}
+
+		[JsonIgnore]
+		public Func<string> funcAgentValName { get; set; }
+
+		private string _auxAgentValName { get; set; }
+		/// <summary>
 		/// Title: "Club's Name" | Type: "C"
 		/// </summary>
 		[ValidateSetAccess]
 		public TableDBEdit<GenioMVC.Models.Club> TableClubName { get; set; }
-		/// <summary>
-		/// Title: "Agent's Email" | Type: "C"
-		/// </summary>
-		[ValidateSetAccess]
-		public string AgentValEmail 
-		{
-			get
-			{
-				return funcAgentValEmail != null ? funcAgentValEmail() : _auxAgentValEmail;
-			}
-			set { funcAgentValEmail = () => value; }
-		}
-
-		[JsonIgnore]
-		public Func<string> funcAgentValEmail { get; set; }
-
-		private string _auxAgentValEmail { get; set; }
 		/// <summary>
 		/// Title: "Starting Date" | Type: "D"
 		/// </summary>
@@ -255,7 +255,7 @@ namespace GenioMVC.ViewModels.Contr
 				ValCodclub = ViewModelConversion.ToString(m.ValCodclub);
 				ValCodplayr = ViewModelConversion.ToString(m.ValCodplayr);
 				funcAgentValPerc_com = () => ViewModelConversion.ToNumeric(m.Agent.ValPerc_com);
-				funcAgentValEmail = () => ViewModelConversion.ToString(m.Agent.ValEmail);
+				funcAgentValName = () => ViewModelConversion.ToString(m.Agent.ValName);
 				ValStartdat = ViewModelConversion.ToDateTime(m.ValStartdat);
 				ValFindate = ViewModelConversion.ToDateTime(m.ValFindate);
 				ValCtrdurat = ViewModelConversion.ToNumeric(m.ValCtrdurat);
@@ -465,7 +465,7 @@ namespace GenioMVC.ViewModels.Contr
 		{
 			CrudViewModelFieldValidator validator = new(m_userContext.User.Language);
 
-			validator.StringLength("AgentValEmail", Resources.Resources.AGENT_S_EMAIL56414, AgentValEmail, 50);
+			validator.StringLength("AgentValName", Resources.Resources.AGENT_S_NAME23140, AgentValName, 85);
 
 			validator.Required("ValStartdat", Resources.Resources.STARTING_DATE47975, ViewModelConversion.ToDateTime(ValStartdat), FieldType.DATE.GetFormatting());
 
@@ -899,7 +899,7 @@ namespace GenioMVC.ViewModels.Contr
 				"contr.codclub" => ViewModelConversion.ToString(modelValue),
 				"contr.codplayr" => ViewModelConversion.ToString(modelValue),
 				"agent.perc_com" => ViewModelConversion.ToNumeric(modelValue),
-				"agent.email" => ViewModelConversion.ToString(modelValue),
+				"agent.name" => ViewModelConversion.ToString(modelValue),
 				"contr.startdat" => ViewModelConversion.ToDateTime(modelValue),
 				"contr.findate" => ViewModelConversion.ToDateTime(modelValue),
 				"contr.ctrdurat" => ViewModelConversion.ToNumeric(modelValue),

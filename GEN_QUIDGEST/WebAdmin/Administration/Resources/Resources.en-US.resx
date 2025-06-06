@@ -195,6 +195,9 @@
   <data name="END_TIME53495" xml:space="preserve">
     <value>End time</value>
   </data>
+  <data name="FK_AGENTE28643" xml:space="preserve">
+    <value>fk_agente</value>
+  </data>
   <data name="COUNTRY64133" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -515,6 +518,9 @@
   </data>
   <data name="NO57340" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="PLAYERS_UNDER_CONTRA38805" xml:space="preserve">
+    <value>Players under Contract</value>
   </data>
   <data name="UNIDADE_ORGANICA38383" xml:space="preserve">
     <value>Unidade orgânica</value>

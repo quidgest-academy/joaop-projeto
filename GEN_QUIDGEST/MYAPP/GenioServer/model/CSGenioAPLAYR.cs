@@ -94,16 +94,6 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
-			Qfield = new Field(info.Alias, "codagent", FieldType.KEY_INT);
-			Qfield.FieldDescription = "FK_Agente";
-			Qfield.FieldSize =  8;
-			Qfield.MQueue = false;
-			Qfield.CavDesignation = "FK_AGENTE54597";
-
-			Qfield.Dupmsg = "";
-			info.RegisterFieldDB(Qfield);
-
-			//- - - - - - - - - - - - - - - - - - -
 			Qfield = new Field(info.Alias, "age", FieldType.NUMERIC);
 			Qfield.FieldDescription = "Player's Age";
 			Qfield.FieldSize =  3;
@@ -154,6 +144,16 @@ namespace CSGenio.business
 			info.RegisterFieldDB(Qfield);
 
 			//- - - - - - - - - - - - - - - - - - -
+			Qfield = new Field(info.Alias, "codagent", FieldType.KEY_INT);
+			Qfield.FieldDescription = "fk_agente";
+			Qfield.FieldSize =  8;
+			Qfield.MQueue = false;
+			Qfield.CavDesignation = "FK_AGENTE28643";
+
+			Qfield.Dupmsg = "";
+			info.RegisterFieldDB(Qfield);
+
+			//- - - - - - - - - - - - - - - - - - -
 			Qfield = new Field(info.Alias, "zzstate", FieldType.INTEGER);
 			Qfield.FieldDescription = "Estado da ficha";
 			info.RegisterFieldDB(Qfield);
@@ -185,8 +185,8 @@ namespace CSGenio.business
 			// Pathways
 			//------------------------------
 			info.Pathways = new Dictionary<string, string>(2);
-			info.Pathways.Add("cntry","cntry");
 			info.Pathways.Add("agent","agent");
+			info.Pathways.Add("cntry","cntry");
 		}
 
 		/// <summary>
@@ -365,17 +365,6 @@ namespace CSGenio.business
 			set { insertNameValueField(FldPosic, value); }
 		}
 
-		/// <summary>Field : "FK_Agente" Tipo: "CE" Formula:  ""</summary>
-		public static FieldRef FldCodagent { get { return m_fldCodagent; } }
-		private static FieldRef m_fldCodagent = new FieldRef("playr", "codagent");
-
-		/// <summary>Field : "FK_Agente" Tipo: "CE" Formula:  ""</summary>
-		public string ValCodagent
-		{
-			get { return (string)returnValueField(FldCodagent); }
-			set { insertNameValueField(FldCodagent, value); }
-		}
-
 		/// <summary>Field : "Player's Age" Tipo: "N" Formula: + "Year([Today])- Year([PLAYR->BIRTHDAT])"</summary>
 		public static FieldRef FldAge { get { return m_fldAge; } }
 		private static FieldRef m_fldAge = new FieldRef("playr", "age");
@@ -418,6 +407,17 @@ namespace CSGenio.business
 		{
 			get { return (string)returnValueField(FldCodcntry); }
 			set { insertNameValueField(FldCodcntry, value); }
+		}
+
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
+		public static FieldRef FldCodagent { get { return m_fldCodagent; } }
+		private static FieldRef m_fldCodagent = new FieldRef("playr", "codagent");
+
+		/// <summary>Field : "fk_agente" Tipo: "CE" Formula:  ""</summary>
+		public string ValCodagent
+		{
+			get { return (string)returnValueField(FldCodagent); }
+			set { insertNameValueField(FldCodagent, value); }
 		}
 
 		/// <summary>Field : "ZZSTATE" Type: "INT" Formula:  ""</summary>

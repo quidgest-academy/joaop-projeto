@@ -52,18 +52,6 @@ export default class ViewModel extends FormViewModelBase
 		}).cloneFrom(values?.ValCodplayr))
 		watch(() => this.ValCodplayr.value, (newValue, oldValue) => this.onUpdate('playr.codplayr', this.ValCodplayr, newValue, oldValue))
 
-		/** The hidden foreign keys. */
-		this.ValCodagent = reactive(new modelFieldType.ForeignKey({
-			id: 'ValCodagent',
-			originId: 'ValCodagent',
-			area: 'PLAYR',
-			field: 'CODAGENT',
-			relatedArea: 'AGENT',
-			isFixed: true,
-			description: computed(() => this.Resources.FK_AGENTE54597),
-		}).cloneFrom(values?.ValCodagent))
-		watch(() => this.ValCodagent.value, (newValue, oldValue) => this.onUpdate('playr.codagent', this.ValCodagent, newValue, oldValue))
-
 		/** The used foreign keys. */
 		this.ValCodcntry = reactive(new modelFieldType.ForeignKey({
 			id: 'ValCodcntry',
@@ -74,6 +62,16 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.FK_COUNTRY04348),
 		}).cloneFrom(values?.ValCodcntry))
 		watch(() => this.ValCodcntry.value, (newValue, oldValue) => this.onUpdate('playr.codcntry', this.ValCodcntry, newValue, oldValue))
+
+		this.ValCodagent = reactive(new modelFieldType.ForeignKey({
+			id: 'ValCodagent',
+			originId: 'ValCodagent',
+			area: 'PLAYR',
+			field: 'CODAGENT',
+			relatedArea: 'AGENT',
+			description: computed(() => this.Resources.FK_AGENTE28643),
+		}).cloneFrom(values?.ValCodagent))
+		watch(() => this.ValCodagent.value, (newValue, oldValue) => this.onUpdate('playr.codagent', this.ValCodagent, newValue, oldValue))
 
 		/** The remaining form fields. */
 		this.ValUndctc = reactive(new modelFieldType.Number({
@@ -161,6 +159,17 @@ export default class ViewModel extends FormViewModelBase
 			description: computed(() => this.Resources.POSITION54869),
 		}).cloneFrom(values?.ValPosic))
 		watch(() => this.ValPosic.value, (newValue, oldValue) => this.onUpdate('playr.posic', this.ValPosic, newValue, oldValue))
+
+		this.TableAgentName = reactive(new modelFieldType.String({
+			type: 'Lookup',
+			id: 'TableAgentName',
+			originId: 'ValName',
+			area: 'AGENT',
+			field: 'NAME',
+			maxLength: 85,
+			description: computed(() => this.Resources.AGENT_S_NAME23140),
+		}).cloneFrom(values?.TableAgentName))
+		watch(() => this.TableAgentName.value, (newValue, oldValue) => this.onUpdate('agent.name', this.TableAgentName, newValue, oldValue))
 	}
 
 	/**

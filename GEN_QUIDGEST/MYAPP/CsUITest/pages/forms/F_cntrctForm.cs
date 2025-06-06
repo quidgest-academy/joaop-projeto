@@ -29,15 +29,15 @@ public class F_cntrctForm : Form
 	public SeeMorePage PlayrNameSeeMorePage => new SeeMorePage(driver, "F_CNTRCT", "F_CNTRCTPLAYRNAME____");
 
 	/// <summary>
+	/// Agent´s Name
+	/// </summary>
+	public IWebElement AgentName => throw new NotImplementedException();
+
+	/// <summary>
 	/// Club's Name
 	/// </summary>
 	public LookupControl ClubName => new LookupControl(driver, ContainerLocator, "container-F_CNTRCTCLUB_NAME____");
 	public SeeMorePage ClubNameSeeMorePage => new SeeMorePage(driver, "F_CNTRCT", "F_CNTRCTCLUB_NAME____");
-
-	/// <summary>
-	/// Agent's Email
-	/// </summary>
-	public IWebElement AgentEmail => throw new NotImplementedException();
 
 	/// <summary>
 	/// contract details

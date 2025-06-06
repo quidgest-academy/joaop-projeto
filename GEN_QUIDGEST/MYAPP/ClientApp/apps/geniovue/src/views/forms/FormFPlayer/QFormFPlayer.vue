@@ -110,7 +110,7 @@
 					</q-control-wrapper>
 				</q-row-container>
 				<q-row-container
-					v-show="controls.F_PLAYERPSEUDNEWGRP01.isVisible || controls.F_PLAYERPSEUDAGTINFO_.isVisible"
+					v-show="controls.F_PLAYERPSEUDNEWGRP01.isVisible || controls.F_PLAYERAGENTNAME____.isVisible"
 					is-large>
 					<q-control-wrapper
 						v-show="controls.F_PLAYERPSEUDNEWGRP01.isVisible"
@@ -236,15 +236,24 @@
 						</q-group-box-container>
 					</q-control-wrapper>
 					<q-control-wrapper
-						v-show="controls.F_PLAYERPSEUDAGTINFO_.isVisible"
+						v-show="controls.F_PLAYERAGENTNAME____.isVisible"
 						class="control-join-group">
-						<q-table
-							v-show="controls.F_PLAYERPSEUDAGTINFO_.isVisible"
-							v-bind="controls.F_PLAYERPSEUDAGTINFO_"
-							v-on="controls.F_PLAYERPSEUDAGTINFO_.handlers" />
-						<q-table-extra-extension
-							:list-ctrl="controls.F_PLAYERPSEUDAGTINFO_"
-							v-on="controls.F_PLAYERPSEUDAGTINFO_.handlers" />
+						<base-input-structure
+							class="i-text"
+							v-bind="controls.F_PLAYERAGENTNAME____"
+							v-on="controls.F_PLAYERAGENTNAME____.handlers"
+							:loading="controls.F_PLAYERAGENTNAME____.props.loading"
+							:reporting-mode-on="reportingModeCAV"
+							:suggestion-mode-on="suggestionModeOn">
+							<q-lookup
+								v-if="controls.F_PLAYERAGENTNAME____.isVisible"
+								v-bind="controls.F_PLAYERAGENTNAME____.props"
+								v-on="controls.F_PLAYERAGENTNAME____.handlers" />
+							<q-see-more-f-playeragentname
+								v-if="controls.F_PLAYERAGENTNAME____.seeMoreIsVisible"
+								v-bind="controls.F_PLAYERAGENTNAME____.seeMoreParams"
+								v-on="controls.F_PLAYERAGENTNAME____.handlers" />
+						</base-input-structure>
 					</q-control-wrapper>
 				</q-row-container>
 			</template>
@@ -318,6 +327,7 @@
 
 		components: {
 			QSeeMoreFPlayercntrycountry: defineAsyncComponent(() => import('@/views/forms/FormFPlayer/dbedits/FPlayercntrycountrySeeMore.vue')),
+			QSeeMoreFPlayeragentname: defineAsyncComponent(() => import('@/views/forms/FormFPlayer/dbedits/FPlayeragentnameSeeMore.vue')),
 		},
 
 		mixins: [
@@ -725,216 +735,32 @@
 						controlLimits: [
 						],
 					}, this),
-					F_PLAYERPSEUDAGTINFO_: new fieldControlClass.TableListControl({
-						id: 'F_PLAYERPSEUDAGTINFO_',
-						name: 'AGTINFO',
-						size: '',
-						label: computed(() => this.Resources.AGENT_INFO01863),
+					F_PLAYERAGENTNAME____: new fieldControlClass.LookupControl({
+						modelField: 'TableAgentName',
+						valueChangeEvent: 'fieldChange:agent.name',
+						id: 'F_PLAYERAGENTNAME____',
+						name: 'NAME',
+						size: 'xxlarge',
+						label: computed(() => this.Resources.AGENT_S_NAME23140),
 						placeholder: '',
 						labelPosition: computed(() => this.labelAlignment.topleft),
-						controller: 'PLAYR',
-						action: 'F_player_ValAgtinfo',
-						hasDependencies: false,
-						isInCollapsible: false,
-						columnsOriginal: [
-							new listColumnTypes.TextColumn({
-								order: 1,
-								name: 'ValName',
-								area: 'AGENT',
-								field: 'NAME',
-								label: computed(() => this.Resources.AGENT_S_NAME23140),
-								dataLength: 85,
-								scrollData: 85,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.TextColumn({
-								order: 2,
-								name: 'ValPhone',
-								area: 'AGENT',
-								field: 'PHONE',
-								label: computed(() => this.Resources.AGENT_S_PHONE23147),
-								dataLength: 14,
-								scrollData: 14,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.TextColumn({
-								order: 3,
-								name: 'ValEmail',
-								area: 'AGENT',
-								field: 'EMAIL',
-								label: computed(() => this.Resources.AGENT_S_EMAIL56414),
-								dataLength: 50,
-								scrollData: 50,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
-								order: 4,
-								name: 'ValPerc_com',
-								area: 'AGENT',
-								field: 'PERC_COM',
-								label: computed(() => this.Resources.PERCENTAGE_OF_THE_CO01872),
-								scrollData: 4,
-								maxDigits: 1,
-								decimalPlaces: 2,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-							new listColumnTypes.NumericColumn({
-								order: 5,
-								name: 'ValTotcomis',
-								area: 'AGENT',
-								field: 'TOTCOMIS',
-								label: computed(() => this.Resources.TOTAL_EARN_THROUGH_C21845),
-								scrollData: 10,
-								maxDigits: 10,
-								decimalPlaces: 0,
-							}, computed(() => vm.model), computed(() => vm.internalEvents)),
-						],
-						config: {
-							name: 'ValAgtinfo',
-							serverMode: true,
-							pkColumn: 'ValCodagent',
-							tableAlias: 'AGENT',
-							tableNamePlural: computed(() => this.Resources.AGENTES60642),
-							viewManagement: '',
-							showLimitsInfo: true,
-							tableTitle: computed(() => this.Resources.AGENT_INFO01863),
-							showAlternatePagination: true,
-							permissions: {
-							},
-							searchBarConfig: {
-								visibility: true,
-								searchOnPressEnter: true
-							},
-							filtersVisible: true,
-							allowColumnFilters: true,
-							allowColumnSort: true,
-							crudActions: [
-								{
-									id: 'show',
-									name: 'show',
-									title: computed(() => this.Resources.CONSULTAR57388),
-									icon: {
-										icon: 'view'
-									},
-									isInReadOnly: true,
-									params: {
-										action: vm.openFormAction,
-										type: 'form',
-										formName: 'F_AGENT',
-										mode: 'SHOW',
-										isControlled: true
-									}
-								},
-								{
-									id: 'edit',
-									name: 'edit',
-									title: computed(() => this.Resources.EDITAR11616),
-									icon: {
-										icon: 'pencil'
-									},
-									isInReadOnly: false,
-									params: {
-										action: vm.openFormAction,
-										type: 'form',
-										formName: 'F_AGENT',
-										mode: 'EDIT',
-										isControlled: true
-									}
-								},
-								{
-									id: 'duplicate',
-									name: 'duplicate',
-									title: computed(() => this.Resources.DUPLICAR09748),
-									icon: {
-										icon: 'duplicate'
-									},
-									isInReadOnly: false,
-									params: {
-										action: vm.openFormAction,
-										type: 'form',
-										formName: 'F_AGENT',
-										mode: 'DUPLICATE',
-										isControlled: true
-									}
-								},
-								{
-									id: 'delete',
-									name: 'delete',
-									title: computed(() => this.Resources.ELIMINAR21155),
-									icon: {
-										icon: 'delete'
-									},
-									isInReadOnly: false,
-									params: {
-										action: vm.openFormAction,
-										type: 'form',
-										formName: 'F_AGENT',
-										mode: 'DELETE',
-										isControlled: true
-									}
-								}
-							],
-							generalActions: [
-								{
-									id: 'insert',
-									name: 'insert',
-									title: computed(() => this.Resources.INSERIR43365),
-									icon: {
-										icon: 'add'
-									},
-									isInReadOnly: false,
-									params: {
-										action: vm.openFormAction,
-										type: 'form',
-										formName: 'F_AGENT',
-										mode: 'NEW',
-										repeatInsertion: false,
-										isControlled: true
-									}
-								},
-							],
-							generalCustomActions: [
-							],
-							groupActions: [
-							],
-							customActions: [
-							],
-							MCActions: [
-							],
-							rowClickAction: {
-								id: 'RCA__F_AGENT',
-								name: '_F_AGENT',
-								title: '',
-								isInReadOnly: true,
-								params: {
-									isRoute: true,
-									action: vm.openFormAction,
-									type: 'form',
-									formName: 'F_AGENT',
-									mode: 'SHOW',
-									isControlled: true
-								}
-							},
-							formsDefinition: {
-								'F_AGENT': {
-									fnKeySelector: (row) => row.Fields.ValCodagent,
-									isPopup: false
-								},
-							},
-							allowFileExport: true,
-							defaultSearchColumnName: 'ValEmail',
-							defaultSearchColumnNameOriginal: 'ValEmail',
-							defaultColumnSorting: {
-								columnName: '',
-								sortOrder: 'asc'
-							}
+						externalCallbacks: {
+							getModelField: vm.getModelField,
+							getModelFieldValue: vm.getModelFieldValue,
+							setModelFieldValue: vm.setModelFieldValue
 						},
-						globalEvents: ['changed-AGENT'],
-						uuid: 'F_player_ValAgtinfo',
-						allSelectedRows: 'false',
+						externalProperties: {
+							modelKeys: computed(() => vm.modelKeys)
+						},
+						lookupKeyModelField: {
+							name: 'ValCodagent',
+							dependencyEvent: 'fieldChange:playr.codagent'
+						},
+						dependentFields: () => ({
+							set 'agent.codagent'(value) { vm.model.ValCodagent.updateValue(value) },
+							set 'agent.name'(value) { vm.model.TableAgentName.updateValue(value) },
+						}),
 						controlLimits: [
-							{
-								identifier: ['id', 'playr'],
-								dependencyEvents: ['fieldChange:playr.codplayr'],
-								dependencyField: 'PLAYR.CODPLAYR',
-								fnValueSelector: (model) => model.ValCodplayr.value
-							},
 						],
 					}, this),
 				},
@@ -951,7 +777,6 @@
 				]),
 
 				tableFields: readonly([
-					'F_PLAYERPSEUDAGTINFO_',
 				]),
 
 				timelineFields: readonly([
@@ -961,6 +786,10 @@
 				 * The Data API for easy access to model variables.
 				 */
 				dataApi: {
+					Agent: {
+						get ValName() { return vm.model.TableAgentName.value },
+						set ValName(value) { vm.model.TableAgentName.updateValue(value) },
+					},
 					Cntry: {
 						get ValCountry() { return vm.model.TableCntryCountry.value },
 						set ValCountry(value) { vm.model.TableCntryCountry.updateValue(value) },
@@ -986,10 +815,10 @@
 					keys: {
 						/** The primary key of the PLAYR table */
 						get playr() { return vm.model.ValCodplayr },
-						/** The foreign key to the AGENT table */
-						get agent() { return vm.model.ValCodagent },
 						/** The foreign key to the CNTRY table */
 						get cntry() { return vm.model.ValCodcntry },
+						/** The foreign key to the AGENT table */
+						get agent() { return vm.model.ValCodagent },
 					},
 					get extraProperties() { return vm.model.extraProperties },
 				},
