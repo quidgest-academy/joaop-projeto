@@ -1494,6 +1494,15 @@ namespace GenioMVC.Resources
 		}
 
 		/// <summary>
+		///   Looks up a localized string similar to "This email address is already register. Please select another one"
+		/// </summary>
+		public static string THIS_EMAIL_ADDRESS_I05175 {
+			get {
+				return ResourceManager.GetString("THIS_EMAIL_ADDRESS_I05175", resourceCulture);
+			}
+		}
+
+		/// <summary>
 		///   Looks up a localized string similar to "Contracts"
 		/// </summary>
 		public static string CONTRACTS23801 {

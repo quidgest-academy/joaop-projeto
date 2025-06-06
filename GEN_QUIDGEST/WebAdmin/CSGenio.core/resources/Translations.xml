@@ -477,6 +477,9 @@
   <msg id="Email" code="EMAIL25170">
     <ENUS>Email</ENUS>
   </msg>
+  <msg id="This email address is already register. Please select another one" code="THIS_EMAIL_ADDRESS_I05175">
+    <ENUS>This email address is already register. Please select another one</ENUS>
+  </msg>
   <msg id="Contracts" code="CONTRACTS23801">
     <ENUS>Contracts</ENUS>
   </msg>

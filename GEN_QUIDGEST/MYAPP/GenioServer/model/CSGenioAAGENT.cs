@@ -82,7 +82,7 @@ namespace CSGenio.business
 			Qfield.CavDesignation = "AGENT_S_EMAIL56414";
 
             Qfield.NotNull = true;
-			Qfield.Dupmsg = "";
+			Qfield.Dupmsg = "This email address is already register. Please select another one";
             Qfield.NotDup = true;
 			Qfield.FillingRule = (rule) =>
 			{

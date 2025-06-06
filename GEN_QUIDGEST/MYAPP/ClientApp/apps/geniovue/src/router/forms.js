@@ -37,6 +37,17 @@ export default function getFormsRoutes()
 			}
 		},
 		{
+			path: '/:culture/:system/:module/form/F_CNTRY/:mode/:id?',
+			name: 'form-F_CNTRY',
+			props: route => propsConverter(route),
+			component: () => import('@/views/forms/FormFCntry/QFormFCntry.vue'),
+			meta: {
+				routeType: 'form',
+				baseArea: 'CNTRY',
+				humanKeyFields: ['ValCountry']
+			}
+		},
+		{
 			path: '/:culture/:system/:module/form/F_PLAYER/:mode/:id?',
 			name: 'form-F_PLAYER',
 			props: route => propsConverter(route),

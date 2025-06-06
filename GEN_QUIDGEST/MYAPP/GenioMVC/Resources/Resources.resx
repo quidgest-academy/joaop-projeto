@@ -594,6 +594,9 @@
 	<data name="EMAIL25170" xml:space="preserve">
 		<value>Email</value>
 	</data>
+	<data name="THIS_EMAIL_ADDRESS_I05175" xml:space="preserve">
+		<value>This email address is already register. Please select another one</value>
+	</data>
 	<data name="CONTRACTS23801" xml:space="preserve">
 		<value>Contracts</value>
 	</data>

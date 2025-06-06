@@ -52,6 +52,22 @@ namespace GenioMVC.Controllers
 
 
 
+
+
+		/// <summary>
+		/// Recalculate formulas of the "F_cntry" form. (++, CT, SR, CL and U1)
+		/// </summary>
+		/// <param name="formData">Current form data</param>
+		/// <returns></returns>
+		[HttpPost]
+		public JsonResult RecalculateFormulas_F_cntry([FromBody]F_cntry_ViewModel formData)
+		{
+			return GenericRecalculateFormulas(formData, "cntry",
+				(primaryKey) => Models.Cntry.Find(primaryKey, UserContext.Current, "FF_CNTRY"),
+				(model) => formData.MapToModel(model as Models.Cntry)
+			);
+		}
+
 		/// <summary>
 		/// Get "See more..." tree structure
 		/// </summary>
