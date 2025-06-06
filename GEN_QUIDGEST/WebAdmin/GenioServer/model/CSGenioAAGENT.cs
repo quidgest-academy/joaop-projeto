@@ -133,7 +133,7 @@ namespace CSGenio.business
 			argumentsListByArea = new List<ByAreaArguments>();
 			argumentsListByArea.Add(new ByAreaArguments(new string[] {"perc_com"}, new int[] {0}, "agent", "codagent"));
 			Qfield.BlockWhen = new ConditionFormula(argumentsListByArea, 1, delegate(object[] args, User user, string module, PersistentSupport sp) {
-				return (((decimal)args[0]) == 0)==1;
+				return (((decimal)args[0]) == 0);
 			});
 			info.RegisterFieldDB(Qfield);
 

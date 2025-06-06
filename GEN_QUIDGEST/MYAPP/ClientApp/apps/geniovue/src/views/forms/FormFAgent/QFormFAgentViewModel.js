@@ -130,8 +130,8 @@ export default class ViewModel extends FormViewModelBase
 				// eslint-disable-next-line no-unused-vars
 				fnFormula(params)
 				{
-					// Formula: isEmptyN([AGENT->PERC_COM])==1
-					return (this.ValPerc_com.value === 0.0)===1
+					// Formula: isEmptyN([AGENT->PERC_COM])
+					return (this.ValPerc_com.value === 0.0)
 				},
 				dependencyEvents: ['fieldChange:agent.perc_com'],
 				isServerRecalc: false,
